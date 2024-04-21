@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  @apply w-2
+}
+
+::-webkit-scrollbar:not(body) {
+  @apply w-1
+}
+
+::-webkit-scrollbar-track {
+  @apply dark:bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply dark:bg-primary rounded-none;
+}
+
+body {
+  @apply text-font-light dark:text-font-light;
+  @apply bg-background-light dark:bg-background-light;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  font-size: 18px;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
