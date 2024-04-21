@@ -4,17 +4,17 @@ import classNames from "classnames"
 
 import useWindowSize from "@hooks/useWindowSize"
 
-import { SidebarSlider } from "@contexts/SidebarProvider"
+import { useSidebarSlider } from "@contexts/SidebarProvider"
 
 import Typography from "@components/Typography"
 import Button from "@components/Button"
 
 import Container from "@components/layouts/Container"
-import Flex from "@components/layouts/Flex"
 import {
   Grid,
   GridItem
 } from "@components/layouts/Grid"
+import Flex from "@components/layouts/Flex"
 
 function TopNav() {
   const windowSize = useWindowSize()
@@ -22,7 +22,7 @@ function TopNav() {
   const {
     sidebarSlide,
     setSidebarSlide
-  } = SidebarSlider()
+  } = useSidebarSlider()
 
   return (
     <nav
@@ -31,15 +31,18 @@ function TopNav() {
         "fixed",
         "top-0",
         "right-0",
-        "left-0 lg:left-80",
+        "left-0 lg:pl-80",
         "flex",
         "items-center",
         "justify-center",
         "w-full",
-        "h-16 lg:h-20",
+        "h-16",
         "py-3 sm:py-4",
-        "bg-background-light",
+        "bg-surface-light",
         "border-b-2",
+        "transition-all",
+        "duration-300",
+        "ease-in-out",
       )}
     >
       <Container>
@@ -64,10 +67,11 @@ function TopNav() {
                 type="h6"
                 className={classNames(
                   "mr-auto",
+                  "font-medium",
                   "leading-normal",
                 )}
               >
-                {sidebarSlide ? 'true' : 'false'}
+                Dashoboard
               </Typography>
             </Flex>
           </GridItem>
@@ -78,19 +82,23 @@ function TopNav() {
               "text-end",
             )}
           >
-            <Button
-              onClick={() => {
-                if (windowSize.width <= 1024) {
-                  document.body.style.position = "absolute"
-                  document.body.style.width = "100vw"
-                  document.body.style.overflow = "hidden"
+            {
+              <Button
+                onClick={() => {
+                  if (windowSize.width <= 1024) {
+                    document.body.classList.add(
+                      "absolute",
+                      "w-screen",
+                      "overflow-hidden"
+                    )
 
-                  setSidebarSlide(true)
-                }
-              }}
-              icon="settings"
-              size="xs"
-            />
+                    setSidebarSlide((prev) => !prev)
+                  }
+                }}
+                icon="settings"
+                size="xs"
+              />
+            }
           </GridItem>
         </Grid>
       </Container>

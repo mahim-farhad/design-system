@@ -9,7 +9,7 @@ function Section({
 }) {
   const sectionClasses = twMerge(
     "relative",
-    "py-6 lg:py-8",
+    "py-6 sm:py-8",
     "overflow-hidden",
     className
   )

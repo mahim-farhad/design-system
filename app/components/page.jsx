@@ -43,7 +43,11 @@ function Components() {
               "flex-col",
               "gap-8",
               "justify-center",
-              "min-h-[calc(100vh-176px)]",
+              "max-w-[600px]",
+              "p-16",
+              "bg-surface-light",
+              "border-2",
+              "rounded-xl",
             )}
           >
             <Textfield

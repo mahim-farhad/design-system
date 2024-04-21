@@ -10,10 +10,12 @@ function Main({
   const mainClasses = twMerge(
     "h-full",
     "min-h-screen",
-    "pt-16 lg:pt-20",
-    // "pb-16 lg:pb-0",
+    "pt-16",
     "lg:pl-80",
-    "bg-surface-light",
+    "bg-background-light",
+    "transition-all",
+    "duration-300",
+    "ease-in-out",
     className
   )
 

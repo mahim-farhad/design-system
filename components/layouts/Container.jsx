@@ -10,7 +10,7 @@ function Container({
   const containerClasses = twMerge(
     "container",
     "max-w-full",
-    "px-6 lg:px-8",
+    "px-6 sm:px-8",
     "mx-auto",
     className
   )

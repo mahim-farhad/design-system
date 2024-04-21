@@ -5,21 +5,19 @@ import {
 
 function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
+    width: window.innerWidth,
+    height: window.innerHeight,
   })
 
+  function handleResize() {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
+  }
+
   useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
-
     window.addEventListener("resize", handleResize)
-
-    handleResize()
 
     return () => window.removeEventListener("resize", handleResize)
   }, [])
@@ -28,3 +26,40 @@ function useWindowSize() {
 }
 
 export default useWindowSize
+
+// import {
+//   useState,
+//   useEffect
+// } from "react"
+
+// import { debounce } from "lodash"
+
+// function useWindowSize() {
+//   const [windowSize, setWindowSize] = useState({
+//     width: window.innerWidth,
+//     height: window.innerHeight,
+//   })
+
+//   function handleResize() {
+//     setWindowSize({
+//       width: window.innerWidth,
+//       height: window.innerHeight,
+//     })
+//   }
+
+//   useEffect(() => {
+//     handleResize()
+
+//     const debouncedHandleResize = debounce(handleResize, 150)
+
+//     window.addEventListener("resize", debouncedHandleResize)
+
+//     return () => {
+//       window.removeEventListener("resize", debouncedHandleResize)
+//     }
+//   }, [])
+
+//   return windowSize
+// }
+
+// export default useWindowSize

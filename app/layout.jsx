@@ -6,6 +6,8 @@ import {
   firaCode,
 } from "@utils/fonts"
 
+import { twMerge } from "tailwind-merge"
+
 import "@styles/globals.css"
 
 import SidebarProvider from "@contexts/SidebarProvider"
@@ -36,13 +38,17 @@ function RootLayout({ children }) {
       )}
     >
       <body
-        className={classNames(
-          "w-full",
-          "min-h-screen",
-          "antialiased",
-          "font-arvo",
-          "select-none",
-          "overflow-x-hidden",
+        className={twMerge(
+          classNames(
+            "w-full",
+            "min-h-screen",
+            "antialiased",
+            "font-arvo",
+            "select-none",
+            "overflow-x-hidden",
+            "text-font-light dark:text-font-light",
+            "bg-background-light dark:bg-background-light",
+          )
         )}
       >
         <SidebarProvider>

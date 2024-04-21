@@ -8,7 +8,7 @@ import classNames from "classnames"
 
 import useWindowSize from "@hooks/useWindowSize"
 
-import { SidebarSlider } from "@contexts/SidebarProvider"
+import { useSidebarSlider } from "@contexts/SidebarProvider"
 
 import Icon from "@components/Icon"
 import Divider from "@components/Divider"
@@ -22,8 +22,6 @@ import {
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
-
-import ScrollContainer from "@components/sliders/ScrollContainer"
 
 const pageLinks = [{
   id: 1,
@@ -80,8 +78,8 @@ function Header() {
         "flex-shrink-0",
         "gap-x-6",
         "items-center",
-        "h-16 lg:h-20",
-        "py-3 lg:py-6",
+        "h-16",
+        "py-3",
         "px-6",
         "border-b-2",
       )}
@@ -179,7 +177,7 @@ function Body({
                     "font-medium",
                     "capitalize",
                     { ["text-[#6D7D93] bg-transparent"]: router !== path },
-                    { ["text-primary bg-gray-100"]: router === path },
+                    { ["text-primary bg-[rgba(47,178,171,0.1)]"]: router === path },
                     "hover:bg-gray-100",
                     "rounded-lg",
                     "transition-all",
@@ -284,7 +282,7 @@ function Body({
                               "font-medium",
                               "capitalize",
                               { ["text-[#6D7D93] bg-transparent"]: router !== path },
-                              { ["text-primary bg-gray-100"]: router === path },
+                              { ["text-primary bg-[#2fb2ab33]"]: router === path },
                               "hover:bg-gray-100",
                               "rounded-lg",
                               "transition-all",
@@ -405,13 +403,10 @@ function Footer() {
 }
 
 function Sidebar() {
-  const windowSize = useWindowSize()
-
   const {
     wrapperRef,
-    sidebarSlide,
-    setSidebarSlide
-  } = SidebarSlider()
+    sidebarSlide
+  } = useSidebarSlider()
 
   const router = usePathname()
 
@@ -422,17 +417,18 @@ function Sidebar() {
         "z-50",
         "fixed",
         "top-0",
-        { ["-left-80"]: windowSize.width <= 1024 && !sidebarSlide },
-        { ["left-0"]: windowSize.width >= 1024 || sidebarSlide },
+        "left-0",
         "bottom-0",
+        { ["-translate-x-80"]: !sidebarSlide },
+        { ["translate-x-0"]: sidebarSlide },
         "flex",
-        "flex-shrink-0",
         "flex-col",
+        "flex-shrink-0",
         "w-80",
         "h-full",
         "min-h-screen",
         "overflow-hidden",
-        "bg-background-light",
+        "bg-surface-light",
         "border-r-2",
         "transition-all",
         "duration-300",
