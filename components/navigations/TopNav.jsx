@@ -84,6 +84,8 @@ function TopNav() {
           >
             {
               <Button
+                icon="settings"
+                size="xs"
                 onClick={() => {
                   if (windowSize.width <= 1024) {
                     document.body.classList.add(
@@ -95,8 +97,6 @@ function TopNav() {
                     setSidebarSlide((prev) => !prev)
                   }
                 }}
-                icon="settings"
-                size="xs"
               />
             }
           </GridItem>

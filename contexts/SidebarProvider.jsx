@@ -26,7 +26,7 @@ function SidebarProvider({ children }) {
 
   const handleClickOutside = useCallback((event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      if (windowSize.width <= 1024) {
+      if (sidebarSlide && windowSize.width <= 1024) {
         setSidebarSlide(false)
 
         document.body.classList.remove(
@@ -46,7 +46,17 @@ function SidebarProvider({ children }) {
 
   useEffect(() => {
     setSidebarSlide(windowSize.width >= 1024)
-  }, [windowSize.width])
+  }, [windowSize])
+
+  useEffect(() => {
+    if (sidebarSlide && windowSize.width >= 1024) {
+      document.body.classList.remove(
+        "absolute",
+        "w-screen",
+        "overflow-hidden"
+      )
+    }
+  }, [sidebarSlide, windowSize])
 
   const value = {
     wrapperRef,

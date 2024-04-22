@@ -6,8 +6,6 @@ import { usePathname } from "next/navigation"
 
 import classNames from "classnames"
 
-import useWindowSize from "@hooks/useWindowSize"
-
 import { useSidebarSlider } from "@contexts/SidebarProvider"
 
 import Icon from "@components/Icon"
@@ -71,7 +69,7 @@ const pageLinks = [{
   iconName: "menu",
 }]
 
-function Header() {
+function Header({ setSidebarSlide }) {
   return (
     <Flex
       className={classNames(
@@ -98,6 +96,41 @@ function Header() {
       >
         Components
       </Typography>
+
+      <Button
+        variant="text"
+        className={classNames(
+          "flex",
+          "items-center",
+          "justify-center",
+          "w-6",
+          "h-6",
+          "p-0",
+          "ml-auto",
+          "font-semibold",
+          "uppercase",
+          "bg-surface-light",
+          "rounded-lg",
+          "border-2",
+          "border-[#E9EAEE]",
+        )}
+        onClick={() => {
+          document.body.classList.remove(
+            "absolute",
+            "w-screen",
+            "overflow-hidden"
+          )
+
+          setSidebarSlide((prev) => !prev)
+        }}
+      >
+        <Icon
+          name="chevron-down"
+          className={classNames(
+            "rotate-90"
+          )}
+        />
+      </Button>
     </Flex>
   )
 }
@@ -121,6 +154,7 @@ function Body({
           "flex",
           "flex-col",
           "flex-1",
+          "gap-6",
           "py-6",
           "px-3",
           "overflow-y-auto",
@@ -322,6 +356,127 @@ function Body({
             ))
           }
         </List>
+
+        <Divider
+          className={classNames(
+            "-mx-4",
+          )}
+        />
+
+        <List
+          className={classNames(
+            "flex",
+            "flex-col",
+            "gap-2",
+          )}
+        >
+          <ListItem
+            className={classNames(
+              "px-3",
+              "mb-4",
+            )}
+          >
+            <Typography
+              type="h6"
+              className={classNames(
+                "!text-sm",
+              )}
+            >
+              References
+            </Typography>
+          </ListItem>
+
+          {
+            pageLinks?.map(({
+              id,
+              path,
+              label,
+              iconName,
+              nestedLinks
+            }) => (
+              <ListItem
+                key={id}
+              >
+                <DynamicLink
+                  href={path}
+                  className={classNames(
+                    "relative",
+                    "flex",
+                    "gap-x-6",
+                    "items-center",
+                    "h-12",
+                    "py-3",
+                    "px-3",
+                    { ["mb-2"]: nestedLinks },
+                    "font-arvo",
+                    "text-base",
+                    "leading-[21px]",
+                    "font-medium",
+                    "capitalize",
+                    { ["text-[#6D7D93] bg-transparent"]: router !== path },
+                    { ["text-primary bg-[rgba(47,178,171,0.1)]"]: router === path },
+                    "hover:bg-gray-100",
+                    "rounded-lg",
+                    "transition-all",
+                    "duration-300",
+                    "ease-in-out",
+                  )}
+
+                  onClick={() => {
+                    setvisible(!visible)
+                  }}
+                >
+                  <span
+                    className={classNames(
+                      "flex",
+                      "items-center",
+                      "justify-center",
+                      "w-6",
+                      "h-6",
+                      "font-semibold",
+                      "uppercase",
+                    )}
+                  >
+                    {
+                      iconName ? (
+                        <Icon
+                          name={iconName}
+                          active={router === path}
+                        />
+                      ) : label[0] + label[1]
+                    }
+                  </span>
+
+                  {label}
+
+                  {
+                    nestedLinks &&
+                    <span
+                      className={classNames(
+                        "flex",
+                        "items-center",
+                        "justify-center",
+                        "w-6",
+                        "h-6",
+                        "ml-auto",
+                        "font-semibold",
+                        "uppercase",
+                        "bg-surface-light",
+                        "rounded-lg",
+                        "border-2",
+                        "border-[#E9EAEE]",
+                      )}
+                    >
+                      <Icon
+                        name="chevron-down"
+                      />
+                    </span>
+                  }
+                </DynamicLink>
+              </ListItem>
+            ))
+          }
+        </List>
       </Box>
     </Box>
   )
@@ -405,7 +560,8 @@ function Footer() {
 function Sidebar() {
   const {
     wrapperRef,
-    sidebarSlide
+    sidebarSlide,
+    setSidebarSlide
   } = useSidebarSlider()
 
   const router = usePathname()
@@ -420,6 +576,7 @@ function Sidebar() {
         "left-0",
         "bottom-0",
         { ["-translate-x-80"]: !sidebarSlide },
+        // { ["-translate-x-80 lg:translate-x-0"]: !sidebarSlide },
         { ["translate-x-0"]: sidebarSlide },
         "flex",
         "flex-col",
@@ -427,7 +584,6 @@ function Sidebar() {
         "w-80",
         "h-full",
         "min-h-screen",
-        "overflow-hidden",
         "bg-surface-light",
         "border-r-2",
         "transition-all",
@@ -435,11 +591,9 @@ function Sidebar() {
         "ease-in-out",
       )}
     >
-      <Header />
+      <Header setSidebarSlide={setSidebarSlide} />
 
-      <Body
-        router={router}
-      />
+      <Body router={router} />
 
       <Footer />
     </aside>
