@@ -10,7 +10,6 @@ function Home() {
       <Section>
         <Container>
           <Box>
-
           </Box>
         </Container>
       </Section>

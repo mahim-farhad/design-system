@@ -7,7 +7,15 @@ import {
   motion
 } from "framer-motion"
 
-function Animate({ children }) {
+function Animate({
+  initial = { opacity: 0 },
+  animate = { opacity: 1 },
+  exit = { opacity: 0 },
+  transition = {
+    duration: 0.3
+  },
+  children
+}) {
   return (
     <AnimatePresence
       mode="wait"
@@ -15,14 +23,10 @@ function Animate({ children }) {
       onExitComplete={() => window.scrollTo(0, 0)}
     >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 20,
-        }}
+        initial={initial}
+        animate={animate}
+        exit={exit}
+        transition={transition}
       >
         {children}
       </motion.div>

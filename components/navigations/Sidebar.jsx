@@ -20,6 +20,7 @@ import {
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
+import Animate from "@components/Animate"
 
 const pageLinks = [{
   id: 1,
@@ -346,7 +347,7 @@ function Sidebar() {
         "top-0",
         "left-0",
         "bottom-0",
-        { ["-translate-x-80 lg:translate-x-0"]: !sidebarSlide },
+        { ["-translate-x-80"]: !sidebarSlide },
         { ["translate-x-0"]: sidebarSlide },
         "flex",
         "flex-col",
