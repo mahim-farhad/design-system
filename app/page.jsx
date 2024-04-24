@@ -10,6 +10,7 @@ function Home() {
       <Section>
         <Container>
           <Box>
+            Updated
           </Box>
         </Container>
       </Section>
