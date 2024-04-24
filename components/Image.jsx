@@ -3,16 +3,20 @@ import PropTypes from "prop-types"
 import { twMerge } from "tailwind-merge"
 
 function Image({
-  src = null,
-  alt = null,
-  className = null,
-  style = null
+  src = "",
+  alt = "image",
+  className = "",
+  style = {}
 }) {
   const imgClasses = twMerge(
     "w-full",
     "object-cover",
     className
   )
+
+  if (src === "") {
+    return null
+  }
 
   return (
     <img
@@ -26,8 +30,8 @@ function Image({
 }
 
 Image.propTypes = {
-  src: PropTypes.string,
-  alt: PropTypes.string,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
   className: PropTypes.string,
   style: PropTypes.object
 }

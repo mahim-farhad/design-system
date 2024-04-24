@@ -7,10 +7,7 @@ import {
   motion
 } from "framer-motion"
 
-function Animate({
-  className = "",
-  children
-}) {
+function Animate({ children }) {
   return (
     <AnimatePresence
       mode="wait"
@@ -26,7 +23,6 @@ function Animate({
           stiffness: 100,
           damping: 20,
         }}
-        className={className}
       >
         {children}
       </motion.div>

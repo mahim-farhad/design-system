@@ -3,8 +3,8 @@ import PropTypes from "prop-types"
 import { twMerge } from "tailwind-merge"
 
 function Grid({
-  className = null,
-  style = null,
+  className = "",
+  style = {},
   children
 }) {
   const gridClasses = twMerge(
@@ -23,14 +23,12 @@ function Grid({
 }
 
 function GridItem({
-  key = null,
-  className = null,
-  style = null,
+  key,
+  className = "",
+  style = {},
   children
 }) {
-  const gridItemClasses = twMerge(
-    className
-  )
+  const gridItemClasses = className ? twMerge(className) : undefined
 
   return (
     <div

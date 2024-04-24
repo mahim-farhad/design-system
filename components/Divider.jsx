@@ -2,19 +2,15 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
-import classNames from "classnames"
-
 function Divider({
-  className = null,
-  style = null
+  className = "",
+  style = {}
 }) {
   const dividerClasses = twMerge(
-    classNames(
-      "w-full",
-      "h-0",
-      "border-t-2",
-      "border-[#E9EAEE]",
-    ),
+    "w-full",
+    "h-px",
+    "bg-[#E9EAEE]",
+    "border-0",
     className
   )
 

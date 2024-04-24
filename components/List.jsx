@@ -2,54 +2,48 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
+import classNames from "classnames"
+
 function List({
   type = "ul",
   className = "",
-  style = null,
+  style = {},
   children,
 }) {
+  const Tag = type
+
   const listClasses = twMerge(
-    "flex",
-    "flex-col",
-    "gap-x-4",
-    "items-start",
+    classNames(
+      "p-0",
+      "m-0",
+      { ["list-none"]: type === "ul" },
+      { ["list-disc"]: type === "ol" },
+      "list-inside",
+    ),
     className
   )
 
-  switch (type) {
-    case "ul":
-      return (
-        <ul
-          className={listClasses}
-          style={style}
-        >
-          {children}
-        </ul>
-      )
-    case "ol":
-      return (
-        <ol
-          className={listClasses}
-          style={style}
-        >
-          {children}
-        </ol>
-      )
-    default:
-      return null
+  if (type !== "ul" && type !== "ol") {
+    return null
   }
+
+  return (
+    <Tag
+      className={listClasses}
+      style={style}
+    >
+      {children}
+    </Tag>
+  )
 }
 
 function ListItem({
   key,
   className = "",
-  style = null,
+  style = {},
   children,
 }) {
-  const listItemClasses = twMerge(
-    "w-full",
-    className
-  )
+  const listItemClasses = className ? twMerge(className) : undefined
 
   return (
     <li
@@ -66,7 +60,7 @@ List.propTypes = {
   type: PropTypes.oneOf([
     "ul",
     "ol",
-  ]),
+  ]).isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired

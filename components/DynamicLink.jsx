@@ -6,21 +6,24 @@ import { twMerge } from "tailwind-merge"
 
 function DynamicLink({
   href = "/",
-  onClick,
-  className = null,
-  style = null,
+  className = "",
+  style = {},
   children
 }) {
   const linkClasses = twMerge(
+    "block",
     className
   )
+
+  if (href === "") {
+    return null
+  }
 
   return (
     <Link
       href={href}
-      // target="_blank"
-      // rel="noreferrer"
-      onClick={onClick}
+      target="_blank"
+      rel="noreferrer"
       className={linkClasses}
       style={style}
     >
@@ -30,7 +33,7 @@ function DynamicLink({
 }
 
 DynamicLink.propTypes = {
-  href: PropTypes.string,
+  href: PropTypes.string.isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node

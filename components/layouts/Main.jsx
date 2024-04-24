@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge"
 
 function Main({
   className = "",
-  style = null,
+  style = {},
   children
 }) {
   const mainClasses = twMerge(

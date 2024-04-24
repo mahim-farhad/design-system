@@ -7,6 +7,7 @@ import classNames from "classnames"
 function Typography({
   type = "p",
   className = "",
+  style = {},
   children
 }) {
   const Tag = type
@@ -67,7 +68,6 @@ function Typography({
       "text-heading-light",
     ),
     p: classNames(
-      "font-normal",
       "text-base",
       "leading-[1.25]",
       "font-normal",
@@ -75,7 +75,6 @@ function Typography({
       "text-font-light",
     ),
     small: classNames(
-      "font-normal",
       "text-sm",
       "leading-[1.25rem]",
       "font-medium",
@@ -85,7 +84,6 @@ function Typography({
     ),
     blockquote: classNames(
       "p-4",
-      "font-normal",
       "text-base",
       "leading-[1.75]",
       "font-medium",
@@ -103,6 +101,7 @@ function Typography({
   return (
     <Tag
       className={typographyClasses}
+      style={style}
     >
       {children}
     </Tag>
@@ -122,6 +121,7 @@ Typography.propTypes = {
     "blockquote",
   ]),
   className: PropTypes.string,
+  style: PropTypes.object,
   children: PropTypes.node
 }
 

@@ -6,17 +6,14 @@ import { twMerge } from "tailwind-merge"
 
 const Box = forwardRef(
   function Box({
-    key = null,
-    className = null,
-    style = null,
+    key,
+    className = "",
+    style = {},
     children,
     ...props
   }, ref
   ) {
-    const boxClasses = twMerge(
-      "block",
-      className
-    )
+    const boxClasses = className ? twMerge(className) : undefined
 
     return (
       <div

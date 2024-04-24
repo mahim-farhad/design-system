@@ -6,9 +6,9 @@ import { twMerge } from "tailwind-merge"
 
 const Flex = forwardRef(
   function Flex({
-    key = null,
+    key,
     className = "",
-    style = null,
+    style = {},
     children,
     ...props
   }, ref

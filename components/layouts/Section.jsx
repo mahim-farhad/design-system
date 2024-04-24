@@ -3,12 +3,11 @@ import PropTypes from "prop-types"
 import { twMerge } from "tailwind-merge"
 
 function Section({
-  className = null,
-  style = null,
+  className = "",
+  style = {},
   children
 }) {
   const sectionClasses = twMerge(
-    "relative",
     "py-6 sm:py-8",
     "overflow-hidden",
     className
