@@ -22,7 +22,7 @@ function SidebarProvider({ children }) {
 
   const wrapperRef = useRef(null)
 
-  const [sidebarSlide, setSidebarSlide] = useState(() => window.width >= 1024)
+  const [sidebarSlide, setSidebarSlide] = useState(() => windowSize.width >= 1024)
 
   const handleClickOutside = useCallback((event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
