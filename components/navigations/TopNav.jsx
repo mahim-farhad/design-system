@@ -75,6 +75,17 @@ function TopNav() {
               >
                 {sidebarSlide ? 'true' : 'false'}
               </Typography>
+
+              <Typography
+                type="h6"
+                className={classNames(
+                  "mr-auto",
+                  "font-medium",
+                  "leading-normal",
+                )}
+              >
+                {windowSize.width}
+              </Typography>
             </Flex>
           </GridItem>
 

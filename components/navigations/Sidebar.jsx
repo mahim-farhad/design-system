@@ -20,7 +20,6 @@ import {
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
-import Animate from "@components/Animate"
 
 const pageLinks = [{
   id: 1,
@@ -261,46 +260,6 @@ function Footer() {
         "flex-shrink-0",
       )}
     >
-      {/* <Box
-        className={classNames(
-          "p-6",
-          "m-6",
-          "bg-primary",
-          "rounded-lg",
-        )}
-      >
-        <Typography
-          type="h6"
-          className={classNames(
-            "-mt-[4px] lg:-mt-[6px]",
-            "mb-2",
-            "text-gray-100",
-          )}
-        >
-          Get Premium Now!
-        </Typography>
-
-        <Typography
-          type="p"
-          className={classNames(
-            "mb-4",
-            "text-gray-100",
-          )}
-        >
-          Reach our special feature by subscribing our package
-        </Typography>
-
-        <Button
-          size="sm"
-          color="white"
-          className={classNames(
-            "w-full",
-          )}
-        >
-          Subscribe
-        </Button>
-      </Box> */}
-
       <Box
         className={classNames(
           "h-12",
