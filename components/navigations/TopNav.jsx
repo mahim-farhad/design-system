@@ -24,6 +24,8 @@ function TopNav() {
     setSidebarSlide
   } = useSidebarSlider()
 
+  console.log(sidebarSlide)
+
   return (
     <nav
       className={classNames(
@@ -71,7 +73,7 @@ function TopNav() {
                   "leading-normal",
                 )}
               >
-                Dashoboard
+                {sidebarSlide ? 'true' : 'false'}
               </Typography>
             </Flex>
           </GridItem>

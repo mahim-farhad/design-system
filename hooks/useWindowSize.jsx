@@ -5,8 +5,8 @@ import {
 
 function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
+    width: null,
+    height: null,
   })
 
   function handleResize() {
