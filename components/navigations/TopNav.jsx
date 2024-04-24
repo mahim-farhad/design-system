@@ -94,7 +94,7 @@ function TopNav() {
                       "overflow-hidden"
                     )
 
-                    setSidebarSlide((prev) => !prev)
+                    setSidebarSlide(true)
                   }
                 }}
               />
