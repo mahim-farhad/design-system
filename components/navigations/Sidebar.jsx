@@ -20,6 +20,7 @@ import {
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
+import { twMerge } from "tailwind-merge"
 
 const pageLinks = [{
   id: 1,
@@ -300,25 +301,27 @@ function Sidebar() {
   return (
     <aside
       ref={wrapperRef}
-      className={classNames(
-        "z-50",
-        "fixed",
-        "top-0",
-        "left-0",
-        "bottom-0",
-        { ["-translate-x-80"]: !sidebarSlide },
-        { ["translate-x-0"]: sidebarSlide },
-        "flex",
-        "flex-col",
-        "flex-shrink-0",
-        "w-80",
-        "h-full",
-        "min-h-screen",
-        "bg-surface-light",
-        "border-r-2",
-        "transition-all",
-        "duration-300",
-        "ease-in-out",
+      className={twMerge(
+        classNames(
+          "z-50",
+          "fixed",
+          "top-0",
+          "left-0",
+          "bottom-0",
+          { ["-translate-x-80"]: !sidebarSlide },
+          { ["translate-x-0"]: sidebarSlide },
+          "flex",
+          "flex-col",
+          "flex-shrink-0",
+          "w-80",
+          "h-full",
+          "min-h-screen",
+          "bg-surface-light",
+          "border-r-2",
+          "transition-all",
+          "duration-300",
+          "ease-in-out",
+        )
       )}
     >
       <Header setSidebarSlide={setSidebarSlide} />

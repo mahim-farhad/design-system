@@ -22,11 +22,11 @@ function SidebarProvider({ children }) {
 
   const wrapperRef = useRef(null)
 
-  const [sidebarSlide, setSidebarSlide] = useState(() => windowSize.width >= 1024)
+  const [sidebarSlide, setSidebarSlide] = useState(() => windowSize >= 1024)
 
   const handleClickOutside = useCallback((event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      if (sidebarSlide && windowSize.width <= 1024) {
+      if (sidebarSlide && windowSize <= 1024) {
         setSidebarSlide(false)
 
         document.body.classList.remove(
@@ -45,11 +45,11 @@ function SidebarProvider({ children }) {
   }, [handleClickOutside])
 
   useEffect(() => {
-    setSidebarSlide(windowSize.width >= 1024)
+    setSidebarSlide(windowSize >= 1024)
   }, [windowSize])
 
   useEffect(() => {
-    if (sidebarSlide && windowSize.width >= 1024) {
+    if (sidebarSlide && windowSize >= 1024) {
       document.body.classList.remove(
         "absolute",
         "w-screen",

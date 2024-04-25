@@ -84,7 +84,6 @@ function TopNav() {
                   "leading-normal",
                 )}
               >
-                {windowSize.width}
               </Typography>
             </Flex>
           </GridItem>
@@ -100,7 +99,7 @@ function TopNav() {
                 icon="settings"
                 size="xs"
                 onClick={() => {
-                  if (windowSize.width <= 1024) {
+                  if (windowSize <= 1024) {
                     document.body.classList.add(
                       "absolute",
                       "w-screen",
