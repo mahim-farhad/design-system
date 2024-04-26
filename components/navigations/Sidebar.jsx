@@ -4,23 +4,27 @@ import { useState } from "react"
 
 import { usePathname } from "next/navigation"
 
+import { twMerge } from "tailwind-merge"
+
 import classNames from "classnames"
+
+import useWindowSize from "@hooks/useWindowSize"
 
 import { useSidebarSlider } from "@contexts/SidebarProvider"
 
-import Icon from "@components/Icon"
-import Divider from "@components/Divider"
-import DynamicLink from "@components/DynamicLink"
-import Typography from "@components/Typography"
-import Button from "@components/Button"
+import Icon from "@components/elements/Icon"
+import Divider from "@components/elements/Divider"
+import DynamicLink from "@components/elements/DynamicLink"
+import Typography from "@components/elements/Typography"
+import Button from "@components/elements/Button"
 import {
   List,
   ListItem
-} from "@components/List"
+} from "@components/elements/List"
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
-import { twMerge } from "tailwind-merge"
+import Animate from "@components/framerMotion/Animate"
 
 const pageLinks = [{
   id: 1,
@@ -44,7 +48,7 @@ const pageLinks = [{
   iconName: "menu",
 }]
 
-function Header({ setSidebarSlide }) {
+function Header() {
   return (
     <Flex
       className={classNames(
@@ -71,48 +75,13 @@ function Header({ setSidebarSlide }) {
       >
         Components
       </Typography>
-
-      <Button
-        variant="text"
-        className={classNames(
-          "flex",
-          "items-center",
-          "justify-center",
-          "w-6",
-          "h-6",
-          "p-0",
-          "ml-auto",
-          "font-semibold",
-          "uppercase",
-          "bg-surface-light",
-          "rounded-lg",
-          "border-2",
-          "border-[#E9EAEE]",
-        )}
-        onClick={() => {
-          document.body.classList.remove(
-            "absolute",
-            "w-screen",
-            "overflow-hidden"
-          )
-
-          setSidebarSlide((prev) => !prev)
-        }}
-      >
-        <Icon
-          name="chevron-down"
-          className={classNames(
-            "rotate-90"
-          )}
-        />
-      </Button>
     </Flex>
   )
 }
 
-function Body({
-  router
-}) {
+function Body() {
+  const router = usePathname()
+
   const [visible, setvisible] = useState(false)
 
   return (
@@ -290,46 +259,66 @@ function Footer() {
 }
 
 function Sidebar() {
+  const windowSize = useWindowSize()
+
   const {
-    wrapperRef,
-    sidebarSlide,
-    setSidebarSlide
+    sidebarRef,
+    sidebarSlide
   } = useSidebarSlider()
 
-  const router = usePathname()
-
   return (
-    <aside
-      ref={wrapperRef}
-      className={twMerge(
-        classNames(
-          "z-50",
-          "fixed",
-          "top-0",
-          "left-0",
-          "bottom-0",
-          { ["-translate-x-80"]: !sidebarSlide },
-          { ["translate-x-0"]: sidebarSlide },
-          "flex",
-          "flex-col",
-          "flex-shrink-0",
-          "w-80",
-          "h-full",
-          "min-h-screen",
-          "bg-surface-light",
-          "border-r-2",
-          "transition-all",
-          "duration-300",
-          "ease-in-out",
-        )
-      )}
-    >
-      <Header setSidebarSlide={setSidebarSlide} />
+    <>
+      {
+        (windowSize <= 1024 && sidebarSlide) &&
+        <Animate>
+          <Box
+            className={classNames(
+              "z-50",
+              "absolute",
+              "inset-0",
+              "h-screen",
+              "pointer-events-auto",
+              "bg-black",
+              "bg-opacity-15",
+              "backdrop-blur-sm",
+            )}
+          />
+        </Animate>
+      }
 
-      <Body router={router} />
+      <aside
+        ref={sidebarRef}
+        id="sidebar"
+        className={twMerge(
+          classNames(
+            "z-50",
+            "fixed",
+            "top-0",
+            "left-0",
+            "bottom-0",
+            { ["-translate-x-full lg:translate-x-0"]: !sidebarSlide },
+            { ["translate-x-0"]: sidebarSlide },
+            "flex",
+            "flex-col",
+            "flex-shrink-0",
+            "w-80",
+            "h-full",
+            "min-h-screen",
+            "bg-surface-light",
+            "border-r-2",
+            "transition-transform",
+            "duration-300",
+            "ease-in-out",
+          )
+        )}
+      >
+        <Header />
 
-      <Footer />
-    </aside>
+        <Body />
+
+        <Footer />
+      </aside>
+    </>
   )
 }
 

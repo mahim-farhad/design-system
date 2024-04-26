@@ -1,9 +1,9 @@
 import classNames from "classnames"
 
-import Animate from "@components/Animate"
+import Animate from "@components/framerMotion/Animate"
 
-import Typography from "@components/Typography"
-import DynamicLink from "@components/DynamicLink"
+import Typography from "@components/elements/Typography"
+import DynamicLink from "@components/elements/DynamicLink"
 
 import Container from "@components/layouts/Container"
 import Box from "@components/layouts/Box"

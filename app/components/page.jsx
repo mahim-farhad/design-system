@@ -4,17 +4,18 @@ import { useState } from "react"
 
 import classNames from "classnames"
 
-import Divider from "@components/Divider"
+import Animate from "@components/framerMotion/Animate"
+
+import Divider from "@components/elements/Divider"
 import Textfield from "@components/textfields/Textfield"
 import Counter from "@components/textfields/Counter"
-import Button from "@components/Button"
+import Button from "@components/elements/Button"
 
 import Main from "@components/layouts/Main"
 import Section from "@components/layouts/Section"
 import Container from "@components/layouts/Container"
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
-import Animate from "@components/Animate"
 
 function Components() {
   const initialValues = {

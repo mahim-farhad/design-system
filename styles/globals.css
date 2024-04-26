@@ -6,6 +6,14 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+@font-face {
+  font-family: 'AkiraExpanded';
+  src: url('../public/fonts/AkiraExpanded.otf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 ::-webkit-scrollbar {
   @apply w-2
 }
@@ -21,8 +29,3 @@
 ::-webkit-scrollbar-thumb {
   @apply dark:bg-primary rounded-none;
 }
-
-/* body {
-  @apply text-font-light dark:text-font-light;
-} */
-

@@ -10,9 +10,9 @@ import classNames from "classnames"
 
 import useWindowSize from "@hooks/useWindowSize"
 
-import Animate from "@components/Animate"
+import Animate from "@components/framerMotion/Animate"
 
-import Icon from "@components/Icon"
+import Icon from "@components/elements/Icon"
 
 const links = [{
   id: 1,

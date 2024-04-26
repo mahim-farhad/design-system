@@ -21,7 +21,16 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
-const arvo = Poppins({
+const arvo = Arvo({
+  subsets: ["latin"],
+  weight: [
+    "400",
+    "700"
+  ],
+  variable: "--font-arvo",
+})
+
+const poppins = Poppins({
   subsets: ["latin"],
   weight: [
     "100",
@@ -34,7 +43,7 @@ const arvo = Poppins({
     "800",
     "900"
   ],
-  variable: "--font-arvo",
+  variable: "--font-poppins",
 })
 
 const firaCode = Fira_Code({
@@ -52,5 +61,6 @@ const firaCode = Fira_Code({
 export {
   inter,
   arvo,
-  firaCode,
+  poppins,
+  firaCode
 }

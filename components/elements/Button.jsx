@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Icon from "@components/Icon"
+import Icon from "@components/elements/Icon"
 
 const sizeVariants = {
   xs: {

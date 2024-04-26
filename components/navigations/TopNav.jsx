@@ -6,8 +6,8 @@ import useWindowSize from "@hooks/useWindowSize"
 
 import { useSidebarSlider } from "@contexts/SidebarProvider"
 
-import Typography from "@components/Typography"
-import Button from "@components/Button"
+import Typography from "@components/elements/Typography"
+import Button from "@components/elements/Button"
 
 import Container from "@components/layouts/Container"
 import {
@@ -75,16 +75,6 @@ function TopNav() {
               >
                 {sidebarSlide ? 'true' : 'false'}
               </Typography>
-
-              <Typography
-                type="h6"
-                className={classNames(
-                  "mr-auto",
-                  "font-medium",
-                  "leading-normal",
-                )}
-              >
-              </Typography>
             </Flex>
           </GridItem>
 
@@ -95,20 +85,23 @@ function TopNav() {
             )}
           >
             {
+              // windowSize <= 1024 &&
               <Button
+                onClick={() => {
+                  // if (windowSize <= 1024) {
+                  document.body.classList.add(
+                    "absolute",
+                    "w-screen",
+                    "overflow-hidden"
+                  )
+
+                  setSidebarSlide(true)
+                  // }
+                }}
                 icon="settings"
                 size="xs"
-                onClick={() => {
-                  if (windowSize <= 1024) {
-                    document.body.classList.add(
-                      "absolute",
-                      "w-screen",
-                      "overflow-hidden"
-                    )
-
-                    setSidebarSlide(true)
-                  }
-                }}
+                color="white"
+                className="bg-gray-100"
               />
             }
           </GridItem>

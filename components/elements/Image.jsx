@@ -10,13 +10,10 @@ function Image({
 }) {
   const imgClasses = twMerge(
     "w-full",
-    "object-cover",
     className
   )
 
-  if (src === "") {
-    return null
-  }
+  if (src === "") return null
 
   return (
     <img

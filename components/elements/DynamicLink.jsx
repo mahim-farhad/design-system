@@ -15,9 +15,7 @@ function DynamicLink({
     className
   )
 
-  if (href === "") {
-    return null
-  }
+  if (href === "") return null
 
   return (
     <Link

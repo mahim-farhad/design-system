@@ -6,10 +6,10 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Animate from "@components/Animate"
+import Animate from "@components/framerMotion/Animate"
 
-import Icon from "@components/Icon"
-import Button from "@components/Button"
+import Icon from "@components/elements/Icon"
+import Button from "@components/elements/Button"
 
 function Counter({
   type = "number",

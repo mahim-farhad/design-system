@@ -24,7 +24,7 @@ function Icon({
       { [sizeVariants[size]]: size },
       "leading-none",
       "whitespace-nowrap",
-      "text-[inherit]"
+      "fill-current"
     ),
     className
   )
@@ -35,7 +35,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <polygon
@@ -53,12 +52,10 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
-          fill="currentColor"
           className={iconClasses}
         >
           <path
             d="M42.667,234.667h234.667C300.897,234.667,320,215.564,320,192V42.667C320,19.103,300.897,0,277.333,0H42.667   C19.103,0,0,19.103,0,42.667V192C0,215.564,19.103,234.667,42.667,234.667z"
-            fill="currentColor"
             className={classNames(
               { ["text-[#6D7D93]"]: !active },
               { ["text-primary"]: active },
@@ -66,7 +63,6 @@ function Icon({
           />
           <path
             d="M504.704,18.816C496.775,7.054,483.518,0.002,469.333,0h-64c-23.564,0-42.667,19.103-42.667,42.667V192   c0,23.564,19.102,42.667,42.667,42.667h64C492.898,234.667,512,215.564,512,192V42.667 C512.014,34.165,509.472,25.855,504.704,18.816z"
-            fill="currentColor"
             className={classNames(
               { ["text-[#6D7D93]"]: !active },
               { ["text-[#2fb2ab]"]: active },
@@ -74,7 +70,6 @@ function Icon({
           />
           <path
             d="M130.517,284.629c-7.039-4.768-15.349-7.31-23.851-7.296h-64C19.103,277.333,0,296.436,0,320v149.333   C0,492.898,19.103,512,42.667,512h64c23.564,0,42.667-19.103,42.667-42.667V320C149.331,305.815,142.279,292.559,130.517,284.629z"
-            fill="currentColor"
             className={classNames(
               { ["text-[#6D7D93]"]: !active },
               { ["text-[#2fb2ab]"]: active },
@@ -82,7 +77,6 @@ function Icon({
           />
           <path
             d="M493.184,284.629c-7.039-4.768-15.349-7.31-23.851-7.296H234.667C211.103,277.333,192,296.436,192,320v149.333   C192,492.898,211.103,512,234.667,512h234.667C492.898,512,512,492.898,512,469.333V320 C511.998,305.815,504.946,292.559,493.184,284.629z"
-            fill="currentColor"
             className={classNames(
               { ["text-[#C2C9D3]"]: !active },
               { ["text-[#2fb2ab]"]: active },
@@ -95,7 +89,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M12,15.5a1.993,1.993,0,0,1-1.414-.585L5.293,9.621,6.707,8.207,12,13.5l5.293-5.293,1.414,1.414-5.293,5.293A1.993,1.993,0,0,1,12,15.5Z" />
@@ -106,7 +99,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M18,12h0a2,2,0,0,0-.59-1.4l-4.29-4.3a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L15,11H5a1,1,0,0,0,0,2H15l-3.29,3.29a1,1,0,0,0,1.41,1.42l4.29-4.3A2,2,0,0,0,18,12Z" />
@@ -117,7 +109,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M21.985,6.015v4.518a2.417,2.417,0,0,0-.233-.285L16.8,5.3a1,1,0,1,0-1.414,1.414l4.3,4.3H1.015a1,1,0,0,0,0,2H19.692l-4.3,4.3A1,1,0,1,0,16.8,18.733l4.95-4.95a2.5,2.5,0,0,0,.233-.285v4.517a1,1,0,0,0,2,0v-12a1,1,0,0,0-2,0Z" />
@@ -128,7 +119,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 27 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path
@@ -147,7 +137,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M6.49156 0H0V6.49156H6.49156V0Z" />
@@ -166,7 +155,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M11.0072 11.0072H0V0H11.0072V11.0072Z" />
@@ -180,7 +168,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M23.9671 23.9671H12.96V12.96H23.9671V23.9671Z" />
@@ -194,7 +181,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path
@@ -222,7 +208,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <ellipse
@@ -241,7 +226,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M5,9H19l-6.293,6.293a1,1,0,0,1-1.414,0Z" />
@@ -252,7 +236,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="m12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm-.091,15.419c-.387.387-.896.58-1.407.58s-1.025-.195-1.416-.585l-2.782-2.696,1.393-1.437,2.793,2.707,5.809-5.701,1.404,1.425-5.793,5.707Z" />
@@ -263,7 +246,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
-          fill="currentColor"
           className={iconClasses}
         >
           <path d="M256,512c141.385,0,256-114.615,256-256S397.385,0,256,0S0,114.615,0,256C0.153,397.322,114.678,511.847,256,512z    M234.667,128c0-11.782,9.551-21.333,21.333-21.333c11.782,0,21.333,9.551,21.333,21.333v170.667   c0,11.782-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333V128z M256,384c11.782,0,21.333,9.551,21.333,21.333   s-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333S244.218,384,256,384z" />
@@ -274,7 +256,6 @@ function Icon({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
-          fill="currentColor"
           className={iconClasses}
         >
           <g>

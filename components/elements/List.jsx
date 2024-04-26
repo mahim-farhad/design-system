@@ -23,9 +23,7 @@ function List({
     className
   )
 
-  if (type !== "ul" && type !== "ol") {
-    return null
-  }
+  if (type !== "ul" && type !== "ol") return null
 
   return (
     <Tag
@@ -57,10 +55,7 @@ function ListItem({
 }
 
 List.propTypes = {
-  type: PropTypes.oneOf([
-    "ul",
-    "ol",
-  ]).isRequired,
+  type: PropTypes.oneOf(["ul", "ol"]).isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
@@ -73,7 +68,4 @@ ListItem.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export {
-  List,
-  ListItem
-}
+export { List, ListItem }

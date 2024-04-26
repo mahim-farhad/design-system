@@ -4,14 +4,11 @@ import Container from "@components/layouts/Container"
 import Box from "@components/layouts/Box"
 
 function Home() {
-
   return (
     <Main>
       <Section>
         <Container>
-          <Box>
-            Updated
-          </Box>
+          <Box></Box>
         </Container>
       </Section>
     </Main>

@@ -18,7 +18,6 @@ export const content = [
 
 export const theme = {
   screens: {
-    // xs: "20rem",
     sm: "40rem",
     md: "48rem",
     lg: "64rem",
@@ -27,9 +26,11 @@ export const theme = {
   },
   fontFamily: {
     default: ["var(--font-inter)"],
-    headings: ["var(--font-arvo)"],
     arvo: ["var(--font-arvo)"],
+    poppins: ["var(--font-poppins)"],
+    headings: ["var(--font-arvo)"],
     mono: ["var(--font-fira-code)"],
+    custom: ["AkiraExpanded"],
   },
   colors: {
     transparent: "transparent",

@@ -9,7 +9,7 @@ function Divider({
   const dividerClasses = twMerge(
     "w-full",
     "h-px",
-    "bg-[#E9EAEE]",
+    "bg-gray-300",
     "border-0",
     className
   )

@@ -1,7 +1,7 @@
 import classNames from "classnames"
 
-import DynamicLink from "@components/DynamicLink"
-import Typography from "@components/Typography"
+import DynamicLink from "@components/elements/DynamicLink"
+import Typography from "@components/elements/Typography"
 
 import Main from "@components/layouts/Main"
 import Section from "@components/layouts/Section"
