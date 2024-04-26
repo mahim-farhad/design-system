@@ -24,12 +24,12 @@ function TopNav() {
     setSidebarSlide
   } = useSidebarSlider()
 
-  console.log(sidebarSlide)
+  // console.log(sidebarSlide)
 
   return (
     <nav
       className={classNames(
-        "z-50",
+        "z-20",
         "fixed",
         "top-0",
         "right-0",

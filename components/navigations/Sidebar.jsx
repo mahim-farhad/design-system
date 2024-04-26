@@ -12,6 +12,8 @@ import useWindowSize from "@hooks/useWindowSize"
 
 import { useSidebarSlider } from "@contexts/SidebarProvider"
 
+import Animate from "@components/framerMotion/Animate"
+
 import Icon from "@components/elements/Icon"
 import Divider from "@components/elements/Divider"
 import DynamicLink from "@components/elements/DynamicLink"
@@ -24,7 +26,6 @@ import {
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
-import Animate from "@components/framerMotion/Animate"
 
 const pageLinks = [{
   id: 1,
@@ -270,8 +271,25 @@ function Sidebar() {
     <>
       {
         (windowSize <= 1024 && sidebarSlide) &&
-        <Animate>
-          <Box
+        <Animate
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.15
+          }}
+          className={classNames(
+            "z-50",
+            "absolute",
+            "inset-0",
+            "h-screen",
+            "pointer-events-auto",
+            "bg-black",
+            "bg-opacity-15",
+            "backdrop-blur-sm",
+          )}
+        >
+          {/* <Box
             className={classNames(
               "z-50",
               "absolute",
@@ -282,7 +300,7 @@ function Sidebar() {
               "bg-opacity-15",
               "backdrop-blur-sm",
             )}
-          />
+          /> */}
         </Animate>
       }
 

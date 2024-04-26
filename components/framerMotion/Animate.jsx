@@ -14,6 +14,7 @@ function Animate({
   transition = {
     duration: 0.3
   },
+  className = "",
   children
 }) {
   return (
@@ -27,6 +28,7 @@ function Animate({
         animate={animate}
         exit={exit}
         transition={transition}
+        className={className}
       >
         {children}
       </motion.div>
