@@ -25,6 +25,20 @@ function SidebarProvider({ children }) {
   const [sidebarSlide, setSidebarSlide] = useState(() => windowSize >= 1024)
   const [showBackdrop, setShowBackdrop] = useState(false)
 
+  const handleClick = () => {
+    if (windowSize <= 1024) {
+      document.body.classList.add(
+        "absolute",
+        "w-screen",
+        "overflow-hidden"
+      )
+
+      setShowBackdrop(!showBackdrop)
+
+      setSidebarSlide(!sidebarSlide)
+    }
+  }
+
   const handleClickOutside = useCallback((event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       if (sidebarSlide && windowSize <= 1024) {
@@ -76,7 +90,8 @@ function SidebarProvider({ children }) {
     sidebarSlide,
     setSidebarSlide,
     showBackdrop,
-    setShowBackdrop
+    setShowBackdrop,
+    handleClick
   }
 
   return (

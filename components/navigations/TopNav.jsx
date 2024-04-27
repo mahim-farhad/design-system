@@ -2,8 +2,6 @@
 
 import classNames from "classnames"
 
-import useWindowSize from "@hooks/useWindowSize"
-
 import { useSidebarSlider } from "@contexts/SidebarProvider"
 
 import Typography from "@components/elements/Typography"
@@ -17,14 +15,7 @@ import {
 import Flex from "@components/layouts/Flex"
 
 function TopNav() {
-  const windowSize = useWindowSize()
-
-  const {
-    sidebarSlide,
-    setSidebarSlide,
-    showBackdrop,
-    setShowBackdrop
-  } = useSidebarSlider()
+  const { handleClick } = useSidebarSlider()
 
   return (
     <nav
@@ -86,19 +77,7 @@ function TopNav() {
           >
             {
               <Button
-                onClick={() => {
-                  if (windowSize <= 1024) {
-                    document.body.classList.add(
-                      "absolute",
-                      "w-screen",
-                      "overflow-hidden"
-                    )
-
-                    setShowBackdrop(!showBackdrop)
-
-                    setSidebarSlide(true)
-                  }
-                }}
+                onClick={handleClick}
                 icon="settings"
                 size="xs"
                 variant="outlined"
