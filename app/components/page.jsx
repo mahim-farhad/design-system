@@ -4,7 +4,7 @@ import { useState } from "react"
 
 import classNames from "classnames"
 
-import Animate from "@components/framerMotion/Animate"
+import Animate from "@framerMotion/Animate"
 
 import Divider from "@components/elements/Divider"
 import Textfield from "@components/textfields/Textfield"

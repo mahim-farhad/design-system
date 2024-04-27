@@ -12,10 +12,7 @@ import useWindowSize from "@hooks/useWindowSize"
 
 import { useSidebarSlider } from "@contexts/SidebarProvider"
 
-import Animate from "@components/framerMotion/Animate"
-
 import Icon from "@components/elements/Icon"
-import Divider from "@components/elements/Divider"
 import DynamicLink from "@components/elements/DynamicLink"
 import Typography from "@components/elements/Typography"
 import Button from "@components/elements/Button"
@@ -26,6 +23,7 @@ import {
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
+import Backdrop from "@components/layouts/Backdrop"
 
 const pageLinks = [{
   id: 1,
@@ -233,80 +231,40 @@ function Footer() {
     >
       <Box
         className={classNames(
-          "h-12",
           "flex",
           "items-center",
           "justify-center",
-          "py-3",
-          "px-6",
+          "py-2.5",
+          "px-3",
           "border-t-2",
         )}
       >
-        <Typography
-          type="h6"
-          className={classNames(
-            "!text-sm",
-            "font-medium",
-            "text-center",
-            "capitalize",
-          )}
+        <Button
+          size="sm"
+          variant="outlined"
+          color="gray"
+          className="w-full"
         >
-          © {new Date().getFullYear()}, {" "}
-          Mahim Farhad. Inc
-        </Typography>
+          Upgrade to Pro
+        </Button>
       </Box>
     </Box>
   )
 }
 
 function Sidebar() {
-  const windowSize = useWindowSize()
-
   const {
     sidebarRef,
-    sidebarSlide
+    sidebarSlide,
+    showBackdrop
   } = useSidebarSlider()
 
   return (
     <>
-      {
-        (windowSize <= 1024 && sidebarSlide) &&
-        <Animate
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: 0.15
-          }}
-          className={classNames(
-            "z-50",
-            "absolute",
-            "inset-0",
-            "h-screen",
-            "pointer-events-auto",
-            "bg-black",
-            "bg-opacity-15",
-            "backdrop-blur-sm",
-          )}
-        >
-          {/* <Box
-            className={classNames(
-              "z-50",
-              "absolute",
-              "inset-0",
-              "h-screen",
-              "pointer-events-auto",
-              "bg-black",
-              "bg-opacity-15",
-              "backdrop-blur-sm",
-            )}
-          /> */}
-        </Animate>
-      }
+      {showBackdrop && <Backdrop />}
 
       <aside
         ref={sidebarRef}
-        id="sidebar"
         className={twMerge(
           classNames(
             "z-50",
@@ -314,7 +272,7 @@ function Sidebar() {
             "top-0",
             "left-0",
             "bottom-0",
-            { ["-translate-x-full lg:translate-x-0"]: !sidebarSlide },
+            { ["-translate-x-full"]: !sidebarSlide },
             { ["translate-x-0"]: sidebarSlide },
             "flex",
             "flex-col",

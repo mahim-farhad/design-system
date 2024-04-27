@@ -21,10 +21,10 @@ function TopNav() {
 
   const {
     sidebarSlide,
-    setSidebarSlide
+    setSidebarSlide,
+    showBackdrop,
+    setShowBackdrop
   } = useSidebarSlider()
-
-  // console.log(sidebarSlide)
 
   return (
     <nav
@@ -73,7 +73,7 @@ function TopNav() {
                   "leading-normal",
                 )}
               >
-                {sidebarSlide ? 'true' : 'false'}
+                Dashboard
               </Typography>
             </Flex>
           </GridItem>
@@ -85,23 +85,24 @@ function TopNav() {
             )}
           >
             {
-              // windowSize <= 1024 &&
               <Button
                 onClick={() => {
-                  // if (windowSize <= 1024) {
-                  document.body.classList.add(
-                    "absolute",
-                    "w-screen",
-                    "overflow-hidden"
-                  )
+                  if (windowSize <= 1024) {
+                    document.body.classList.add(
+                      "absolute",
+                      "w-screen",
+                      "overflow-hidden"
+                    )
 
-                  setSidebarSlide(true)
-                  // }
+                    setShowBackdrop(!showBackdrop)
+
+                    setSidebarSlide(true)
+                  }
                 }}
                 icon="settings"
                 size="xs"
-                color="white"
-                className="bg-gray-100"
+                variant="outlined"
+                color="gray"
               />
             }
           </GridItem>

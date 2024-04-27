@@ -10,7 +10,7 @@ import classNames from "classnames"
 
 import useWindowSize from "@hooks/useWindowSize"
 
-import Animate from "@components/framerMotion/Animate"
+import Animate from "@framerMotion/Animate"
 
 import Icon from "@components/elements/Icon"
 

@@ -23,17 +23,24 @@ function SidebarProvider({ children }) {
   const sidebarRef = useRef(null)
 
   const [sidebarSlide, setSidebarSlide] = useState(() => windowSize >= 1024)
+  const [showBackdrop, setShowBackdrop] = useState(false)
 
   const handleClickOutside = useCallback((event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       if (sidebarSlide && windowSize <= 1024) {
-        setSidebarSlide(false)
+        setTimeout(() => {
+          setSidebarSlide(false)
+        }, 200)
 
-        document.body.classList.remove(
-          "absolute",
-          "w-screen",
-          "overflow-hidden"
-        )
+        setTimeout(() => {
+          setShowBackdrop(false)
+
+          document.body.classList.remove(
+            "absolute",
+            "w-screen",
+            "overflow-hidden"
+          )
+        }, 500)
       }
     }
   }, [sidebarSlide, windowSize])
@@ -49,6 +56,12 @@ function SidebarProvider({ children }) {
   }, [windowSize])
 
   useEffect(() => {
+    if (windowSize >= 1024) {
+      setShowBackdrop(false)
+    }
+  }, [windowSize])
+
+  useEffect(() => {
     if (sidebarSlide && windowSize >= 1024) {
       document.body.classList.remove(
         "absolute",
@@ -61,7 +74,9 @@ function SidebarProvider({ children }) {
   const value = {
     sidebarRef,
     sidebarSlide,
-    setSidebarSlide
+    setSidebarSlide,
+    showBackdrop,
+    setShowBackdrop
   }
 
   return (

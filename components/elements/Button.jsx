@@ -128,7 +128,7 @@ const Button = forwardRef(
             { [sizeVariants.icon[size]]: !extended && icon && size },
             { [sizeVariants[size].sizing]: extended || !icon && size },
             { [sizeVariants[size].spacing]: extended || !icon && size },
-            "font-raleway",
+            "font-poppins",
             { [sizeVariants[size].font]: extended || !icon && size },
             "font-medium",
             "uppercase",

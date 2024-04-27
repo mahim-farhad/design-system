@@ -1,6 +1,6 @@
 import classNames from "classnames"
 
-import Animate from "@components/framerMotion/Animate"
+import Animate from "@framerMotion/Animate"
 
 import Main from "@components/layouts/Main"
 import Section from "@components/layouts/Section"

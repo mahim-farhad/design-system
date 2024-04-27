@@ -1,6 +1,6 @@
 import classNames from "classnames"
 
-import Animate from "@components/framerMotion/Animate"
+import Animate from "@framerMotion/Animate"
 
 import Typography from "@components/elements/Typography"
 import DynamicLink from "@components/elements/DynamicLink"

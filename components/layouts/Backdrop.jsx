@@ -1,21 +1,18 @@
 "use client"
 
-import PropTypes from "prop-types"
-
 import {
   AnimatePresence,
-  motion
+  motion,
+  easeInOut
 } from "framer-motion"
 
-function Animate({
+import classNames from "classnames"
+
+function Backdrop({
   initial = { opacity: 0 },
   animate = { opacity: 1 },
   exit = { opacity: 0 },
-  transition = {
-    duration: 0.3
-  },
-  className = "",
-  children
+  transition = { duration: 0.15, easeInOut },
 }) {
   return (
     <AnimatePresence
@@ -24,20 +21,24 @@ function Animate({
       onExitComplete={() => window.scrollTo(0, 0)}
     >
       <motion.div
+        key="backdrop"
         initial={initial}
         animate={animate}
         exit={exit}
         transition={transition}
-        className={className}
-      >
-        {children}
-      </motion.div>
+        className={classNames(
+          "z-50",
+          "fixed",
+          "inset-0",
+          "h-screen",
+          "pointer-events-auto",
+          "bg-black",
+          "bg-opacity-15",
+          "backdrop-blur-sm",
+        )}
+      />
     </AnimatePresence>
   )
 }
 
-Animate.propTypes = {
-  children: PropTypes.node.isRequired
-}
-
-export default Animate
+export default Backdrop
