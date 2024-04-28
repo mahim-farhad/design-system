@@ -2,7 +2,7 @@
 
 import classNames from "classnames"
 
-import { useSidebarSlider } from "@contexts/SidebarProvider"
+import { useToggleSidebar } from "@contexts/SidebarProvider"
 
 import Typography from "@components/elements/Typography"
 import Button from "@components/elements/Button"
@@ -15,7 +15,7 @@ import {
 import Flex from "@components/layouts/Flex"
 
 function TopNav() {
-  const { handleClick } = useSidebarSlider()
+  const { openSidebar, showSidebar, showBackdrop } = useToggleSidebar()
 
   return (
     <nav
@@ -66,6 +66,18 @@ function TopNav() {
               >
                 Dashboard
               </Typography>
+
+              <Typography
+                type="h6"
+                className={classNames(
+                  "ml-auto",
+                  "font-medium",
+                  "leading-normal",
+                )}
+              >
+                {showSidebar ? "true" : "false"} {" "}
+                {showBackdrop ? "true" : "false"}
+              </Typography>
             </Flex>
           </GridItem>
 
@@ -77,7 +89,7 @@ function TopNav() {
           >
             {
               <Button
-                onClick={handleClick}
+                onClick={openSidebar}
                 icon="settings"
                 size="xs"
                 variant="outlined"

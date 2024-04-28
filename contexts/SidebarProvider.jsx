@@ -6,7 +6,8 @@ import {
   useRef,
   createContext,
   useContext,
-  useCallback
+  useCallback,
+  useMemo
 } from "react"
 
 import PropTypes from "prop-types"
@@ -15,84 +16,130 @@ import useWindowSize from "@hooks/useWindowSize"
 
 const SidebarContext = createContext()
 
-export const useSidebarSlider = () => useContext(SidebarContext)
+export const useToggleSidebar = () => useContext(SidebarContext)
 
 function SidebarProvider({ children }) {
   const windowSize = useWindowSize()
 
   const sidebarRef = useRef(null)
 
-  const [sidebarSlide, setSidebarSlide] = useState(() => windowSize >= 1024)
+  const [showSidebar, setShowSidebar] = useState(false)
   const [showBackdrop, setShowBackdrop] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
-  const handleClick = () => {
-    if (windowSize <= 1024) {
+  const openSidebar = useCallback(() => {
+    if (
+      windowSize <= 1024 &&
+      !showSidebar &&
+      !isTransitioning
+    ) {
+      setIsTransitioning(true)
+
       document.body.classList.add(
         "absolute",
         "w-screen",
         "overflow-hidden"
       )
 
-      setShowBackdrop(!showBackdrop)
+      setShowBackdrop(true)
 
-      setSidebarSlide(!sidebarSlide)
+      setShowSidebar(true)
+
+      setTimeout(() => {
+        setIsTransitioning(false)
+      }, 300)
     }
-  }
+  }, [
+    windowSize,
+    showSidebar,
+    isTransitioning
+  ])
+
+  const closeSidebar = useCallback(() => {
+    if (
+      windowSize <= 1024 &&
+      showSidebar &&
+      !isTransitioning
+    ) {
+      setIsTransitioning(true)
+
+      setShowSidebar(false)
+
+      setTimeout(() => {
+        setShowBackdrop(false)
+
+        document.body.classList.remove(
+          "absolute",
+          "w-screen",
+          "overflow-hidden"
+        )
+      }, 300)
+
+      setTimeout(() => {
+        setIsTransitioning(false)
+      }, 300)
+    }
+  }, [
+    windowSize,
+    showSidebar,
+    isTransitioning
+  ])
 
   const handleClickOutside = useCallback((event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-      if (sidebarSlide && windowSize <= 1024) {
-        setTimeout(() => {
-          setSidebarSlide(false)
-        }, 200)
-
-        setTimeout(() => {
-          setShowBackdrop(false)
-
-          document.body.classList.remove(
-            "absolute",
-            "w-screen",
-            "overflow-hidden"
-          )
-        }, 500)
-      }
+      closeSidebar()
     }
-  }, [sidebarSlide, windowSize])
+  }, [closeSidebar])
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside)
+    if (windowSize <= 1024 && showSidebar) {
+      document.addEventListener("mousedown", handleClickOutside)
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
 
     return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [handleClickOutside])
+  }, [
+    windowSize,
+    showSidebar,
+    handleClickOutside
+  ])
 
   useEffect(() => {
-    setSidebarSlide(windowSize >= 1024)
-  }, [windowSize])
+    setShowSidebar(() => showSidebar && windowSize <= 1024)
+  }, [showSidebar, windowSize])
 
   useEffect(() => {
-    if (windowSize >= 1024) {
-      setShowBackdrop(false)
-    }
-  }, [windowSize])
+    setShowBackdrop(() => showBackdrop && windowSize <= 1024)
+  }, [showBackdrop, windowSize])
 
   useEffect(() => {
-    if (sidebarSlide && windowSize >= 1024) {
+    if (windowSize >= 1024 && !showSidebar) {
       document.body.classList.remove(
         "absolute",
         "w-screen",
         "overflow-hidden"
       )
     }
-  }, [sidebarSlide, windowSize])
+  }, [showSidebar, windowSize])
 
-  const value = {
+  const value = useMemo(() => ({
     sidebarRef,
-    sidebarSlide,
-    setSidebarSlide,
+    showSidebar,
+    setShowSidebar,
     showBackdrop,
     setShowBackdrop,
-    handleClick
-  }
+    openSidebar,
+    closeSidebar,
+  }), [
+    sidebarRef,
+    showSidebar,
+    setShowSidebar,
+    showBackdrop,
+    setShowBackdrop,
+    openSidebar,
+    closeSidebar
+  ])
 
   return (
     <SidebarContext.Provider value={value}>

@@ -8,9 +8,7 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import useWindowSize from "@hooks/useWindowSize"
-
-import { useSidebarSlider } from "@contexts/SidebarProvider"
+import { useToggleSidebar } from "@contexts/SidebarProvider"
 
 import Icon from "@components/elements/Icon"
 import DynamicLink from "@components/elements/DynamicLink"
@@ -24,6 +22,7 @@ import {
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
 import Backdrop from "@components/layouts/Backdrop"
+import Animate from "@framerMotion/Animate"
 
 const pageLinks = [{
   id: 1,
@@ -255,9 +254,31 @@ function Footer() {
 function Sidebar() {
   const {
     sidebarRef,
-    sidebarSlide,
+    showSidebar,
     showBackdrop
-  } = useSidebarSlider()
+  } = useToggleSidebar()
+
+  const sidebarClasses = twMerge(
+    classNames(
+      "z-50",
+      "fixed",
+      "top-0",
+      "left-0",
+      "bottom-0",
+      { "-translate-x-full lg:translate-x-0": !showSidebar },
+      { "translate-x-0": showSidebar },
+      "flex",
+      "flex-col",
+      "w-80",
+      "h-full",
+      "min-h-screen",
+      "bg-surface-light",
+      "border-r-2",
+      "transition-transform",
+      "duration-300",
+      "ease-in-out",
+    )
+  )
 
   return (
     <>
@@ -265,28 +286,7 @@ function Sidebar() {
 
       <aside
         ref={sidebarRef}
-        className={twMerge(
-          classNames(
-            "z-50",
-            "fixed",
-            "top-0",
-            "left-0",
-            "bottom-0",
-            { ["-translate-x-full"]: !sidebarSlide },
-            { ["translate-x-0"]: sidebarSlide },
-            "flex",
-            "flex-col",
-            "flex-shrink-0",
-            "w-80",
-            "h-full",
-            "min-h-screen",
-            "bg-surface-light",
-            "border-r-2",
-            "transition-transform",
-            "duration-300",
-            "ease-in-out",
-          )
-        )}
+        className={sidebarClasses}
       >
         <Header />
 
