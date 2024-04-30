@@ -9,12 +9,14 @@ import {
 
 import "@styles/globals.css"
 
+import ModalProvider from "@contexts/ModalProvider"
 import SidebarProvider from "@contexts/SidebarProvider"
 
 import TopNav from "@components/navigations/TopNav"
 import Sidebar from "@components/navigations/Sidebar"
 import BottomNav from "@components/navigations/BottomNav"
 import Footer from "@components/navigations/Footer"
+import Modal from "@components/modals/Modal"
 
 export const metadata = {
   title: "React Custom Components",
@@ -30,7 +32,7 @@ function RootLayout({ children }) {
     "w-full",
     "min-h-screen",
     "antialiased",
-    "font-arvo",
+    "font-poppins",
     "text-base",
     "leading-normal",
     "font-normal",
@@ -58,9 +60,13 @@ function RootLayout({ children }) {
           <TopNav />
 
           <Sidebar />
-
-          {children}
         </SidebarProvider>
+
+        <ModalProvider>
+          {children}
+
+          <Modal />
+        </ModalProvider>
 
         {/* <BottomNav /> */}
 

@@ -24,8 +24,8 @@ const Flex = forwardRef(
         key={key}
         ref={ref}
         className={flexClasses}
-        {...props}
         style={style}
+        {...props}
       >
         {children}
       </div>

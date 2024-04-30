@@ -20,8 +20,8 @@ const Box = forwardRef(
         key={key}
         ref={ref}
         className={boxClasses}
-        {...props}
         style={style}
+        {...props}
       >
         {children}
       </div>

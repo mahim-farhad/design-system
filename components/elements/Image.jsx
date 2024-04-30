@@ -13,7 +13,9 @@ function Image({
     className
   )
 
-  if (src === "") return null
+  if (src === "") {
+    return null
+  }
 
   return (
     <img

@@ -6,6 +6,8 @@ import {
   easeInOut
 } from "framer-motion"
 
+import { twMerge } from "tailwind-merge"
+
 import classNames from "classnames"
 
 function Backdrop({
@@ -14,6 +16,19 @@ function Backdrop({
   exit = { opacity: 0 },
   transition = { duration: 0.15, easeInOut },
 }) {
+  const backdropClasses = twMerge(
+    classNames(
+      "z-50",
+      "fixed",
+      "inset-0",
+      "w-screen",
+      "h-screen",
+      "pointer-events-auto",
+      "bg-white/15",
+      "backdrop-blur-sm",
+    )
+  )
+
   return (
     <AnimatePresence
       mode="wait"
@@ -26,16 +41,7 @@ function Backdrop({
         animate={animate}
         exit={exit}
         transition={transition}
-        className={classNames(
-          "z-50",
-          "fixed",
-          "inset-0",
-          "h-screen",
-          "pointer-events-auto",
-          "bg-black",
-          "bg-opacity-15",
-          "backdrop-blur-sm",
-        )}
+        className={backdropClasses}
       />
     </AnimatePresence>
   )

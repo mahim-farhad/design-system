@@ -15,7 +15,7 @@ import {
 import Flex from "@components/layouts/Flex"
 
 function TopNav() {
-  const { openSidebar, showSidebar, showBackdrop } = useToggleSidebar()
+  const { openSidebar } = useToggleSidebar()
 
   return (
     <nav
@@ -65,18 +65,6 @@ function TopNav() {
                 )}
               >
                 Dashboard
-              </Typography>
-
-              <Typography
-                type="h6"
-                className={classNames(
-                  "ml-auto",
-                  "font-medium",
-                  "leading-normal",
-                )}
-              >
-                {showSidebar ? "true" : "false"} {" "}
-                {showBackdrop ? "true" : "false"}
               </Typography>
             </Flex>
           </GridItem>

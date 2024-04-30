@@ -21,8 +21,7 @@ import {
 
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
-import Backdrop from "@components/layouts/Backdrop"
-import Animate from "@framerMotion/Animate"
+import Backdrop from "@components/Backdrop"
 
 const pageLinks = [{
   id: 1,
@@ -66,10 +65,6 @@ function Header() {
 
       <Typography
         type="h6"
-        className={classNames(
-          "text-lg",
-          "font-semibold",
-        )}
       >
         Components
       </Typography>
@@ -79,8 +74,6 @@ function Header() {
 
 function Body() {
   const router = usePathname()
-
-  const [visible, setvisible] = useState(false)
 
   return (
     <Box
@@ -160,10 +153,6 @@ function Body() {
                     "duration-300",
                     "ease-in-out",
                   )}
-
-                  onClick={() => {
-                    setvisible(!visible)
-                  }}
                 >
                   <span
                     className={classNames(

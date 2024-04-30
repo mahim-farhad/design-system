@@ -106,15 +106,15 @@ function SidebarProvider({ children }) {
   ])
 
   useEffect(() => {
-    setShowSidebar(() => showSidebar && windowSize <= 1024)
+    setShowSidebar(() => windowSize <= 1024 && showSidebar)
   }, [showSidebar, windowSize])
 
   useEffect(() => {
-    setShowBackdrop(() => showBackdrop && windowSize <= 1024)
+    setShowBackdrop(() => windowSize <= 1024 && showBackdrop)
   }, [showBackdrop, windowSize])
 
   useEffect(() => {
-    if (windowSize >= 1024 && !showSidebar) {
+    if (windowSize >= 1024 && showSidebar) {
       document.body.classList.remove(
         "absolute",
         "w-screen",

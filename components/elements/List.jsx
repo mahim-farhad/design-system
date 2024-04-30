@@ -23,7 +23,9 @@ function List({
     className
   )
 
-  if (type !== "ul" && type !== "ol") return null
+  if (type !== "ul" && type !== "ol") {
+    return null
+  }
 
   return (
     <Tag
