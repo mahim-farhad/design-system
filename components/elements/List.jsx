@@ -57,7 +57,7 @@ function ListItem({
 }
 
 List.propTypes = {
-  type: PropTypes.oneOf(["ul", "ol"]).isRequired,
+  type: PropTypes.oneOf(["ul", "ol"]),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
@@ -67,7 +67,7 @@ ListItem.propTypes = {
   key: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 }
 
 export { List, ListItem }

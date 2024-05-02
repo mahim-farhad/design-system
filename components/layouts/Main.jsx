@@ -16,9 +16,6 @@ function Main({
       "pt-16",
       "lg:pl-80",
       "bg-background-light",
-      "transition-all",
-      "duration-300",
-      "ease-in-out",
     ),
     className
   )

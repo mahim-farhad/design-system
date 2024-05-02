@@ -2,17 +2,13 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
-import classNames from "classnames"
-
 function Grid({
   className = "",
   style = {},
   children
 }) {
   const gridClasses = twMerge(
-    classNames(
-      "grid",
-    ),
+    "grid",
     className
   )
 

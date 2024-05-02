@@ -10,14 +10,13 @@ import Icon from "@components/elements/Icon"
 
 const Button = forwardRef(
   function Button({
-    key,
     type = "button",
     icon,
     extended = false,
     size = "base",
     variant = "filled",
     color = "primary",
-    pill = false,
+    rounded = false,
     disabled = false,
     className = "",
     style = {},
@@ -28,38 +27,38 @@ const Button = forwardRef(
     const sizeVariants = {
       xs: classNames(
         "h-8",
-        "py-1",
+        "py-1.5",
         "px-6",
         "text-sm",
-        "leading-[24px]",
+        "leading-[16px]",
       ),
       sm: classNames(
         "h-10",
         "py-2",
         "px-6",
         "text-sm",
-        "leading-[24px]",
+        "leading-[16px]",
       ),
       base: classNames(
         "h-12",
         "py-3",
         "px-8",
         "text-base",
-        "leading-[17px]",
+        "leading-[15px]",
       ),
       lg: classNames(
         "h-14",
         "py-4",
         "px-8",
         "text-lg",
-        "leading-[[1.325]",
+        "leading-[16px]",
       ),
       xl: classNames(
         "h-16",
         "py-5",
         "px-10",
         "text-xl",
-        "leading-[[1.5]",
+        "leading-[15px]",
       ),
       icon: {
         xs: classNames("w-8", "h-8"),
@@ -341,12 +340,11 @@ const Button = forwardRef(
       classNames(
         "relative",
         { ["inline-block"]: !extended },
-        { ["inline-flex gap-3 items-center justify-center"]: extended },
+        { ["inline-flex gap-x-2 items-center justify-center"]: extended },
         { [sizeVariants.icon[size]]: icon && !extended && size },
         { [sizeVariants[size]]: !icon || extended && size },
         "font-poppins",
-        // "font-medium",
-        "font-semibold",
+        "font-medium",
         "uppercase",
         "text-center",
         "whitespace-nowrap",
@@ -358,8 +356,8 @@ const Button = forwardRef(
         { [colorVariants[variant][color]]: variant && color },
         "outline-0",
         "border",
-        { ["rounded-lg"]: !pill },
-        { ["rounded-full"]: pill },
+        { ["rounded-xl"]: !rounded },
+        { ["rounded-full"]: rounded },
         "transition-all",
         "duration-300",
         "ease-in-out",
@@ -369,7 +367,6 @@ const Button = forwardRef(
 
     return (
       <button
-        key={key}
         ref={ref}
         type={type}
         disabled={disabled}
@@ -379,17 +376,15 @@ const Button = forwardRef(
         {...props}
       >
         {
-          icon
-            ? (
-              <Icon
-                name={icon}
-                size={size}
-                className={classNames(
-                  { ["absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"]: icon && !extended },
-                )}
-              />
-            )
-            : children
+          icon ? (
+            <Icon
+              name={icon}
+              size={size}
+              className={classNames(
+                { ["absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"]: icon && !extended },
+              )}
+            />
+          ) : children
         }
 
         {extended && children}
@@ -420,11 +415,11 @@ Button.propTypes = {
     "primary",
     "secondary",
     "info",
-    "succcess",
+    "success",
     "warning",
     "error"
   ]),
-  pill: PropTypes.bool,
+  rounded: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,

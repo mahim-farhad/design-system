@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Animate from "@components/framerMotion/Animate"
+import Animate from "@components/animation/Animate"
 
 import Icon from "@components/elements/Icon"
 import Button from "@components/elements/Button"

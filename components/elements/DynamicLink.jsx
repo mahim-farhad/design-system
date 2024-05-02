@@ -15,7 +15,9 @@ function DynamicLink({
     className
   )
 
-  if (href === "") return null
+  if (href === "") {
+    return null
+  }
 
   return (
     <Link
@@ -31,7 +33,7 @@ function DynamicLink({
 }
 
 DynamicLink.propTypes = {
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node

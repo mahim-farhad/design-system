@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Animate from "@components/framerMotion/Animate"
+import Animate from "@components/animation/Animate"
 
 import Icon from "@components/elements/Icon"
 
@@ -69,15 +69,9 @@ function Textfield({
       ),
     },
     icon: {
-      sm: classNames(
-        "right-3",
-      ),
-      base: classNames(
-        "right-3.5",
-      ),
-      lg: classNames(
-        "right-4",
-      ),
+      sm: "right-3",
+      base: "right-3.5",
+      lg: "right-4",
     },
   }
 
