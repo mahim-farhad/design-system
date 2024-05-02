@@ -11,8 +11,7 @@ const Box = forwardRef(
     style = {},
     children,
     ...props
-  }, ref
-  ) {
+  }, ref) {
     const boxClasses = className ? twMerge(className) : undefined
 
     return (

@@ -8,8 +8,6 @@ import classNames from "classnames"
 
 import { useToggleModal } from "@contexts/ModalProvider"
 
-import Animate from "@components/framerMotion/Animate"
-
 import Typography from "@components/elements/Typography"
 import Textfield from "@components/textfields/Textfield"
 import Counter from "@components/textfields/Counter"

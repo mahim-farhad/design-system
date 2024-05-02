@@ -4,6 +4,8 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
+import classNames from "classnames"
+
 const Flex = forwardRef(
   function Flex({
     key,
@@ -11,11 +13,12 @@ const Flex = forwardRef(
     style = {},
     children,
     ...props
-  }, ref
-  ) {
+  }, ref) {
     const flexClasses = twMerge(
-      "flex",
-      "flex-wrap",
+      classNames(
+        "flex",
+        "flex-wrap",
+      ),
       className
     )
 

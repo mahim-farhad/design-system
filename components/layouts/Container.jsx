@@ -2,16 +2,20 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
+import classNames from "classnames"
+
 function Container({
   className = "",
   style = {},
   children
 }) {
   const containerClasses = twMerge(
-    "container",
-    "max-w-full",
-    "px-6 sm:px-8",
-    "mx-auto",
+    classNames(
+      "container",
+      "max-w-full",
+      "px-4 sm:px-8",
+      "mx-auto",
+    ),
     className
   )
 

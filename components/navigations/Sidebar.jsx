@@ -230,7 +230,7 @@ function Footer() {
         <Button
           size="sm"
           variant="outlined"
-          color="gray"
+          color="secondary"
           className="w-full"
         >
           Upgrade to Pro

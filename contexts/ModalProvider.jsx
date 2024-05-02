@@ -30,7 +30,6 @@ function ModalProvider({ children }) {
       document.body.classList.add(
         "absolute",
         "w-screen",
-        "pr-4",
         "overflow-hidden"
       )
 

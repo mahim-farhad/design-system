@@ -16,7 +16,6 @@ import TopNav from "@components/navigations/TopNav"
 import Sidebar from "@components/navigations/Sidebar"
 import BottomNav from "@components/navigations/BottomNav"
 import Footer from "@components/navigations/Footer"
-import Modal from "@components/modals/Modal"
 
 export const metadata = {
   title: "React Custom Components",
@@ -64,8 +63,6 @@ function RootLayout({ children }) {
 
         <ModalProvider>
           {children}
-
-          <Modal />
         </ModalProvider>
 
         {/* <BottomNav /> */}

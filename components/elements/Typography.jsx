@@ -109,7 +109,9 @@ function Typography({
     type !== "p" &&
     type !== "small" &&
     type !== "blockquote"
-  ) return null
+  ) {
+    return null
+  }
 
   return (
     <Tag

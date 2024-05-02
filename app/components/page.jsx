@@ -10,17 +10,19 @@ import Main from "@components/layouts/Main"
 import Section from "@components/layouts/Section"
 import Container from "@components/layouts/Container"
 
+import Modal from "@components/modals/Modal"
+
 function Components() {
   const { openModal } = useToggleModal()
 
   return (
-    <Main className="h-[2000px]">
-      <Section>
+    <Main>
+      <Section className="relative">
         <Container>
           <Button
             onClick={openModal}
             className={classNames(
-              "fixed",
+              "absolute",
               "top-1/2",
               "left-1/2",
               "-translate-y-1/2",
@@ -29,9 +31,11 @@ function Components() {
           >
             Show Modal
           </Button>
+
+          <Modal />
         </Container>
       </Section>
-    </Main >
+    </Main>
   )
 }
 

@@ -81,7 +81,7 @@ function TopNav() {
                 icon="settings"
                 size="xs"
                 variant="outlined"
-                color="gray"
+                color="secondary"
               />
             }
           </GridItem>
