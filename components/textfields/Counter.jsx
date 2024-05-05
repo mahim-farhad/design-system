@@ -1,214 +1,238 @@
 "use client"
 
-import { useState } from "react"
+import { forwardRef, useState } from "react"
 
 import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Animate from "@components/animation/Animate"
-
-import Icon from "@components/elements/Icon"
 import Button from "@components/elements/Button"
 
-function Counter({
-  type = "number",
-  name = "",
-  size = "base",
-  label = "",
-  counter,
-  setCounter,
-  placeholder = "",
-  value,
-  onChange,
-  disabled = false,
-}) {
-  const [isFocused, setFocus] = useState(false)
-  const [isFilled, setFill] = useState(false)
-  const [isError, setError] = useState(false)
+const Counter = forwardRef(
+  function Counter({
+    type = "number",
+    name,
+    label,
+    placeholder,
+    value,
+    size = "base",
+    disabled = false,
+    counter,
+    setCounter,
+    onChange,
+  }, ref) {
+    const [isFocused, setFocus] = useState(false)
+    const [isFilled, setFill] = useState(false)
+    const [isError, setError] = useState(false)
 
-  const sizeVariants = {
-    label: {
-      sm: classNames(
-        "left-[0.5rem]",
-        { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
-        { ["z-10 -translate-y-[1.875rem] text-sm"]: isFocused || isFilled || value },
-      ),
-      base: classNames(
-        "left-[0.625rem]",
-        { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
-        { ["z-10 -translate-y-[2.125rem] text-sm"]: isFocused || isFilled || value },
-      ),
-      lg: classNames(
-        "left-[0.75rem]",
-        { ["-z-10 -translate-y-1/2 text-lg"]: !isFocused && !isFilled },
-        { ["z-10 -translate-y-[2.5rem] text-base"]: isFocused || isFilled || value },
-      ),
-    },
-    input: {
-      sm: classNames(
-        "h-10",
-        "py-1.5",
-        "pl-3",
-        { ["pr-3"]: !isError },
-        { ["pr-10"]: isError },
-        "text-base",
-      ),
-      base: classNames(
-        "h-12",
-        "py-2",
-        "pl-3.5",
-        { ["pr-3.5"]: !isError },
-        { ["pr-12"]: isError },
-        "text-base",
-      ),
-      lg: classNames(
-        "h-14",
-        "py-3",
-        "pl-4",
-        { ["pr-4"]: !isError },
-        { ["pr-14"]: isError },
-        "text-lg",
-      ),
-    },
-    icon: {
-      sm: classNames(
-        "right-3",
-      ),
-      base: classNames(
-        "right-3.5",
-      ),
-      lg: classNames(
-        "right-4",
-      ),
-    },
-  }
+    const sizeVariants = {
+      label: {
+        sm: classNames(
+          "left-[0.5rem]",
+          { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
+          { ["z-10 -translate-y-[1.875rem] text-sm"]: isFocused || isFilled || value },
+        ),
+        base: classNames(
+          "left-[0.625rem]",
+          { ["-z-5 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
+          { ["z-10 -translate-y-[31px] text-sm"]: isFocused || isFilled || value },
+        ),
+        lg: classNames(
+          "left-[0.75rem]",
+          { ["-z-10 -translate-y-1/2 text-lg"]: !isFocused && !isFilled && !value },
+          { ["z-10 -translate-y-[2.5rem] text-base"]: isFocused || isFilled || value },
+        ),
+      },
+      input: {
+        xs: classNames(
+          "h-8",
+          "py-1.5",
+          "pl-3",
+          { ["pr-3"]: !isError },
+          { ["pr-10"]: isError },
+          "text-base",
+        ),
+        sm: classNames(
+          "h-10",
+          "py-1.5",
+          "pl-3",
+          { ["pr-3"]: !isError },
+          { ["pr-10"]: isError },
+          "text-base",
+        ),
+        base: classNames(
+          "h-12",
+          "py-2",
+          "pl-3.5",
+          { ["pr-3.5"]: !isError },
+          { ["pr-12"]: isError },
+          "text-base",
+        ),
+        lg: classNames(
+          "h-14",
+          "py-3",
+          "pl-4",
+          { ["pr-4"]: !isError },
+          { ["pr-14"]: isError },
+          "text-lg",
+        ),
+        xl: classNames(
+          "h-16",
+          "py-3",
+          "pl-4",
+          { ["pr-4"]: !isError },
+          { ["pr-14"]: isError },
+          "text-lg",
+        ),
+      },
+      icon: {
+        sm: "right-3",
+        base: "right-3.5",
+        lg: "right-4",
+      },
+    }
 
-  return (
-    <div
-      className={classNames(
-        "relative",
-        "flex",
-        "flex-col",
+    const labelClasses = twMerge(
+      classNames(
+        "absolute",
+        "top-1/2",
+        { [sizeVariants.label[size]]: size },
+        "px-1.5",
+        "font-poppins",
+        "leading-[17px]",
+        "font-medium",
+        "text-gray-400",
+        { ["text-primary"]: isFocused },
+        { ["text-error"]: isError },
+        { ["text-gray-300"]: disabled },
+        "bg-surface-light",
+        "rounded-md",
+        "transition-all",
+        "duration-300",
+        "ease-in-out"
+      )
+    )
+
+    const inputClasses = twMerge(
+      classNames(
         "w-full",
-      )}
-    >
-      {
-        label &&
-        <label
-          className={twMerge(
-            classNames(
-              "absolute",
-              "top-1/2",
-              { [sizeVariants.label[size]]: size },
-              "px-1.5",
-              // "font-default",
-              "font-medium",
-              { ["text-gray-400"]: !isFocused && !isError && !disabled },
-              { ["text-primary"]: isFocused && !isError && !disabled },
-              { ["text-error"]: isError && !disabled },
-              { ["text-gray-300"]: disabled },
-              "bg-surface-light",
-              "rounded-lg",
-              "transition-all",
-              "duration-300",
-              "ease-in-out"
-            )
-          )}
-        >
-          {label}
-        </label>
-      }
+        { [sizeVariants.input[size]]: size },
+        "font-poppins",
+        "leading-[17px]",
+        "font-medium",
+        "whitespace-nowrap",
+        "appearance-none",
+        { ["cursor-pointer"]: !disabled },
+        { ["cursor-not-allowed pointer-events-none opacity-50"]: disabled },
+        "text-gray-400",
+        "bg-transparent",
+        "outline-0",
+        "border-2",
+        "border-gray-200",
+        { ["border-primary"]: isFocused },
+        { ["border-error"]: isError },
+        "rounded-lg",
+        "transition-all",
+        "duration-300",
+        "ease-in-out"
+      )
+    )
 
-      <input
-        type={type}
-        name={name}
-        readOnly
-        className={twMerge(
-          classNames(
-            "w-full",
-            { [sizeVariants.input[size]]: size },
-            // "font-default",
-            "leading-[1.5]",
-            "font-medium",
-            "select-none",
-            "appearance-none",
-            "bg-transparent",
-            "outline-0",
-            "border-2",
-            { ["border-gray-300"]: !isFocused && !isError && !disabled },
-            { ["border-primary"]: isFocused && !isError && !disabled },
-            { ["border-error"]: isError && !disabled },
-            { ["cursor-pointer text-font-light"]: !disabled },
-            { ["cursor-not-allowed text-gray-300 border-gray-100"]: disabled },
-            "rounded-lg",
-            "transition-all",
-            "duration-300",
-            "ease-in-out"
-          )
-        )}
-        placeholder={placeholder}
-        value={counter}
-        onFocus={() => {
-          setFocus(true)
-          setError(false)
-        }}
-        onBlur={(event) => {
-          setFocus(false)
-
-          if (event.target.value === "" || event.target.value === null) {
-            setFill(false)
-            setError(true)
-          } else {
-            setFill(true)
-          }
-        }}
-        onChange={onChange}
-        disabled={disabled}
-      />
-
+    return (
       <div
         className={classNames(
-          "absolute",
-          "right-0",
-          "flex",
-          "flex-col",
-          "justify-center",
-          "h-12",
-          "w-12",
+          "relative",
+          "w-full",
         )}
       >
-        <Button
-          onClick={() => {
-            if (counter < 100) setCounter(counter + 1)
+        {
+          label &&
+          <label
+            className={labelClasses}
+          >
+            {label}
+          </label>
+        }
+
+        <input
+          ref={ref}
+          type={type}
+          readOnly
+          name={name}
+          placeholder={placeholder}
+          value={counter}
+          disabled={disabled}
+          className={inputClasses}
+          onFocus={() => {
+            setFocus(true)
+
+            setError(false)
           }}
-          icon="caret-down"
-          size={size}
-          variant="text"
-          color="gray"
-          disabled={disabled || counter >= 100}
-          className={classNames(
-            "h-6",
-            "rotate-180",
-          )}
+          onBlur={(event) => {
+            setFocus(false)
+
+            if (event.target.value === "" || event.target.value === null) {
+              setFill(false)
+
+              setError(true)
+            } else {
+              setFill(true)
+            }
+          }}
+          onChange={onChange}
         />
 
-        <Button
-          onClick={() => {
-            if (counter > 1) setCounter(counter - 1)
-          }}
-          icon="caret-down"
-          size={size}
-          variant="text"
-          color="gray"
-          disabled={disabled || counter <= 1}
+        <div
           className={classNames(
-            "h-6",
+            "absolute",
+            "top-0",
+            "right-0",
+            "flex",
+            "flex-col",
+            "items-center",
+            "justify-center",
+            "w-12",
+            "h-full",
           )}
-        />
+        >
+          <Button
+            onClick={() => {
+              if (counter < 100) {
+                setCounter(counter + 1)
+              }
+            }}
+            icon="caret-down"
+            size="xs"
+            variant="text"
+            color="secondary"
+            disabled={disabled || counter >= 100}
+            className={classNames(
+              "w-3",
+              "h-3",
+              "rotate-180",
+            )}
+          />
+
+          <Button
+            onClick={() => {
+              if (counter > 1) {
+                setCounter(counter - 1)
+              }
+            }}
+            icon="caret-down"
+            size="xs"
+            variant="text"
+            color="secondary"
+            disabled={disabled || counter <= 1}
+            className={classNames(
+              "w-3",
+              "h-3",
+            )}
+          />
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
 
 export default Counter

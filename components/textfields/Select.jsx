@@ -5,13 +5,16 @@ import { forwardRef, useState } from "react"
 import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
+import Button from "@components/elements/Button"
 
-const Textfield = forwardRef(
-  function Textfield({
+const Select = forwardRef(
+  function Select({
     type = "text",
     name,
     label,
     placeholder,
+    options,
+    selected,
     value,
     size = "base",
     disabled = false,
@@ -134,6 +137,8 @@ const Textfield = forwardRef(
       )
     )
 
+    if (!options) return null
+
     return (
       <div
         className={classNames(
@@ -150,7 +155,7 @@ const Textfield = forwardRef(
           </label>
         }
 
-        <input
+        <select
           ref={ref}
           type={type}
           name={name}
@@ -175,10 +180,62 @@ const Textfield = forwardRef(
             }
           }}
           onChange={onChange}
-        />
+        >
+          {
+            options?.map((option) => {
+              return (
+                <option
+                  key={option.id}
+                  value={option.value}
+                >
+                  {option.name}
+                </option>
+              )
+            })
+          }
+        </select>
+
+        <div
+          className={classNames(
+            "absolute",
+            "top-0",
+            "right-0",
+            "flex",
+            "flex-col",
+            "items-center",
+            "justify-center",
+            "w-12",
+            "h-full",
+          )}
+        >
+          <Button
+            icon="caret-down"
+            size="xs"
+            variant="text"
+            color="secondary"
+            className={classNames(
+              "w-3",
+              "h-3",
+              "rotate-180",
+              "text-gray-300",
+            )}
+          />
+
+          <Button
+            icon="caret-down"
+            size="xs"
+            variant="text"
+            color="secondary"
+            className={classNames(
+              "w-3",
+              "h-3",
+              "text-gray-300",
+            )}
+          />
+        </div>
       </div>
     )
   }
 )
 
-export default Textfield
+export default Select

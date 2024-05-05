@@ -124,7 +124,7 @@ function Modal() {
 
           <Textfield
             type="tel"
-            name="number"
+            name="phone"
             label="Phone"
             onChange={handleChange}
           />
@@ -159,7 +159,6 @@ function Modal() {
           type="password"
           label="Password"
         />
-
       </Flex>
 
       {showBackdrop && <Backdrop />}

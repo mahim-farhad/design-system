@@ -25,47 +25,49 @@ const Button = forwardRef(
     ...props
   }, ref) {
     const sizeVariants = {
-      xs: classNames(
-        "h-8",
-        "py-1.5",
-        "px-6",
-        "text-sm",
-        "leading-[16px]",
-      ),
-      sm: classNames(
-        "h-10",
-        "py-2",
-        "px-6",
-        "text-sm",
-        "leading-[16px]",
-      ),
-      base: classNames(
-        "h-12",
-        "py-3",
-        "px-8",
-        "text-base",
-        "leading-[15px]",
-      ),
-      lg: classNames(
-        "h-14",
-        "py-4",
-        "px-8",
-        "text-lg",
-        "leading-[16px]",
-      ),
-      xl: classNames(
-        "h-16",
-        "py-5",
-        "px-10",
-        "text-xl",
-        "leading-[15px]",
-      ),
+      button: {
+        xs: classNames(
+          "h-8",
+          "py-1.5",
+          "px-6",
+          "text-sm",
+          "leading-[16px]",
+        ),
+        sm: classNames(
+          "h-10",
+          "py-2",
+          "px-6",
+          "text-sm",
+          "leading-[16px]",
+        ),
+        base: classNames(
+          "h-12",
+          "py-3",
+          "px-8",
+          "text-base",
+          "leading-[15px]",
+        ),
+        lg: classNames(
+          "h-14",
+          "py-4",
+          "px-8",
+          "text-lg",
+          "leading-[16px]",
+        ),
+        xl: classNames(
+          "h-16",
+          "py-5",
+          "px-10",
+          "text-xl",
+          "leading-[15px]",
+        ),
+      },
       icon: {
-        xs: classNames("w-8", "h-8"),
-        sm: classNames("w-10", "h-10"),
-        base: classNames("w-12", "h-12"),
-        lg: classNames("w-14", "h-14"),
-        xl: classNames("w-16", "h-16"),
+        xs: "w-8 h-8",
+        sm: "w-10 h-10",
+        base: "w-12 h-12",
+        lg: "w-14 h-14",
+        xl: "w-16 h-16",
       }
     }
 
@@ -342,7 +344,7 @@ const Button = forwardRef(
         { ["inline-block"]: !extended },
         { ["inline-flex gap-x-2 items-center justify-center"]: extended },
         { [sizeVariants.icon[size]]: icon && !extended && size },
-        { [sizeVariants[size]]: !icon || extended && size },
+        { [sizeVariants.button[size]]: !icon || extended && size },
         "font-poppins",
         "font-medium",
         "uppercase",
@@ -351,7 +353,6 @@ const Button = forwardRef(
         "appearance-none",
         { ["cursor-pointer"]: !disabled },
         { ["cursor-not-allowed pointer-events-none opacity-50"]: disabled },
-        "select-none",
         "overflow-hidden",
         { [colorVariants[variant][color]]: variant && color },
         "outline-0",
