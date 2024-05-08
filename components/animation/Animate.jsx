@@ -41,7 +41,7 @@ function Animate({
 }
 
 Animate.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node.isRequired
 }
 
 export default Animate

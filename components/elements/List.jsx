@@ -5,32 +5,32 @@ import { twMerge } from "tailwind-merge"
 import classNames from "classnames"
 
 function List({
-  type = "ul",
+  tag = "ul",
   className = "",
   style = {},
   children,
+  ...props
 }) {
-  const Tag = type
+  const Tag = tag
 
   const listClasses = twMerge(
     classNames(
       "p-0",
       "m-0",
-      { ["list-none"]: type === "ul" },
-      { ["list-disc"]: type === "ol" },
+      { ["list-none"]: tag === "ul" },
+      { ["list-disc"]: tag === "ol" },
       "list-inside",
     ),
     className
   )
 
-  if (type !== "ul" && type !== "ol") {
-    return null
-  }
+  if (tag !== "ul" && tag !== "ol") return null
 
   return (
     <Tag
       className={listClasses}
       style={style}
+      {...props}
     >
       {children}
     </Tag>
@@ -42,6 +42,7 @@ function ListItem({
   className = "",
   style = {},
   children,
+  ...props
 }) {
   const listItemClasses = className ? twMerge(className) : undefined
 
@@ -50,6 +51,7 @@ function ListItem({
       key={key}
       className={listItemClasses}
       style={style}
+      {...props}
     >
       {children}
     </li>
@@ -57,7 +59,7 @@ function ListItem({
 }
 
 List.propTypes = {
-  type: PropTypes.oneOf(["ul", "ol"]),
+  tag: PropTypes.oneOf(["ul", "ol"]).isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
@@ -67,7 +69,7 @@ ListItem.propTypes = {
   key: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.node
+  children: PropTypes.node.isRequired
 }
 
 export { List, ListItem }

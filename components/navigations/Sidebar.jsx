@@ -27,7 +27,7 @@ const pageLinks = [{
   id: 1,
   path: "/",
   label: "dashboard",
-  iconName: "apps-sort",
+  iconName: null,
 }, {
   id: 2,
   path: "/components",
@@ -96,6 +96,7 @@ function Body() {
         )}
       >
         <List
+          type="ul"
           className={classNames(
             "flex",
             "flex-col",
@@ -145,7 +146,7 @@ function Body() {
                     "leading-[21px]",
                     "font-medium",
                     "capitalize",
-                    { ["text-[#6D7D93] bg-transparent"]: router !== path },
+                    { ["text-gray-400 bg-transparent"]: router !== path },
                     { ["text-primary bg-[rgba(47,178,171,0.1)]"]: router === path },
                     "hover:bg-gray-100",
                     "rounded-lg",
@@ -161,14 +162,14 @@ function Body() {
                       "justify-center",
                       "w-6",
                       "h-6",
-                      "font-semibold",
+                      "font-medium",
                       "uppercase",
                     )}
                   >
                     {
                       iconName ? (
                         <Icon
-                          name={iconName}
+                          name={iconName.trim()}
                           active={router === path}
                         />
                       ) : label[0] + label[1]

@@ -4,20 +4,23 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
+import classNames from "classnames"
+
 function DynamicLink({
   href = "/",
   className = "",
   style = {},
-  children
+  children,
+  ...props
 }) {
   const linkClasses = twMerge(
-    "block",
+    classNames(
+      "block",
+    ),
     className
   )
 
-  if (href === "") {
-    return null
-  }
+  if (!href) return null
 
   return (
     <Link
@@ -26,6 +29,7 @@ function DynamicLink({
       rel="noreferrer"
       className={linkClasses}
       style={style}
+      {...props}
     >
       {children}
     </Link>
@@ -33,7 +37,7 @@ function DynamicLink({
 }
 
 DynamicLink.propTypes = {
-  href: PropTypes.string,
+  href: PropTypes.string.isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node

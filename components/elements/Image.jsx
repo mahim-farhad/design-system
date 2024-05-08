@@ -2,20 +2,23 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
+import classNames from "classnames"
+
 function Image({
-  src = "",
-  alt = "image",
+  src,
+  alt,
   className = "",
-  style = {}
+  style = {},
+  ...props
 }) {
   const imgClasses = twMerge(
-    "w-full",
+    classNames(
+      "w-full",
+    ),
     className
   )
 
-  if (src === "") {
-    return null
-  }
+  if (!src && !alt) return null
 
   return (
     <img
@@ -24,6 +27,7 @@ function Image({
       loading="lazy"
       className={imgClasses}
       style={style}
+      {...props}
     />
   )
 }

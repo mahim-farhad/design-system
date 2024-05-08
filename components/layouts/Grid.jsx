@@ -2,13 +2,17 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
+import classNames from "classnames"
+
 function Grid({
   className = "",
   style = {},
   children
 }) {
   const gridClasses = twMerge(
-    "grid",
+    classNames(
+      "grid",
+    ),
     className
   )
 
@@ -54,7 +58,4 @@ GridItem.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export {
-  Grid,
-  GridItem
-}
+export { Grid, GridItem }

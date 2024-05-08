@@ -5,12 +5,13 @@ import { twMerge } from "tailwind-merge"
 import classNames from "classnames"
 
 function Typography({
-  type = "p",
+  tag = "p",
   className = "",
   style = {},
-  children
+  children,
+  ...props
 }) {
-  const Tag = type
+  const Tag = tag
 
   const typeVariants = {
     h1: classNames(
@@ -97,26 +98,17 @@ function Typography({
     )
   }
 
-  const typographyClasses = twMerge(typeVariants[type], className)
+  const typographyClasses = twMerge(typeVariants[tag], className)
 
-  if (
-    type !== "h1" &&
-    type !== "h2" &&
-    type !== "h3" &&
-    type !== "h4" &&
-    type !== "h5" &&
-    type !== "h6" &&
-    type !== "p" &&
-    type !== "small" &&
-    type !== "blockquote"
-  ) {
-    return null
-  }
+  const type = typeVariants[tag] || null
+
+  if (!type) return null
 
   return (
     <Tag
       className={typographyClasses}
       style={style}
+      {...props}
     >
       {children}
     </Tag>
@@ -133,11 +125,11 @@ Typography.propTypes = {
     "h6",
     "p",
     "small",
-    "blockquote",
+    "blockquote"
   ]).isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 }
 
 export default Typography

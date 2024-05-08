@@ -6,7 +6,8 @@ import classNames from "classnames"
 
 function Divider({
   className = "",
-  style = {}
+  style = {},
+  ...props
 }) {
   const dividerClasses = twMerge(
     classNames(
@@ -22,6 +23,7 @@ function Divider({
     <hr
       className={dividerClasses}
       style={style}
+      {...props}
     />
   )
 }

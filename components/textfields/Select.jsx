@@ -14,7 +14,6 @@ const Select = forwardRef(
     label,
     placeholder,
     options,
-    selected,
     value,
     size = "base",
     disabled = false,

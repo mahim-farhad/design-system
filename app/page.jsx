@@ -16,6 +16,7 @@ import Container from "@components/layouts/Container"
 import { Grid, GridItem } from "@components/layouts/Grid"
 import Flex from "@components/layouts/Flex"
 import Box from "@components/layouts/Box"
+import Icon from "@components/elements/Icon"
 
 const selectOptions = [{
   id: 1,
@@ -168,14 +169,18 @@ function Home() {
             />
 
             <Button
-              disabled={
-                inputValues.name === "" ||
-                inputValues.password === ""
-              }
+              variant="toned"
+              color="error"
             >
               Submit
             </Button>
           </Flex>
+
+          <Typography
+            tag="blockquote"
+          >
+            Typo fjfdg gdffdgfdkgfdj Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem quos alias, voluptatibus deserunt repudiandae quas eos dolor delectus doloremque ut temporibus sint, libero dicta numquam nisi ex nam? Magni, eius?
+          </Typography>
         </Container>
       </Section>
     </Main>

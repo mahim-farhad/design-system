@@ -25,7 +25,14 @@ const Button = forwardRef(
     ...props
   }, ref) {
     const sizeVariants = {
-      button: {
+      iconOnly: {
+        xs: "w-8 h-8",
+        sm: "w-10 h-10",
+        base: "w-12 h-12",
+        lg: "w-14 h-14",
+        xl: "w-16 h-16",
+      },
+      textOnly: {
         xs: classNames(
           "h-8",
           "py-1.5",
@@ -62,13 +69,6 @@ const Button = forwardRef(
           "leading-[15px]",
         ),
       },
-      icon: {
-        xs: "w-8 h-8",
-        sm: "w-10 h-10",
-        base: "w-12 h-12",
-        lg: "w-14 h-14",
-        xl: "w-16 h-16",
-      }
     }
 
     const colorVariants = {
@@ -343,8 +343,8 @@ const Button = forwardRef(
         "relative",
         { ["inline-block"]: !extended },
         { ["inline-flex gap-x-2 items-center justify-center"]: extended },
-        { [sizeVariants.icon[size]]: icon && !extended && size },
-        { [sizeVariants.button[size]]: !icon || extended && size },
+        { [sizeVariants.iconOnly[size]]: icon && !extended && size },
+        { [sizeVariants.textOnly[size]]: !icon || extended && size },
         "font-poppins",
         "font-medium",
         "uppercase",
@@ -377,15 +377,17 @@ const Button = forwardRef(
         {...props}
       >
         {
-          icon ? (
-            <Icon
-              name={icon}
-              size={size}
-              className={classNames(
-                { ["absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"]: icon && !extended },
-              )}
-            />
-          ) : children
+          icon
+            ? (
+              <Icon
+                name={icon}
+                size={size}
+                className={classNames(
+                  { ["absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"]: icon && !extended },
+                )}
+              />
+            )
+            : children
         }
 
         {extended && children}
