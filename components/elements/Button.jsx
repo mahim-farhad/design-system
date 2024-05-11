@@ -356,7 +356,7 @@ const Button = forwardRef(
         "overflow-hidden",
         { [colorVariants[variant][color]]: variant && color },
         "outline-0",
-        "border",
+        "border-2",
         { ["rounded-xl"]: !rounded },
         { ["rounded-full"]: rounded },
         "transition-all",
@@ -377,17 +377,15 @@ const Button = forwardRef(
         {...props}
       >
         {
-          icon
-            ? (
-              <Icon
-                name={icon}
-                size={size}
-                className={classNames(
-                  { ["absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"]: icon && !extended },
-                )}
-              />
-            )
-            : children
+          icon ? (
+            <Icon
+              name={icon}
+              size={size}
+              className={classNames(
+                { ["absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"]: icon && !extended },
+              )}
+            />
+          ) : children
         }
 
         {extended && children}

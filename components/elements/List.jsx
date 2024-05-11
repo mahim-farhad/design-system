@@ -5,26 +5,28 @@ import { twMerge } from "tailwind-merge"
 import classNames from "classnames"
 
 function List({
-  tag = "ul",
+  type = "ul",
   className = "",
   style = {},
   children,
   ...props
 }) {
-  const Tag = tag
+  const Tag = type
 
   const listClasses = twMerge(
     classNames(
+      "flex",
+      "flex-col",
       "p-0",
       "m-0",
-      { ["list-none"]: tag === "ul" },
-      { ["list-disc"]: tag === "ol" },
+      { ["list-none"]: type === "ul" },
+      { ["list-disc"]: type === "ol" },
       "list-inside",
     ),
     className
   )
 
-  if (tag !== "ul" && tag !== "ol") return null
+  if (type !== "ul" && type !== "ol") return null
 
   return (
     <Tag
@@ -59,7 +61,7 @@ function ListItem({
 }
 
 List.propTypes = {
-  tag: PropTypes.oneOf(["ul", "ol"]).isRequired,
+  type: PropTypes.oneOf(["ul", "ol"]).isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired

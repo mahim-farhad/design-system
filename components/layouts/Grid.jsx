@@ -7,7 +7,8 @@ import classNames from "classnames"
 function Grid({
   className = "",
   style = {},
-  children
+  children,
+  ...props
 }) {
   const gridClasses = twMerge(
     classNames(
@@ -20,6 +21,7 @@ function Grid({
     <div
       className={gridClasses}
       style={style}
+      {...props}
     >
       {children}
     </div>
@@ -30,7 +32,8 @@ function GridItem({
   key,
   className = "",
   style = {},
-  children
+  children,
+  ...props
 }) {
   const gridItemClasses = className ? twMerge(className) : undefined
 
@@ -39,6 +42,7 @@ function GridItem({
       key={key}
       className={gridItemClasses}
       style={style}
+      {...props}
     >
       {children}
     </div>

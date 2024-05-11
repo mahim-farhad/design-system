@@ -40,7 +40,7 @@ Flex.propTypes = {
   key: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 }
 
 export default Flex

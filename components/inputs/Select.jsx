@@ -6,12 +6,15 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-const Textfield = forwardRef(
-  function Textfield({
+import Button from "@components/elements/Button"
+
+const Select = forwardRef(
+  function Select({
     type = "text",
     name,
     label,
     placeholder,
+    options,
     value,
     size = "base",
     disabled = false,
@@ -122,7 +125,7 @@ const Textfield = forwardRef(
         { ["cursor-not-allowed pointer-events-none opacity-50"]: disabled },
         "text-gray-400",
         "bg-transparent",
-        "outline-0",
+        "outline-none",
         "border-2",
         "border-gray-200",
         { ["border-primary"]: isFocused },
@@ -134,23 +137,17 @@ const Textfield = forwardRef(
       )
     )
 
+    if (!options) return null
+
     return (
-      <div
-        className={classNames(
-          "relative",
-          "w-full",
-        )}
-      >
-        {
-          label &&
-          <label
-            className={labelClasses}
-          >
+      <div className="relative w-full">
+        {label && (
+          <label className={labelClasses}>
             {label}
           </label>
-        }
+        )}
 
-        <input
+        <select
           ref={ref}
           type={type}
           name={name}
@@ -175,10 +172,23 @@ const Textfield = forwardRef(
             }
           }}
           onChange={onChange}
-        />
+        >
+          {
+            options?.map((option) => {
+              return (
+                <option
+                  key={option.id}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              )
+            })
+          }
+        </select>
       </div>
     )
   }
 )
 
-export default Textfield
+export default Select

@@ -5,13 +5,13 @@ import { twMerge } from "tailwind-merge"
 import classNames from "classnames"
 
 function Typography({
-  tag = "p",
+  type = "p",
   className = "",
   style = {},
   children,
   ...props
 }) {
-  const Tag = tag
+  const Tag = type
 
   const typeVariants = {
     h1: classNames(
@@ -98,11 +98,9 @@ function Typography({
     )
   }
 
-  const typographyClasses = twMerge(typeVariants[tag], className)
+  const typographyClasses = twMerge(typeVariants[type], className)
 
-  const type = typeVariants[tag] || null
-
-  if (!type) return null
+  if (!typeVariants[type]) return null
 
   return (
     <Tag

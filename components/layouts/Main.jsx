@@ -7,7 +7,8 @@ import classNames from "classnames"
 function Main({
   className = "",
   style = {},
-  children
+  children,
+  ...props
 }) {
   const mainClasses = twMerge(
     classNames(
@@ -24,6 +25,7 @@ function Main({
     <main
       className={mainClasses}
       style={style}
+      {...props}
     >
       {children}
     </main>

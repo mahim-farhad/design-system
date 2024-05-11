@@ -5,9 +5,10 @@ import { useState } from "react"
 import classNames from "classnames"
 
 import Typography from "@components/elements/Typography"
-import Textfield from "@components/textfields/Textfield"
-import Counter from "@components/textfields/Counter"
-import Select from "@components/textfields/Select"
+import Textfield from "@components/inputs/Textfield"
+import Counter from "@components/inputs/Counter"
+import Select from "@components/inputs/Select"
+import CustomSelect from "@components/inputs/CustomSelect"
 import Button from "@components/elements/Button"
 
 import Main from "@components/layouts/Main"
@@ -16,35 +17,38 @@ import Container from "@components/layouts/Container"
 import { Grid, GridItem } from "@components/layouts/Grid"
 import Flex from "@components/layouts/Flex"
 import Box from "@components/layouts/Box"
-import Icon from "@components/elements/Icon"
+import Customfield from "@components/inputs/CustomField"
 
 const selectOptions = [{
   id: 1,
-  name: "Canada",
+  label: "Canada",
   value: "CA",
 }, {
   id: 2,
-  name: "Germany",
+  label: "Germany",
   value: "DE",
 }, {
   id: 3,
-  name: "Australia",
+  label: "Australia",
   value: "AS",
 }, {
   id: 4,
-  name: "Saudi Arabia",
+  label: "Saudi Arabia",
   value: "SA",
 }]
 
 function Home() {
   const initialValues = {
     name: "Mahim Farhad",
+    email: "",
+    phone: "",
+    date: "",
+    quantity: 0,
     country: selectOptions[2].value,
     password: "",
   }
 
   const [inputValues, setInputValues] = useState(initialValues)
-  const [quantity, setQuantity] = useState(0)
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -55,132 +59,132 @@ function Home() {
     })
   }
 
-  console.log(inputValues)
+  { console.log(inputValues) }
 
   return (
     <Main>
-      <Section>
+      <Section className="h-[calc(100vh-64px)]">
         <Container>
-          <Flex
+          <form
+            action=""
             className={classNames(
-              "flex",
-              "flex-col",
-              "gap-8",
-              "justify-center",
-              "w-full",
-              "sm:max-w-[600px]",
-              "max-h-[600px]",
-              "mx-auto",
-              "p-16",
-              "bg-surface-light",
-              "border",
-              "rounded-xl",
+              "absolute",
+              "top-1/2",
+              "left-1/2",
+              "-translate-y-1/2",
+              "-translate-x-1/2",
             )}
           >
-            <Textfield
-              type="text"
-              name="name"
-              label="Name"
-              value={inputValues.name}
-              onChange={handleChange}
-              disabled
-            />
-
             <Flex
               className={classNames(
-                "flex-nowrap",
-                "gap-4",
-                "items-center",
-                "w-full",
+                "flex-col",
+                "gap-8",
+                "justify-center",
+                "w-[400px] sm:w-[800px]",
+                "mx-auto",
+                "py-8 sm:py-16",
+                "px-4 sm:px-16",
+                "bg-surface-light",
+                "border",
+                "rounded-xl",
               )}
             >
-              <Textfield
-                type="email"
-                name="email"
-                label="Email"
-                onChange={handleChange}
-              />
+              <Flex
+                className={classNames(
+                  "sm:flex-nowrap",
+                  "gap-4",
+                  "items-center",
+                  "w-full",
+                )}
+              >
+                <Textfield
+                  type="text"
+                  name="name"
+                  label="Name"
+                  value={inputValues.name}
+                  onChange={handleChange}
+                  disabled
+                  className="flex-1"
+                />
+
+                <CustomSelect
+                  name="country"
+                  label="Country"
+                  options={selectOptions}
+                  value={inputValues.country}
+                  onChange={handleChange}
+                  className="flex-1"
+                />
+              </Flex>
+
+              <Flex
+                className={classNames(
+                  "sm:flex-nowrap",
+                  "gap-4",
+                  "items-center",
+                  "w-full",
+                )}
+              >
+                <Textfield
+                  type="email"
+                  name="email"
+                  label="Email"
+                  value={inputValues.email}
+                  onChange={handleChange}
+                  className="flex-1"
+                />
+
+                <Customfield
+                  type="tel"
+                  name="phone"
+                  label="Phone"
+                  value={inputValues.phone}
+                  onChange={handleChange}
+                  className="flex-1"
+                />
+              </Flex>
 
               <Textfield
-                type="tel"
-                name="phone"
-                label="Phone"
+                type="password"
+                name="password"
+                label="Password"
+                size="sm"
+                className="w-full"
                 onChange={handleChange}
               />
-            </Flex>
 
-            <Flex
-              className={classNames(
-                "flex-nowrap",
-                "gap-4",
-                "items-center",
-                "w-full",
-              )}
-            >
               <Textfield
-                type="text"
-                name="date"
-                label="Date of Birth"
+                type="password"
+                name="password"
+                label="Password"
+                size="base"
+                className="w-full"
                 onChange={handleChange}
               />
 
-              <Counter
-                name="quantity"
-                label="Quantity"
+              <Textfield
+                type="password"
+                name="password"
+                label="Password"
+                size="lg"
+                className="w-full"
                 onChange={handleChange}
-                counter={quantity}
-                setCounter={setQuantity}
-                value={"dfgdgfd"}
               />
+
+              <Textfield
+                type="password"
+                name="password"
+                label="Password"
+                size="xl"
+                className="w-full"
+                onChange={handleChange}
+              />
+
+              <Button type="submit">
+                Submit
+              </Button>
             </Flex>
-
-            <Flex
-              className={classNames(
-                "flex-nowrap",
-                "gap-4",
-                "items-center",
-                "w-full",
-              )}
-            >
-              <Select
-                type="select"
-                name="country"
-                label="Country"
-                options={selectOptions}
-                value={inputValues.country}
-                onChange={handleChange}
-              />
-
-              <Counter
-                name="quantity"
-                label="Quantity"
-                onChange={handleChange}
-                counter={quantity}
-                setCounter={setQuantity}
-                value={"dfgdgfd"}
-              />
-            </Flex>
-
-            <Textfield
-              type="password"
-              name="password"
-              label="Password"
-              onChange={handleChange}
-            />
-
-            <Button
-              variant="toned"
-              color="error"
-            >
-              Submit
-            </Button>
-          </Flex>
-
-          <Typography
-            tag="blockquote"
-          >
-            Typo fjfdg gdffdgfdkgfdj Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem quos alias, voluptatibus deserunt repudiandae quas eos dolor delectus doloremque ut temporibus sint, libero dicta numquam nisi ex nam? Magni, eius?
-          </Typography>
+          </form>
         </Container>
       </Section>
     </Main>

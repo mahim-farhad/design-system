@@ -7,7 +7,8 @@ import classNames from "classnames"
 function Section({
   className = "",
   style = {},
-  children
+  children,
+  ...props
 }) {
   const sectionClasses = twMerge(
     classNames(
@@ -22,6 +23,7 @@ function Section({
     <section
       className={sectionClasses}
       style={style}
+      {...props}
     >
       {children}
     </section>

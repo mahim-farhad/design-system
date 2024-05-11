@@ -6,41 +6,39 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Button from "@components/elements/Button"
+import Icon from "@components/elements/Icon"
 
 const Counter = forwardRef(
   function Counter({
-    type = "number",
     name,
     label,
     placeholder,
     value,
     size = "base",
     disabled = false,
-    counter,
-    setCounter,
     onChange,
   }, ref) {
+    const [counter, setCounter] = useState(value)
     const [isFocused, setFocus] = useState(false)
     const [isFilled, setFill] = useState(false)
-    const [isError, setError] = useState(false)
+    const [isValid, setValid] = useState(false)
 
     const sizeVariants = {
       label: {
         sm: classNames(
           "left-[0.5rem]",
-          { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
-          { ["z-10 -translate-y-[1.875rem] text-sm"]: isFocused || isFilled || value },
+          { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !counter },
+          { ["z-10 -translate-y-[1.875rem] text-sm"]: isFocused || isFilled || counter },
         ),
         base: classNames(
           "left-[0.625rem]",
-          { ["-z-5 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
-          { ["z-10 -translate-y-[31px] text-sm"]: isFocused || isFilled || value },
+          { ["-z-5 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !counter },
+          { ["z-10 -translate-y-[31px] text-sm"]: isFocused || isFilled || counter },
         ),
         lg: classNames(
           "left-[0.75rem]",
-          { ["-z-10 -translate-y-1/2 text-lg"]: !isFocused && !isFilled && !value },
-          { ["z-10 -translate-y-[2.5rem] text-base"]: isFocused || isFilled || value },
+          { ["-z-10 -translate-y-1/2 text-lg"]: !isFocused && !isFilled && !counter },
+          { ["z-10 -translate-y-[2.5rem] text-base"]: isFocused || isFilled || counter },
         ),
       },
       input: {
@@ -48,40 +46,40 @@ const Counter = forwardRef(
           "h-8",
           "py-1.5",
           "pl-3",
-          { ["pr-3"]: !isError },
-          { ["pr-10"]: isError },
+          { ["pr-3"]: !isValid },
+          { ["pr-10"]: isValid },
           "text-base",
         ),
         sm: classNames(
           "h-10",
           "py-1.5",
           "pl-3",
-          { ["pr-3"]: !isError },
-          { ["pr-10"]: isError },
+          { ["pr-3"]: !isValid },
+          { ["pr-10"]: isValid },
           "text-base",
         ),
         base: classNames(
           "h-12",
           "py-2",
           "pl-3.5",
-          { ["pr-3.5"]: !isError },
-          { ["pr-12"]: isError },
+          { ["pr-3.5"]: !isValid },
+          { ["pr-12"]: isValid },
           "text-base",
         ),
         lg: classNames(
           "h-14",
           "py-3",
           "pl-4",
-          { ["pr-4"]: !isError },
-          { ["pr-14"]: isError },
+          { ["pr-4"]: !isValid },
+          { ["pr-14"]: isValid },
           "text-lg",
         ),
         xl: classNames(
           "h-16",
           "py-3",
           "pl-4",
-          { ["pr-4"]: !isError },
-          { ["pr-14"]: isError },
+          { ["pr-4"]: !isValid },
+          { ["pr-14"]: isValid },
           "text-lg",
         ),
       },
@@ -103,7 +101,7 @@ const Counter = forwardRef(
         "font-medium",
         "text-gray-400",
         { ["text-primary"]: isFocused },
-        { ["text-error"]: isError },
+        { ["text-error"]: isValid },
         { ["text-gray-300"]: disabled },
         "bg-surface-light",
         "rounded-md",
@@ -130,7 +128,7 @@ const Counter = forwardRef(
         "border-2",
         "border-gray-200",
         { ["border-primary"]: isFocused },
-        { ["border-error"]: isError },
+        { ["border-error"]: isValid },
         "rounded-lg",
         "transition-all",
         "duration-300",
@@ -139,42 +137,34 @@ const Counter = forwardRef(
     )
 
     return (
-      <div
-        className={classNames(
-          "relative",
-          "w-full",
-        )}
-      >
-        {
-          label &&
-          <label
-            className={labelClasses}
-          >
+      <div className="relative">
+        {label && (
+          <label className={labelClasses}>
             {label}
           </label>
-        }
+        )}
 
         <input
           ref={ref}
-          type={type}
-          readOnly
+          type="number"
           name={name}
           placeholder={placeholder}
           value={counter}
+          readOnly
           disabled={disabled}
           className={inputClasses}
           onFocus={() => {
             setFocus(true)
 
-            setError(false)
+            setValid(false)
           }}
           onBlur={(event) => {
             setFocus(false)
 
-            if (event.target.value === "" || event.target.value === null) {
+            if (!event.target.value) {
               setFill(false)
 
-              setError(true)
+              setValid(true)
             } else {
               setFill(true)
             }
@@ -195,40 +185,67 @@ const Counter = forwardRef(
             "h-full",
           )}
         >
-          <Button
-            onClick={() => {
-              if (counter < 100) {
-                setCounter(counter + 1)
-              }
-            }}
-            icon="caret-down"
-            size="xs"
-            variant="text"
-            color="secondary"
+          <button
+            type="button"
             disabled={disabled || counter >= 100}
             className={classNames(
-              "w-3",
-              "h-3",
+              "relative",
               "rotate-180",
+              "w-full",
+              "h-1/2",
+              "appearance-none",
+              "overflow-hidden",
+              { ["cursor-pointer"]: !disabled },
+              { ["cursor-not-allowed pointer-events-none opacity-50"]: disabled || counter >= 100 },
             )}
-          />
-
-          <Button
             onClick={() => {
-              if (counter > 1) {
-                setCounter(counter - 1)
-              }
+              setCounter(counter + 1)
+
+              setFocus(true)
             }}
-            icon="caret-down"
-            size="xs"
-            variant="text"
-            color="secondary"
+          >
+            <Icon
+              name="caret-down"
+              size="sm"
+              className={classNames(
+                "absolute",
+                "bottom-2.5",
+                "left-1/2",
+                "-translate-x-1/2",
+              )}
+            />
+          </button>
+
+          <button
+            type="button"
             disabled={disabled || counter <= 1}
             className={classNames(
-              "w-3",
-              "h-3",
+              "relative",
+              "rotate-0",
+              "w-full",
+              "h-1/2",
+              "appearance-none",
+              "overflow-hidden",
+              { ["cursor-pointer"]: !disabled },
+              { ["cursor-not-allowed pointer-events-none opacity-25"]: disabled || counter <= 1 },
             )}
-          />
+            onClick={() => {
+              setCounter(counter - 1)
+
+              setFocus(true)
+            }}
+          >
+            <Icon
+              name="caret-down"
+              size="sm"
+              className={classNames(
+                "absolute",
+                "bottom-2.5",
+                "left-1/2",
+                "-translate-x-1/2",
+              )}
+            />
+          </button>
         </div>
       </div>
     )

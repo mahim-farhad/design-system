@@ -16,7 +16,7 @@ function Icon({
     sm: "w-4 h-4",
     base: "w-5 h-5",
     lg: "w-6 h-6",
-    xl: "w-7 h-7"
+    xl: "w-6 h-6"
   }
 
   const iconClasses = twMerge(
@@ -161,6 +161,20 @@ function Icon({
         <path d="M11.0072 11.0071H0V-0.00012207H11.0072V11.0071Z" />
       </svg>
     ),
+    "chevron-down": (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="chevron-down"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        className={iconClasses}
+        style={style}
+        {...props}
+      >
+        <path d="M12,15.5a1.993,1.993,0,0,1-1.414-.585L5.293,9.621,6.707,8.207,12,13.5l5.293-5.293,1.414,1.414-5.293,5.293A1.993,1.993,0,0,1,12,15.5Z" />
+      </svg>
+    ),
     "caret-down": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -175,18 +189,32 @@ function Icon({
         <path d="M5,9H19l-6.293,6.293a1,1,0,0,1-1.414,0Z" />
       </svg>
     ),
-    "chevron-down": (
+    "check-circle": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         role="img"
-        aria-label="chevron-down"
+        aria-label="check-circle"
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}
         style={style}
         {...props}
       >
-        <path d="M12,15.5a1.993,1.993,0,0,1-1.414-.585L5.293,9.621,6.707,8.207,12,13.5l5.293-5.293,1.414,1.414-5.293,5.293A1.993,1.993,0,0,1,12,15.5Z" />
+        <path d="m12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm-.091,15.419c-.387.387-.896.58-1.407.58s-1.025-.195-1.416-.585l-2.782-2.696,1.393-1.437,2.793,2.707,5.809-5.701,1.404,1.425-5.793,5.707Z" />
+      </svg>
+    ),
+    "exclamation": (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="exclamation"
+        fill="currentColor"
+        viewBox="0 0 512 512"
+        className={iconClasses}
+        style={style}
+        {...props}
+      >
+        <path d="M256,512c141.385,0,256-114.615,256-256S397.385,0,256,0S0,114.615,0,256C0.153,397.322,114.678,511.847,256,512z    M234.667,128c0-11.782,9.551-21.333,21.333-21.333c11.782,0,21.333,9.551,21.333,21.333v170.667   c0,11.782-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333V128z M256,384c11.782,0,21.333,9.551,21.333,21.333   s-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333S244.218,384,256,384z" />
       </svg>
     ),
     "settings": (
@@ -205,11 +233,9 @@ function Icon({
     ),
   }
 
-  const icon = icons[name] || null
+  if (!icons[name]) return null
 
-  if (!icon) return null
-
-  return <>{icon}</>
+  return <>{icons[name]}</>
 }
 
 Icon.propTypes = {

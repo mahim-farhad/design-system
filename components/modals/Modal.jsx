@@ -9,8 +9,8 @@ import classNames from "classnames"
 import { useToggleModal } from "@contexts/ModalProvider"
 
 import Typography from "@components/elements/Typography"
-import Textfield from "@components/textfields/Textfield"
-import Counter from "@components/textfields/Counter"
+import Textfield from "@components/inputs/Textfield"
+import Counter from "@components/inputs/Counter"
 import Button from "@components/elements/Button"
 
 import Flex from "@components/layouts/Flex"
