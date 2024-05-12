@@ -25,6 +25,7 @@ export const theme = {
     "2xl": "97.5rem",
   },
   fontFamily: {
+    inherit: "inherit",
     default: ["var(--font-inter)"],
     arvo: ["var(--font-arvo)"],
     poppins: ["var(--font-poppins)"],
@@ -33,6 +34,7 @@ export const theme = {
     custom: ["AkiraExpanded"],
   },
   colors: {
+    inherit: "inherit",
     transparent: "transparent",
     current: "currentColor",
     white: white,

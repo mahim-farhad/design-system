@@ -2,6 +2,8 @@
 
 import PropTypes from "prop-types"
 
+import { twMerge } from "tailwind-merge"
+
 import {
   AnimatePresence,
   motion,
@@ -32,7 +34,7 @@ function Animate({
         animate={animate}
         exit={exit}
         transition={transition}
-        className={className}
+        className={className ? twMerge(className) : undefined}
       >
         {children}
       </motion.div>

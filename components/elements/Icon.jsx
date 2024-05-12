@@ -33,8 +33,9 @@ function Icon({
     "brand": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
-        aria-label={name}
+        aria-label="brand"
         aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
@@ -55,8 +56,9 @@ function Icon({
     "apps-sort": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
-        aria-label={name}
+        aria-label="apps-sort"
         aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 512 512"
@@ -73,8 +75,9 @@ function Icon({
     "grid": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
-        aria-label={name}
+        aria-label="grid"
         aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
@@ -96,8 +99,10 @@ function Icon({
     "code-branch": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
-        aria-label="envelope"
+        aria-label="code-branch"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}
@@ -132,8 +137,10 @@ function Icon({
     "envelope": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
         aria-label="envelope"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}
@@ -147,8 +154,10 @@ function Icon({
     "menu": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
         aria-label="menu"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}
@@ -161,11 +170,29 @@ function Icon({
         <path d="M11.0072 11.0071H0V-0.00012207H11.0072V11.0071Z" />
       </svg>
     ),
+    "lock": (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
+        role="img"
+        aria-label="lock"
+        aria-hidden={true}
+        fill="currentColor"
+        viewBox="0 0 512 512"
+        className={iconClasses}
+        style={style}
+        {...props}
+      >
+        <path d="M405.333 179.712v-30.379C405.333 66.859 338.475 0 256 0S106.667 66.859 106.667 149.333v30.379c-38.826 16.945-63.944 55.259-64 97.621v128C42.737 464.214 90.452 511.93 149.333 512h213.333c58.881-.07 106.596-47.786 106.667-106.667v-128c-.055-42.362-25.174-80.676-64-97.621zm-128 182.955c0 11.782-9.551 21.333-21.333 21.333-11.782 0-21.333-9.551-21.333-21.333V320c0-11.782 9.551-21.333 21.333-21.333 11.782 0 21.333 9.551 21.333 21.333v42.667zm85.334-192H149.333v-21.333c0-58.91 47.756-106.667 106.667-106.667s106.667 47.756 106.667 106.667v21.333z" />
+      </svg>
+    ),
     "chevron-down": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
         aria-label="chevron-down"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}
@@ -178,8 +205,10 @@ function Icon({
     "caret-down": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
         aria-label="caret-down"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}
@@ -192,8 +221,10 @@ function Icon({
     "check-circle": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
         aria-label="check-circle"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}
@@ -206,8 +237,10 @@ function Icon({
     "exclamation": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
         aria-label="exclamation"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 512 512"
         className={iconClasses}
@@ -220,8 +253,10 @@ function Icon({
     "settings": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
         role="img"
         aria-label="settings"
+        aria-hidden={true}
         fill="currentColor"
         viewBox="0 0 24 24"
         className={iconClasses}

@@ -18,6 +18,7 @@ import { Grid, GridItem } from "@components/layouts/Grid"
 import Flex from "@components/layouts/Flex"
 import Box from "@components/layouts/Box"
 import Customfield from "@components/inputs/CustomField"
+import Radio from "@components/inputs/Radio"
 
 const selectOptions = [{
   id: 1,
