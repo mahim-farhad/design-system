@@ -15,30 +15,32 @@ const Counter = forwardRef(
     placeholder,
     value,
     size = "base",
-    disabled = false,
+    className = "",
+    style = {},
     onChange,
+    disabled = false
   }, ref) {
     const [counter, setCounter] = useState(value)
     const [isFocused, setFocus] = useState(false)
     const [isFilled, setFill] = useState(false)
-    const [isValid, setValid] = useState(false)
+    const [isInvalid, setValid] = useState(false)
 
     const sizeVariants = {
       label: {
         sm: classNames(
           "left-[0.5rem]",
-          { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !counter },
-          { ["z-10 -translate-y-[1.875rem] text-sm"]: isFocused || isFilled || counter },
+          { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
+          { ["z-10 -translate-y-[1.875rem] text-sm"]: isFocused || isFilled || isInvalid || value },
         ),
         base: classNames(
           "left-[0.625rem]",
-          { ["-z-5 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !counter },
-          { ["z-10 -translate-y-[31px] text-sm"]: isFocused || isFilled || counter },
+          { ["-z-5 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
+          { ["z-10 -translate-y-[31px] text-sm"]: isFocused || isFilled || isInvalid || value },
         ),
         lg: classNames(
           "left-[0.75rem]",
-          { ["-z-10 -translate-y-1/2 text-lg"]: !isFocused && !isFilled && !counter },
-          { ["z-10 -translate-y-[2.5rem] text-base"]: isFocused || isFilled || counter },
+          { ["-z-10 -translate-y-1/2 text-lg"]: !isFocused && !isFilled && !value },
+          { ["z-10 -translate-y-[2.5rem] text-base"]: isFocused || isFilled || isInvalid || value },
         ),
       },
       input: {
@@ -46,40 +48,40 @@ const Counter = forwardRef(
           "h-8",
           "py-1.5",
           "pl-3",
-          { ["pr-3"]: !isValid },
-          { ["pr-10"]: isValid },
+          { ["pr-3"]: !isInvalid },
+          { ["pr-10"]: isInvalid },
           "text-base",
         ),
         sm: classNames(
           "h-10",
           "py-1.5",
           "pl-3",
-          { ["pr-3"]: !isValid },
-          { ["pr-10"]: isValid },
+          { ["pr-3"]: !isInvalid },
+          { ["pr-10"]: isInvalid },
           "text-base",
         ),
         base: classNames(
           "h-12",
           "py-2",
           "pl-3.5",
-          { ["pr-3.5"]: !isValid },
-          { ["pr-12"]: isValid },
+          { ["pr-3.5"]: !isInvalid },
+          { ["pr-12"]: isInvalid },
           "text-base",
         ),
         lg: classNames(
           "h-14",
           "py-3",
           "pl-4",
-          { ["pr-4"]: !isValid },
-          { ["pr-14"]: isValid },
+          { ["pr-4"]: !isInvalid },
+          { ["pr-14"]: isInvalid },
           "text-lg",
         ),
         xl: classNames(
           "h-16",
           "py-3",
           "pl-4",
-          { ["pr-4"]: !isValid },
-          { ["pr-14"]: isValid },
+          { ["pr-4"]: !isInvalid },
+          { ["pr-14"]: isInvalid },
           "text-lg",
         ),
       },
@@ -101,7 +103,7 @@ const Counter = forwardRef(
         "font-medium",
         "text-gray-400",
         { ["text-primary"]: isFocused },
-        { ["text-error"]: isValid },
+        { ["text-error"]: isInvalid },
         { ["text-gray-300"]: disabled },
         "bg-surface-light",
         "rounded-md",
@@ -128,7 +130,7 @@ const Counter = forwardRef(
         "border-2",
         "border-gray-200",
         { ["border-primary"]: isFocused },
-        { ["border-error"]: isValid },
+        { ["border-error"]: isInvalid },
         "rounded-lg",
         "transition-all",
         "duration-300",
@@ -150,7 +152,7 @@ const Counter = forwardRef(
           name={name}
           placeholder={placeholder}
           value={counter}
-          readOnly
+          // readOnly
           disabled={disabled}
           className={inputClasses}
           onFocus={() => {
@@ -169,7 +171,15 @@ const Counter = forwardRef(
               setFill(true)
             }
           }}
-          onChange={onChange}
+          onChange={(event) => {
+            const newVal = parseInt(event.target.value, 10)
+
+            if (!isNaN(newVal)) {
+              setCounter(newVal)
+
+              onChange(newVal)
+            }
+          }}
         />
 
         <div

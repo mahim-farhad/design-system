@@ -11,7 +11,7 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Button from "@components/elements/Button"
+import Icon from "@components/elements/Icon"
 import { List, ListItem } from "@components/elements/List"
 
 function useOutsideClick(ref, modal, setModal) {
@@ -33,104 +33,190 @@ const CustomSelect = forwardRef(
     name,
     label,
     placeholder,
-    options,
     value,
+    options,
+    inputValues,
+    setInputValues,
     size = "base",
+    className = "",
+    style = {},
+    onChange,
     disabled = false,
-    onChange
+    ...rest
   }, ref) {
-    const [isSelected, setSelected] = useState(value)
-    const [isOpen, setOpen] = useState(false)
     const [isFocused, setFocus] = useState(false)
     const [isFilled, setFill] = useState(false)
-    const [isValid, setValid] = useState(false)
+    const [isInvalid, setInvalid] = useState(false)
+    const [isOpen, setOpen] = useState(false)
+    const [isSelected, setSelected] = useState("")
 
     const dropdownRef = useRef(null)
 
     useOutsideClick(dropdownRef, isOpen, setOpen)
 
-    const sizeVariants = {
+    const isLabelFloating = isFocused || isFilled || isInvalid || value
+
+    function handleFocus() {
+      setFocus(true)
+
+      if (isSelected) setFill(true)
+
+      setInvalid(false)
+    }
+
+    function handleBlur() {
+      setFocus(false)
+
+      if (!isSelected) {
+        setFill(false)
+
+        setInvalid(true)
+      } else {
+        setFill(true)
+      }
+    }
+
+    const getSizeVariants = () => ({
+      inputWrapper: {
+        sm: "h-10",
+        base: "h-12",
+        lg: "h-14",
+        xl: "h-16"
+      },
+      labelWrapper: {
+        sm: "mx-2",
+        base: "mx-2.5",
+        lg: "mx-2.5",
+        xl: "mx-2.5"
+      },
       label: {
         sm: classNames(
-          "left-[0.5rem]",
-          { ["-z-10 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
-          { ["z-10 -translate-y-[1.875rem] text-sm"]: isFocused || isFilled || value },
+          "text-base",
+          { "-translate-y-[19px] text-sm": isLabelFloating }
         ),
         base: classNames(
-          "left-[0.625rem]",
-          { ["-z-5 -translate-y-1/2 text-base"]: !isFocused && !isFilled && !value },
-          { ["z-10 -translate-y-[31px] text-sm"]: isFocused || isFilled || value },
+          "text-base",
+          { "-translate-y-[23px] text-sm": isLabelFloating }
         ),
         lg: classNames(
-          "left-[0.75rem]",
-          { ["-z-10 -translate-y-1/2 text-lg"]: !isFocused && !isFilled && !value },
-          { ["z-10 -translate-y-[2.5rem] text-base"]: isFocused || isFilled || value },
-        ),
-      },
-      input: {
-        xs: classNames(
-          "h-8",
-          "py-1.5",
-          "pl-3",
-          { ["pr-3"]: !isValid },
-          { ["pr-10"]: isValid },
-          "text-base",
-        ),
-        sm: classNames(
-          "h-10",
-          "py-1.5",
-          "pl-3",
-          { ["pr-3"]: !isValid },
-          { ["pr-10"]: isValid },
-          "text-base",
-        ),
-        base: classNames(
-          "h-12",
-          "py-2",
-          "pl-3.5",
-          { ["pr-3.5"]: !isValid },
-          { ["pr-12"]: isValid },
-          "text-base",
-        ),
-        lg: classNames(
-          "h-14",
-          "py-3",
-          "pl-4",
-          { ["pr-4"]: !isValid },
-          { ["pr-14"]: isValid },
           "text-lg",
+          { "-translate-y-[27px] text-base": isLabelFloating }
         ),
         xl: classNames(
-          "h-16",
-          "py-3",
-          "pl-4",
-          { ["pr-4"]: !isValid },
-          { ["pr-14"]: isValid },
           "text-lg",
+          { "-translate-y-[31px] text-base": isLabelFloating }
+        )
+      },
+      input: {
+        sm: classNames(
+          "px-3.5",
+          { "pr-[38px]": isInvalid },
+          "text-sm"
         ),
+        base: classNames(
+          "px-4",
+          { "pr-[46px]": isInvalid },
+          "text-base"
+        ),
+        lg: classNames(
+          "px-4",
+          { "pr-[54px]": isInvalid },
+          "text-lg"
+        ),
+        xl: classNames(
+          "px-4",
+          { "pr-[62px]": isInvalid },
+          "text-xl"
+        )
       },
-      icon: {
-        sm: "right-3",
-        base: "right-3.5",
-        lg: "right-4",
-      },
-    }
+      iconWrapper: {
+        sm: classNames(
+          "w-10",
+          "h-10",
+          "p-3"
+        ),
+        base: classNames(
+          "w-12",
+          "h-12",
+          "p-3.5"
+        ),
+        lg: classNames(
+          "w-14",
+          "h-14",
+          "p-4"
+        ),
+        xl: classNames(
+          "w-16",
+          "h-16",
+          "p-5"
+        )
+      }
+    })
+
+    const sizeVariants = getSizeVariants()
+
+    const inputWrapperClasses = twMerge(
+      classNames(
+        "relative",
+        "flex",
+        "flex-nowrap",
+        "w-full",
+        { [sizeVariants.inputWrapper[size]]: size },
+        { ["opacity-100"]: !disabled },
+        { ["opacity-50"]: disabled },
+        "border-2",
+        { "border-gray-300": !isFocused && !isInvalid },
+        { "border-primary": isFocused && !isInvalid },
+        { "border-error": !isFocused && isInvalid },
+        "rounded-md",
+        "transition-all",
+        "duration-300",
+        "ease-in-out"
+      ),
+      className
+    )
+
+    const labelWrapperClasses = twMerge(
+      classNames(
+        "relative",
+        "inline-flex",
+        "items-center",
+        { [sizeVariants.labelWrapper[size]]: size },
+        "-my-0.5",
+        "after:content-['']",
+        "after:z-0",
+        "after:absolute",
+        "after:top-0",
+        "after:left-0",
+        "after:scale-x-0",
+        { "after:scale-x-1 after:opacity-1": isLabelFloating },
+        "after:origin-center",
+        "after:w-full",
+        "after:h-0.5",
+        { "after:opacity-0": !isLabelFloating },
+        "after:bg-white",
+        "after:transition-all",
+        "after:duration-300",
+        "after:ease-in-out"
+      )
+    )
 
     const labelClasses = twMerge(
       classNames(
-        "absolute",
-        "top-1/2",
+        "z-10",
+        "relative",
+        "translate-y-0 ",
         { [sizeVariants.label[size]]: size },
+        "py-0.5",
         "px-1.5",
         "font-poppins",
         "leading-[17px]",
         "font-medium",
-        "text-gray-400",
-        { ["text-primary"]: isFocused },
-        { ["text-error"]: isValid },
-        { ["text-gray-300"]: disabled },
-        "bg-surface-light",
-        "rounded-md",
+        { "text-gray-400": !isFocused && !isInvalid },
+        { "text-primary": isFocused && !isInvalid },
+        { "text-error": !isFocused && isInvalid },
+        "bg-transparent",
+        "rounded-sm",
         "transition-all",
         "duration-300",
         "ease-in-out"
@@ -139,23 +225,46 @@ const CustomSelect = forwardRef(
 
     const inputClasses = twMerge(
       classNames(
-        "w-full",
+        "z-10",
+        "absolute",
+        "top-0",
+        "right-0",
+        "bottom-0",
+        "left-0",
         { [sizeVariants.input[size]]: size },
+        "-my-0.5",
+        "-mx-0.5",
         "font-poppins",
-        "leading-[17px]",
+        "leading-[25px]",
         "font-medium",
+        "text-start",
         "whitespace-nowrap",
         "appearance-none",
         { ["cursor-pointer"]: !disabled },
-        { ["cursor-not-allowed pointer-events-none opacity-50"]: disabled },
+        { ["cursor-not-allowed pointer-events-none"]: disabled },
         "text-gray-400",
         "bg-transparent",
         "outline-0",
         "border-2",
-        "border-gray-200",
-        { ["border-primary"]: isFocused },
-        { ["border-error"]: isValid },
-        "rounded-lg",
+        "border-transparent",
+        "rounded-md",
+        "transition-all",
+        "duration-300",
+        "ease-in-out"
+      )
+    )
+
+    const iconWrapperClasses = twMerge(
+      classNames(
+        "flex",
+        "items-center",
+        "justify-center",
+        "-my-0.5",
+        "-mr-0.5",
+        "ml-auto",
+        { [sizeVariants.iconWrapper[size]]: size },
+        { "text-error": isInvalid },
+        "rounded-md",
         "transition-all",
         "duration-300",
         "ease-in-out"
@@ -165,53 +274,53 @@ const CustomSelect = forwardRef(
     return (
       <div
         ref={dropdownRef}
-        className="relative flex-1"
+        className={inputWrapperClasses}
+        style={style}
+        {...rest}
       >
         {label && (
-          <label
-            htmlFor={name}
-            className={labelClasses}
-          >
-            {label}
-          </label>
+          <span className={labelWrapperClasses}>
+            <label
+              htmlFor={name}
+              className={labelClasses}
+            >
+              {label}
+            </label>
+          </span>
         )}
 
         <button
           type="button"
+          role="textfield"
           disabled={disabled}
           className={inputClasses}
-          onFocus={() => {
-            setFocus(true)
-
-            setValid(false)
-          }}
-          onBlur={() => {
-            setFocus(false)
-
-            if (!isSelected) {
-              setFill(false)
-
-              setValid(true)
-            } else {
-              setFill(true)
-            }
-          }}
-          onClick={() => setOpen(true)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onClick={() => setOpen(!isOpen)}
         >
-          {isSelected ? isSelected : placeholder}
+          {isSelected ? isSelected.label : placeholder}
         </button>
+
+        <span className={iconWrapperClasses}>
+          <Icon
+            name="caret-down"
+            size={size}
+          />
+        </span>
 
         {isOpen && (
           <List
             className={classNames(
-              "z-10",
+              "z-20",
               "absolute",
+              "top-full",
+              "right-0",
               "left-0",
-              "w-full",
               "gap-y-2",
               "py-2",
               "px-2",
               "mt-2",
+              "-mx-0.5",
               "overflow-y-auto",
               "text-gray-800",
               "bg-white",
@@ -221,45 +330,73 @@ const CustomSelect = forwardRef(
             )}
           >
             {options?.map((option) => (
-              <ListItem
-                key={option.id}
-                onClick={() => {
-                  setSelected(option.id)
+              (option.label !== "" && option.value !== "") && (
+                <ListItem
+                  key={option.id}
+                  onClick={() => {
+                    setSelected({ country: option.value })
 
-                  setOpen(false)
-                }}
-                className={classNames(
-                  "relative",
-                  "py-2",
-                  "px-3",
-                  "text-sm",
-                  "font-medium",
-                  "capitalize",
-                  "cursor-pointer",
-                  "select-none",
-                  { ["text-gray-500"]: isSelected !== option.id },
-                  { ["text-primary bg-primary-100"]: isSelected === option.id },
-                  "hover:bg-gray-100",
-                  "rounded-md",
-                  "transition-all",
-                  "duration-300",
-                  "ease-in-out"
-                )}
-              >
-                {option.label}
-              </ListItem>
+                    setInputValues({
+                      ...inputValues,
+                      country: isSelected.country
+                    })
+
+                    setOpen(false)
+                  }}
+                  className={classNames(
+                    "relative",
+                    "py-2",
+                    "px-3",
+                    "text-sm",
+                    "font-medium",
+                    "capitalize",
+                    "cursor-pointer",
+                    "select-none",
+                    {
+                      "text-gray-500":
+                        isSelected.id !== option.id
+                    },
+                    {
+                      "text-primary bg-primary-100":
+                        isSelected.id === option.id
+                    },
+                    "hover:bg-gray-100",
+                    "rounded-md",
+                    "transition-all",
+                    "duration-300",
+                    "ease-in-out"
+                  )}
+                >
+                  {option.label}
+                </ListItem>
+              )
             ))}
           </List>
         )}
 
+        {console.log(isSelected)}
+
         <select
           ref={ref}
           name={name}
+          role="select"
+          aria-label="select"
+          aria-labelledby="select"
           placeholder={placeholder}
-          value={isSelected}
+          value={isSelected.country}
+          // className={inputClasses}
+          className="absolute -top-40 right-0"
+          onChange={(event) => {
+            const { name, value } = event.target
+
+            console.log(name, value)
+
+            setInputValues({
+              ...inputValues,
+              country: isSelected.country
+            })
+          }}
           disabled={disabled}
-          className="hidden"
-          onChange={onChange}
         >
           {options?.map((option) => (
             <option

@@ -6,8 +6,6 @@ import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import Animate from "@components/animation/Animate"
-
 import Icon from "@components/elements/Icon"
 
 function Textfield({
@@ -21,7 +19,7 @@ function Textfield({
   className = "",
   style = {},
   onChange,
-  ...props
+  ...rest
 }) {
   const [isFocused, setFocus] = useState(false)
   const [isFilled, setFill] = useState(false)
@@ -157,7 +155,7 @@ function Textfield({
       { [sizeVariants.labelWrapper[size]]: size },
       "-my-0.5",
       "after:content-['']",
-      "after:z-5",
+      "after:z-0",
       "after:absolute",
       "after:top-0",
       "after:left-0",
@@ -232,10 +230,14 @@ function Textfield({
       "items-center",
       "justify-center",
       "-my-0.5",
-      "-mx-0.5",
+      "-mr-0.5",
+      "ml-auto",
       { [sizeVariants.iconWrapper[size]]: size },
       { "text-error": isInvalid },
-      "rounded-md"
+      "rounded-md",
+      "transition-all",
+      "duration-300",
+      "ease-in-out"
     )
   )
 
@@ -243,7 +245,7 @@ function Textfield({
     <div
       className={inputWrapperClasses}
       style={style}
-      {...props}
+      {...rest}
     >
       {label && (
         <span className={labelWrapperClasses}>
@@ -258,11 +260,11 @@ function Textfield({
 
       <input
         type={type}
+        name={name}
+        placeholder={placeholder}
         role="textfield"
         aria-label="textfield"
         aria-labelledby="textfield"
-        name={name}
-        placeholder={placeholder}
         value={value}
         disabled={disabled}
         className={inputClasses}
@@ -272,14 +274,12 @@ function Textfield({
       />
 
       {isInvalid && (
-        <Animate className="ml-auto">
-          <span className={iconWrapperClasses}>
-            <Icon
-              name="exclamation"
-              size={size}
-            />
-          </span>
-        </Animate>
+        <span className={iconWrapperClasses}>
+          <Icon
+            name="exclamation"
+            size={size}
+          />
+        </span>
       )}
     </div>
   )

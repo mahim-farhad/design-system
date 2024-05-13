@@ -61,7 +61,7 @@ function ListItem({
 }
 
 List.propTypes = {
-  type: PropTypes.oneOf(["ul", "ol"]).isRequired,
+  type: PropTypes.oneOf(["ul", "ol"]),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired

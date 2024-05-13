@@ -1,313 +1,272 @@
 "use client"
 
-import { forwardRef, useState } from "react"
+import { useState } from "react"
 
 import { twMerge } from "tailwind-merge"
 
 import classNames from "classnames"
 
-import SVG from "@components/elements/Icon"
+import Icon from "@components/elements/Icon"
 
-function Icon({
-  size,
-  sizeVariants,
-  isInvalid
+function Textfield({
+  type = "text",
+  name,
+  label,
+  placeholder,
+  value,
+  size = "base",
+  disabled = false,
+  className = "",
+  style = {},
+  onChange,
+  ...rest
 }) {
-  if (!isInvalid) return null
+  const [isFocused, setFocus] = useState(false)
+  const [isInvalid, setInvalid] = useState(false)
+
+  function handleFocus() {
+    setFocus(true)
+
+    setInvalid(false)
+  }
+
+  function handleBlur(event) {
+    setFocus(false)
+
+    if (!event.target.value) setInvalid(true)
+  }
+
+  const getSizeVariants = () => ({
+    inputWrapper: {
+      sm: "h-10",
+      base: "h-12",
+      lg: "h-14",
+      xl: "h-16"
+    },
+    labelWrapper: {
+      sm: "mx-2",
+      base: "mx-2.5",
+      lg: "mx-2.5",
+      xl: "mx-2.5"
+    },
+    label: {
+      sm: classNames(
+        "text-sm",
+        "-translate-y-[19px]"
+      ),
+      base: classNames(
+        "text-sm",
+        "-translate-y-[23px]"
+      ),
+      lg: classNames(
+        "text-base",
+        "-translate-y-[27px]"
+      ),
+      xl: classNames(
+        "text-base",
+        "-translate-y-[31px]"
+      )
+    },
+    input: {
+      sm: classNames(
+        "px-3.5",
+        { "pr-[38px]": isInvalid },
+        "text-sm"
+      ),
+      base: classNames(
+        "px-4",
+        { "pr-[46px]": isInvalid },
+        "text-base"
+      ),
+      lg: classNames(
+        "px-4",
+        { "pr-[54px]": isInvalid },
+        "text-lg"
+      ),
+      xl: classNames(
+        "px-4",
+        { "pr-[62px]": isInvalid },
+        "text-xl"
+      )
+    },
+    iconWrapper: {
+      sm: classNames(
+        "w-10",
+        "h-10",
+        "p-3"
+      ),
+      base: classNames(
+        "w-12",
+        "h-12",
+        "p-3.5"
+      ),
+      lg: classNames(
+        "w-14",
+        "h-14",
+        "p-4"
+      ),
+      xl: classNames(
+        "w-16",
+        "h-16",
+        "p-5"
+      )
+    }
+  })
+
+  const sizeVariants = getSizeVariants()
+
+  const inputWrapperClasses = twMerge(
+    classNames(
+      "relative",
+      "flex",
+      "flex-nowrap",
+      "w-full",
+      { [sizeVariants.inputWrapper[size]]: size },
+      { ["opacity-100"]: !disabled },
+      { ["opacity-50"]: disabled },
+      "border-2",
+      { "border-gray-300": !isFocused && !isInvalid },
+      { "border-primary": isFocused && !isInvalid },
+      { "border-error": !isFocused && isInvalid },
+      "rounded-md",
+      "transition-all",
+      "duration-300",
+      "ease-in-out"
+    ),
+    className
+  )
+
+  const labelWrapperClasses = twMerge(
+    classNames(
+      "relative",
+      "inline-flex",
+      "items-center",
+      { [sizeVariants.labelWrapper[size]]: size },
+      "-my-0.5",
+      "after:content-['']",
+      "after:z-5",
+      "after:absolute",
+      "after:top-0",
+      "after:left-0",
+      "after:origin-center",
+      "after:w-full",
+      "after:h-0.5",
+      "after:bg-white",
+      "after:transition-all",
+      "after:duration-300",
+      "after:ease-in-out"
+    )
+  )
+
+  const labelClasses = twMerge(
+    classNames(
+      "z-10",
+      "relative",
+      "translate-y-0 ",
+      { [sizeVariants.label[size]]: size },
+      "py-0.5",
+      "px-1.5",
+      "font-poppins",
+      "leading-[17px]",
+      "font-medium",
+      { "text-gray-400": !isFocused && !isInvalid },
+      { "text-primary": isFocused && !isInvalid },
+      { "text-error": !isFocused && isInvalid },
+      "bg-transparent",
+      "rounded-sm",
+      "transition-all",
+      "duration-300",
+      "ease-in-out"
+    )
+  )
+
+  const inputClasses = twMerge(
+    classNames(
+      "z-10",
+      "absolute",
+      "top-0",
+      "right-0",
+      "bottom-0",
+      "left-0",
+      { [sizeVariants.input[size]]: size },
+      "-my-0.5",
+      "-mx-0.5",
+      "font-poppins",
+      "leading-[25px]",
+      "font-medium",
+      "whitespace-nowrap",
+      "appearance-none",
+      { ["cursor-pointer"]: !disabled },
+      { ["cursor-not-allowed pointer-events-none"]: disabled },
+      "text-gray-400",
+      "bg-transparent",
+      "outline-0",
+      "border-2",
+      "border-transparent",
+      "rounded-md",
+      "transition-all",
+      "duration-300",
+      "ease-in-out"
+    )
+  )
+
+  const iconWrapperClasses = twMerge(
+    classNames(
+      "flex",
+      "items-center",
+      "justify-center",
+      "-my-0.5",
+      "-mr-0.5",
+      "ml-auto",
+      { [sizeVariants.iconWrapper[size]]: size },
+      { "text-error": isInvalid },
+      "rounded-md",
+      "transition-all",
+      "duration-300",
+      "ease-in-out"
+    )
+  )
 
   return (
-    <span
-      className={classNames(
-        "absolute",
-        "top-0",
-        "right-0",
-        "flex",
-        "items-center",
-        "justify-center",
-        { [sizeVariants.icon[size]]: size },
-        { "text-primary": !isInvalid },
-        { "text-error": isInvalid },
-      )}
+    <div
+      className={inputWrapperClasses}
+      style={style}
+      {...rest}
     >
-      {isInvalid && (
-        <SVG
+      {label && (
+        <span className={labelWrapperClasses}>
+          <label
+            htmlFor={name}
+            className={labelClasses}
+          >
+            {label}
+          </label>
+        </span>
+      )}
+
+      <input
+        type={type}
+        role="textfield"
+        aria-label="textfield"
+        aria-labelledby="textfield"
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        disabled={disabled}
+        className={inputClasses}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onChange={onChange}
+      />
+
+      <span className={iconWrapperClasses}>
+        <Icon
           name="exclamation"
           size={size}
         />
-      )}
-    </span>
+      </span>
+    </div>
   )
 }
 
-const Customfield = forwardRef(
-  function Customfield({
-    type = "text",
-    name,
-    label,
-    placeholder,
-    value,
-    size = "base",
-    disabled = false,
-    onChange,
-  }, ref) {
-    const [isFocused, setFocus] = useState(false)
-    const [isFilled, setFill] = useState(false)
-    const [isValid, setValid] = useState(true)
-    const [isInvalid, setInvalid] = useState(false)
-
-    const sizeVariants = {
-      label: {
-        sm: classNames(
-          "left-[0.5rem]",
-          {
-            "z-0 -translate-y-1/2 text-base":
-              !isFocused ||
-              !isFilled ||
-              !value
-          },
-          {
-            "z-10 -translate-y-[27px] text-sm":
-              isFocused ||
-              isFilled ||
-              value
-          },
-        ),
-        base: classNames(
-          "left-[0.625rem]",
-          {
-            "z-0 -translate-y-1/2 text-base":
-              !isFocused ||
-              !isFilled ||
-              !value
-          },
-          {
-            "z-10 -translate-y-[2.125rem] text-sm":
-              isFocused ||
-              isFilled ||
-              value
-          },
-        ),
-        lg: classNames(
-          "left-[0.75rem]",
-          {
-            "z-0 -translate-y-1/2 text-lg":
-              !isFocused ||
-              !isFilled ||
-              !value
-          },
-          {
-            "z-10 -translate-y-[35px] text-base":
-              isFocused ||
-              isFilled ||
-              value
-          },
-        ),
-        xl: classNames(
-          "left-[0.75rem]",
-          {
-            "z-0 -translate-y-1/2 text-lg":
-              !isFocused ||
-              !isFilled ||
-              !value
-          },
-          {
-            "z-10 -translate-y-[39px] text-base":
-              isFocused ||
-              isFilled ||
-              value
-          },
-        ),
-      },
-      input: {
-        sm: classNames(
-          "h-10",
-          "py-1.5",
-          "pl-3",
-          { "pr-3": !isInvalid },
-          { "pr-10": isInvalid },
-          "text-sm",
-        ),
-        base: classNames(
-          "h-12",
-          "py-2",
-          "pl-3.5",
-          { "pr-3.5": !isInvalid },
-          { "pr-12": isInvalid },
-          "text-base",
-        ),
-        lg: classNames(
-          "h-14",
-          "py-3",
-          "pl-4",
-          { "pr-4": !isInvalid },
-          { "pr-14": isInvalid },
-          "text-lg",
-        ),
-        xl: classNames(
-          "h-16",
-          "py-3",
-          "pl-4",
-          { "pr-4": !isInvalid },
-          { "pr-16": isInvalid },
-          "text-lg",
-        ),
-      },
-      icon: {
-        sm: classNames(
-          "w-10",
-          "h-10",
-          "p-3",
-        ),
-        base: classNames(
-          "w-12",
-          "h-12",
-          "p-3.5",
-        ),
-        lg: classNames(
-          "w-14",
-          "h-14",
-          "p-4",
-        ),
-        xl: classNames(
-          "w-16",
-          "h-16",
-          "p-5",
-        ),
-      },
-    }
-
-    const labelClasses = twMerge(
-      classNames(
-        "absolute",
-        "top-1/2",
-        { [sizeVariants.label[size]]: size },
-        "py-0.5",
-        "px-1.5",
-        "font-poppins",
-        "leading-[17px]",
-        "font-medium",
-        "text-gray-400",
-        { ["text-gray-300"]: disabled },
-        { ["text-primary"]: isFocused },
-        { ["text-error"]: isInvalid },
-        "bg-surface-light",
-        "rounded-sm",
-        "transition-all",
-        "duration-300",
-        "ease-in-out",
-        // "after:content-['']",
-        // "after:-z-[1px]",
-        // "after:absolute",
-        // "after:top-1/2",
-        // "after:left-1/2",
-        // "after:-translate-y-1/2",
-        // "after:-translate-x-1/2",
-        // "after:w-full",
-        // "after:border-t-2",
-        // "after:border-t-gray-200",
-      )
-    )
-
-    const inputClasses = twMerge(
-      classNames(
-        "w-full",
-        { [sizeVariants.input[size]]: size },
-        "font-poppins",
-        "leading-[17px]",
-        "font-medium",
-        "whitespace-nowrap",
-        "appearance-none",
-        { ["cursor-pointer"]: !disabled },
-        { ["cursor-not-allowed pointer-events-none opacity-50"]: disabled },
-        "text-gray-400",
-        "bg-transparent",
-        "outline-0",
-        "border-2",
-        "border-gray-300",
-        { ["border-primary"]: isFocused },
-        { ["border-error"]: isInvalid },
-        "rounded-lg",
-        "transition-all",
-        "duration-300",
-        "ease-in-out"
-      )
-    )
-
-    return (
-      <div className="relative">
-        <span
-          after-dynamic-value={label}
-          className={twMerge(
-            classNames(
-              "relative",
-              "h-full",
-              "flex",
-              "items-center",
-              "after:content-[attr(after-dynamic-value)]",
-              "after:z-5",
-              "after:absolute",
-              "after:-top-0.5",
-              "after:left-0",
-              "after:scale-0",
-              { "after:scale-1": isFocused || isFilled },
-              "after:origin-center",
-              "after:w-full",
-              "after:border-t-2",
-              "after:border-t-white",
-              "after:transition-all",
-              "after:duration-300",
-              "after:ease-in-out"
-            )
-          )}
-        >
-          {label && (
-            <label
-              id={name}
-              className={labelClasses}
-            >
-              {label}
-            </label>
-          )}
-        </span>
-
-        <input
-          ref={ref}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          disabled={disabled}
-          className={inputClasses}
-          onFocus={(event) => {
-            setFocus(true)
-
-            if (event.target.value) setFill(true)
-
-            setInvalid(false)
-          }}
-          onBlur={(event) => {
-            setFocus(false)
-
-            if (!event.target.value) {
-              setFill(false)
-
-              setInvalid(true)
-            } else {
-              setFill(true)
-            }
-          }}
-          onChange={onChange}
-        />
-
-        <Icon
-          size={size}
-          sizeVariants={sizeVariants}
-          isValid={isValid}
-          isInvalid={isInvalid}
-        />
-      </div>
-    )
-  }
-)
-
-export default Customfield
+export default Textfield
