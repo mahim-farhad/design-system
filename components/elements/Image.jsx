@@ -5,34 +5,36 @@ import { twMerge } from "tailwind-merge"
 import classNames from "classnames"
 
 function Image({
+  uniqueKey,
   src,
   alt,
   className = "",
   style = {},
-  ...props
+  ...rest
 }) {
   const imgClasses = twMerge(
     classNames(
       "w-full",
-    ),
-    className
+    ), className
   )
 
   if (!src && !alt) return null
 
   return (
     <img
+      key={uniqueKey}
       src={src}
       alt={alt}
       loading="lazy"
       className={imgClasses}
       style={style}
-      {...props}
+      {...rest}
     />
   )
 }
 
 Image.propTypes = {
+  uniqueKey: PropTypes.any,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   className: PropTypes.string,

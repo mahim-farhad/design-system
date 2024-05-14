@@ -70,7 +70,7 @@ function Home() {
         )}
       >
         <Container>
-          <List
+          {/* <List
             className="p-4 bg-surface-light mb-8 border rounded-lg"
           >
             <ListItem>
@@ -139,12 +139,158 @@ function Home() {
                 value={inputValues.name}
                 onChange={handleChange}
               />
+            </Flex>
+          </form> */}
 
-              <Button type="submit">
-                Submit
+          <Flex
+            className="flex-col mx-auto max-w-[500px] sm:max-w-[600px]"
+          >
+            <Flex
+              className={classNames(
+                "items-end",
+                "gap-4",
+                "mb-8",
+              )}
+            >
+              <Button
+                icon="facebook"
+                extended
+                size="xs"
+              >
+                Facebook
+              </Button>
+
+              <Button
+                icon="instagram"
+                extended
+                size="sm"
+              >
+                Instagram
+              </Button>
+
+              <Button extended>
+                Whatsapp
+              </Button>
+
+              <Button
+                icon="twitter"
+                extended
+                size="lg"
+              >
+                Twitter
+              </Button>
+
+              <Button
+                icon="discord"
+                extended
+                size="xl"
+              >
+                Discord
               </Button>
             </Flex>
-          </form>
+
+            <Flex
+              className={classNames(
+                "items-end",
+                "gap-4",
+                "mb-8",
+              )}
+            >
+              <Button
+                icon="facebook"
+                extended
+                variant="toned"
+                size="xs"
+              >
+                Facebook
+              </Button>
+
+              <Button
+                icon="instagram"
+                extended
+                variant="toned"
+                size="sm"
+              >
+                Instagram
+              </Button>
+
+              <Button
+                icon="whatsappwssg"
+              >
+                Whatsapp
+              </Button>
+
+              <Button
+                icon="twitter"
+                extended
+                variant="toned"
+                size="lg"
+              >
+                Twitter
+              </Button>
+
+              <Button
+                icon="discord"
+                extended
+                variant="toned"
+                size="xl"
+              >
+                Discord
+              </Button>
+            </Flex>
+
+            <Flex
+              className={classNames(
+                "items-end",
+                "gap-4",
+                "mb-8",
+              )}
+            >
+              <Button
+                icon="facebook"
+                extended
+                variant="outlined"
+                size="xs"
+              >
+                Facebook
+              </Button>
+
+              <Button
+                icon="instagram"
+                extended
+                variant="outlined"
+                size="sm"
+              >
+                Instagram
+              </Button>
+
+              <Button
+                icon="whatsapp"
+                extended
+                variant="outlined"
+              >
+                Whatsapp
+              </Button>
+
+              <Button
+                icon="twitter"
+                extended
+                variant="outlined"
+                size="lg"
+              >
+                Twitter
+              </Button>
+
+              <Button
+                icon="discord"
+                extended
+                variant="outlined"
+                size="xl"
+              >
+                Discord
+              </Button>
+            </Flex>
+          </Flex>
         </Container>
       </Section>
     </Main>

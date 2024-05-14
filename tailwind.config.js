@@ -11,9 +11,10 @@ import {
 /** @type {import("tailwindcss").Config} */
 export const mode = "jit"
 export const content = [
+  "./app/**/*.{js,ts,jsx,tsx,mdx}",
   "./pages/**/*.{js,ts,jsx,tsx,mdx}",
   "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  "./styles/**/*.{js,jsx,ts,tsx}",
 ]
 
 export const theme = {

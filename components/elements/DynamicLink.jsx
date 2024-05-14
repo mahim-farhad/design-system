@@ -8,16 +8,16 @@ import classNames from "classnames"
 
 function DynamicLink({
   href = "/",
+  title,
   className = "",
   style = {},
   children,
-  ...props
+  ...rest
 }) {
   const linkClasses = twMerge(
     classNames(
       "block",
-    ),
-    className
+    ), className
   )
 
   if (!href) return null
@@ -25,11 +25,12 @@ function DynamicLink({
   return (
     <Link
       href={href}
-      target="_blank"
-      rel="noreferrer"
+      title={title}
+      // target="_blank"
+      // rel="noreferrer"
       className={linkClasses}
       style={style}
-      {...props}
+      {...rest}
     >
       {children}
     </Link>

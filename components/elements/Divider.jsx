@@ -7,7 +7,7 @@ import classNames from "classnames"
 function Divider({
   className = "",
   style = {},
-  ...props
+  ...rest
 }) {
   const dividerClasses = twMerge(
     classNames(
@@ -15,15 +15,14 @@ function Divider({
       "h-px",
       "bg-gray-300",
       "border-0",
-    ),
-    className
+    ), className
   )
 
   return (
     <hr
       className={dividerClasses}
       style={style}
-      {...props}
+      {...rest}
     />
   )
 }

@@ -2,37 +2,28 @@ import PropTypes from "prop-types"
 
 import { twMerge } from "tailwind-merge"
 
-import classNames from "classnames"
+import getListClasses from "@styles/components/list"
+
+const validTypes = ["ul", "ol"]
 
 function List({
   type = "ul",
   className = "",
   style = {},
   children,
-  ...props
+  ...rest
 }) {
   const Tag = type
 
-  const listClasses = twMerge(
-    classNames(
-      "flex",
-      "flex-col",
-      "p-0",
-      "m-0",
-      { ["list-none"]: type === "ul" },
-      { ["list-disc"]: type === "ol" },
-      "list-inside",
-    ),
-    className
-  )
+  const listClasses = getListClasses(type, className)
 
-  if (type !== "ul" && type !== "ol") return null
+  if (!validTypes.includes(type)) return null
 
   return (
     <Tag
       className={listClasses}
       style={style}
-      {...props}
+      {...rest}
     >
       {children}
     </Tag>
@@ -40,20 +31,20 @@ function List({
 }
 
 function ListItem({
-  key,
+  uniqueKey,
   className = "",
   style = {},
   children,
-  ...props
+  ...rest
 }) {
-  const listItemClasses = className ? twMerge(className) : undefined
+  const listItemClasses = className ? twMerge(className) : null
 
   return (
     <li
-      key={key}
+      key={uniqueKey}
       className={listItemClasses}
       style={style}
-      {...props}
+      {...rest}
     >
       {children}
     </li>
@@ -61,17 +52,20 @@ function ListItem({
 }
 
 List.propTypes = {
-  type: PropTypes.oneOf(["ul", "ol"]),
+  type: PropTypes.oneOf(validTypes),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
 }
 
 ListItem.propTypes = {
-  key: PropTypes.any,
+  uniqueKey: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
 }
 
-export { List, ListItem }
+export {
+  List,
+  ListItem
+}
