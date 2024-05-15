@@ -15,6 +15,7 @@ import { List, ListItem } from "@components/elements/List"
 import Main from "@components/layouts/Main"
 import Section from "@components/layouts/Section"
 import Container from "@components/layouts/Container"
+import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
 
 const selectOptions = [{
@@ -66,234 +67,433 @@ function Home() {
           "items-center",
           "justify-center",
           "h-full",
-          "min-h-[calc(100vh-64px)]",
+          "min-h-[calc(100vh)]",
+          "sm:p-16",
         )}
       >
         <Container>
-          {/* <List
-            className="p-4 bg-surface-light mb-8 border rounded-lg"
-          >
-            <ListItem>
-              <Typography type="small">
-                Name: {inputValues.name}
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography type="small">
-                Country: {inputValues.country}
-              </Typography>
-            </ListItem>
-
-            <ListItem>
-              <Typography type="small">
-                Quantity: {inputValues.quantity}
-              </Typography>
-            </ListItem>
-          </List>
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault()
-            }}
-          >
-            <Flex
-              className={classNames(
+          <Flex
+            className={
+              classNames(
                 "flex-col",
-                "gap-8",
-                "justify-center",
                 "mx-auto",
-                "py-8 sm:py-16",
-                "px-4 sm:px-16",
-                "bg-surface-light",
-                "border",
-                "rounded-xl",
-              )}
-            >
+                "space-y-16",
+                "max-w-[500px] sm:max-w-[800px]",
+              )
+            }
+          >
+            <Box>
+              <Typography type="h4">
+                Types
+              </Typography>
+
+              <Typography className="mb-4">
+                The most commonly used button styles.
+              </Typography>
+
               <Flex
                 className={classNames(
-                  "sm:flex-nowrap",
-                  "gap-8",
+                  "flex-wrap",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
                 )}
               >
-                <Select
-                  name="country"
-                  label="Country"
-                  value={inputValues.country}
-                  options={selectOptions}
-                  onChange={handleChange}
-                />
+                <Button variant="filleds">
+                  Filled
+                </Button>
 
-                <Textfield
-                  type="text"
-                  name="name"
-                  label="Name"
-                  value={inputValues.name}
-                  onChange={handleChange}
-                />
+                <Button variant="gradients">
+                  Filled
+                </Button>
+
+                <Button variant="toneds">
+                  Filled
+                </Button>
+
+                <Button variant="outlineds">
+                  Filled
+                </Button>
+
+                <Button variant="texts">
+                  Filled
+                </Button>
               </Flex>
+            </Box>
 
-              <Textfield
-                type="text"
-                name="name"
-                label="Name"
-                value={inputValues.name}
-                onChange={handleChange}
-              />
-            </Flex>
-          </form> */}
+            <Box>
+              <Typography type="h4">
+                Sizes
+              </Typography>
 
-          <Flex
-            className="flex-col mx-auto max-w-[500px] sm:max-w-[600px]"
-          >
-            <Flex
-              className={classNames(
-                "items-end",
-                "gap-4",
-                "mb-8",
-              )}
-            >
-              <Button
-                icon="facebook"
-                extended
-                size="xs"
+              <Typography className="mb-8">
+                Buttons stacked small to large sizes.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
               >
-                Facebook
-              </Button>
+                <Button size="xs">
+                  Filled
+                </Button>
 
-              <Button
-                icon="instagram"
-                extended
-                size="sm"
+                <Button size="sm">
+                  Filled
+                </Button>
+
+                <Button size="base">
+                  Filled
+                </Button>
+
+                <Button size="lg">
+                  Filled
+                </Button>
+
+                <Button size="xl">
+                  Filled
+                </Button>
+              </Flex>
+            </Box>
+
+            <Box>
+              <Typography type="h4">
+                Sizes
+              </Typography>
+
+              <Typography className="mb-8">
+                Buttons stacked small to large sizes.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
               >
-                Instagram
-              </Button>
+                <Button
+                  color="primary"
+                >
+                  primary
+                </Button>
 
-              <Button extended>
-                Whatsapp
-              </Button>
+                <Button
+                  color="secondary"
+                >
+                  secondary
+                </Button>
 
-              <Button
-                icon="twitter"
-                extended
-                size="lg"
+                <Button
+                  color="info"
+                >
+                  info
+                </Button>
+
+                <Button
+                  color="success"
+                >
+                  success
+                </Button>
+
+                <Button
+                  color="warning"
+                >
+                  warning
+                </Button>
+
+                <Button
+                  color="error"
+                >
+                  error
+                </Button>
+              </Flex>
+            </Box>
+
+            <Box>
+              <Typography type="h4">
+                Sizes
+              </Typography>
+
+              <Typography className="mb-8">
+                Buttons stacked small to large sizes.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
               >
-                Twitter
-              </Button>
+                <Button
+                  variant="toned"
+                  color="primary"
+                >
+                  primary
+                </Button>
 
-              <Button
-                icon="discord"
-                extended
-                size="xl"
-              >
-                Discord
-              </Button>
-            </Flex>
+                <Button
+                  variant="toned"
+                  color="secondary"
+                >
+                  secondary
+                </Button>
 
-            <Flex
-              className={classNames(
-                "items-end",
-                "gap-4",
-                "mb-8",
-              )}
-            >
-              <Button
-                icon="facebook"
-                extended
-                variant="toned"
-                size="xs"
-              >
-                Facebook
-              </Button>
+                <Button
+                  variant="toned"
+                  color="info"
+                >
+                  info
+                </Button>
 
-              <Button
-                icon="instagram"
-                extended
-                variant="toned"
-                size="sm"
-              >
-                Instagram
-              </Button>
+                <Button
+                  variant="toned"
+                  color="success"
+                >
+                  success
+                </Button>
 
-              <Button
-                icon="whatsappwssg"
-              >
-                Whatsapp
-              </Button>
+                <Button
+                  variant="toned"
+                  color="warning"
+                >
+                  warning
+                </Button>
 
-              <Button
-                icon="twitter"
-                extended
-                variant="toned"
-                size="lg"
-              >
-                Twitter
-              </Button>
+                <Button
+                  variant="toned"
+                  color="error"
+                >
+                  error
+                </Button>
+              </Flex>
+            </Box>
 
-              <Button
-                icon="discord"
-                extended
-                variant="toned"
-                size="xl"
-              >
-                Discord
-              </Button>
-            </Flex>
+            <Box>
+              <Typography type="h4">
+                Sizes
+              </Typography>
 
-            <Flex
-              className={classNames(
-                "items-end",
-                "gap-4",
-                "mb-8",
-              )}
-            >
-              <Button
-                icon="facebook"
-                extended
-                variant="outlined"
-                size="xs"
-              >
-                Facebook
-              </Button>
+              <Typography className="mb-8">
+                Buttons stacked small to large sizes.
+              </Typography>
 
-              <Button
-                icon="instagram"
-                extended
-                variant="outlined"
-                size="sm"
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
               >
-                Instagram
-              </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                >
+                  primary
+                </Button>
 
-              <Button
-                icon="whatsapp"
-                extended
-                variant="outlined"
-              >
-                Whatsapp
-              </Button>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                >
+                  secondary
+                </Button>
 
-              <Button
-                icon="twitter"
-                extended
-                variant="outlined"
-                size="lg"
-              >
-                Twitter
-              </Button>
+                <Button
+                  variant="outlined"
+                  color="info"
+                >
+                  info
+                </Button>
 
-              <Button
-                icon="discord"
-                extended
-                variant="outlined"
-                size="xl"
+                <Button
+                  variant="outlined"
+                  color="success"
+                >
+                  success
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  color="warning"
+                >
+                  warning
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  color="error"
+                >
+                  error
+                </Button>
+              </Flex>
+            </Box>
+
+            <Box>
+              <Typography type="h4">
+                Sizes
+              </Typography>
+
+              <Typography className="mb-8">
+                Buttons stacked small to large sizes.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
               >
-                Discord
-              </Button>
-            </Flex>
+                <Button
+                  variant="text"
+                  color="primary"
+                >
+                  primary
+                </Button>
+
+                <Button
+                  variant="text"
+                  color="secondary"
+                >
+                  secondary
+                </Button>
+
+                <Button
+                  variant="text"
+                  color="info"
+                >
+                  info
+                </Button>
+
+                <Button
+                  variant="text"
+                  color="success"
+                >
+                  success
+                </Button>
+
+                <Button
+                  variant="text"
+                  color="warning"
+                >
+                  warning
+                </Button>
+
+                <Button
+                  variant="text"
+                  color="error"
+                >
+                  error
+                </Button>
+              </Flex>
+            </Box>
+
+            <Box>
+              <Typography type="h4">
+                Sizes
+              </Typography>
+
+              <Typography className="mb-8">
+                Buttons stacked small to large sizes.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
+              >
+                <Button
+                  icon="facebook"
+                  color="primary"
+                  size="xs"
+                >
+                  facebook
+                </Button>
+
+                <Button
+                  icon="facebook"
+                  color="secondary"
+                  size="sm"
+                >
+                  facebook
+                </Button>
+
+                <Button
+                  icon="facebook"
+                  color="info"
+                  size="base"
+                >
+                  facebook
+                </Button>
+
+                <Button
+                  icon="facebook"
+                  color="success"
+                  size="lg"
+                >
+                  facebook
+                </Button>
+
+                <Button
+                  icon="facebook"
+                  color="warning"
+                  size="xl"
+                >
+                  facebook
+                </Button>
+
+                <Button
+                  icon="facebook"
+                  color="error"
+                >
+                  facebook
+                </Button>
+              </Flex>
+            </Box>
           </Flex>
         </Container>
-      </Section>
-    </Main>
+      </Section >
+    </Main >
   )
 }
 

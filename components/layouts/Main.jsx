@@ -14,8 +14,8 @@ function Main({
     classNames(
       "h-full",
       "min-h-screen",
-      "pt-16",
-      "lg:pl-80",
+      // "pt-16",
+      // "lg:pl-80",
       "bg-background-light",
     ),
     className

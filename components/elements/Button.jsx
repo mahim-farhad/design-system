@@ -9,7 +9,10 @@ import getButtonClasses from "@styles/components/button"
 import Icon from "@components/elements/Icon"
 
 const validTypes = {
-  types: ["button", "submit"],
+  types: [
+    "button",
+    "submit"
+  ],
   sizes: [
     "xs",
     "sm",
@@ -35,23 +38,25 @@ const validTypes = {
 }
 
 const Button = forwardRef(
-  function Button({
-    type = "button",
-    icon,
-    extended = false,
-    size = "base",
-    variant = "filled",
-    color = "primary",
-    rounded = false,
-    className = "",
-    style = {},
-    onClick,
-    disabled = false,
-    children,
-    ...rest
-  }, ref) {
+  function Button(props, ref) {
+    const {
+      type = "button",
+      icon,
+      extended = false,
+      size = "base",
+      variant = "filled",
+      color = "primary",
+      rounded = false,
+      className = "",
+      style = {},
+      onClick,
+      disabled = false,
+      children,
+      ...rest
+    } = props
+
     const btnClasses = (
-      getButtonClasses(
+      getButtonClasses({
         icon,
         extended,
         size,
@@ -60,7 +65,7 @@ const Button = forwardRef(
         rounded,
         disabled,
         className
-      )
+      })
     )
 
     const btnIcon = (
@@ -68,7 +73,7 @@ const Button = forwardRef(
         name={icon}
         size={size}
         className={
-          icon && !extended && (
+          icon && !extended ? (
             classNames(
               "absolute",
               "top-1/2",
@@ -76,7 +81,7 @@ const Button = forwardRef(
               "-translate-y-1/2",
               "-translate-x-1/2"
             )
-          )
+          ) : null
         }
       />
     )
@@ -87,9 +92,10 @@ const Button = forwardRef(
       !validTypes.colors.includes(color)
     )
 
-    if (isInvalidType || (
-      icon && !btnIcon
-    )) return null
+    // if (
+    //   isInvalidType ||
+    //   (icon && !btnIcon)
+    // ) return null
 
     return (
       <button
@@ -101,7 +107,7 @@ const Button = forwardRef(
         disabled={disabled}
         {...rest}
       >
-        {(icon || !extended) && btnIcon}
+        {icon && btnIcon}
 
         {(!icon || extended) && children}
       </button>

@@ -15,7 +15,7 @@ import Button from "@components/elements/Button"
 
 import Flex from "@components/layouts/Flex"
 
-import Backdrop from "@components/Backdrop"
+import Backdrop from "@components/overlays/Backdrop"
 
 function Modal() {
   const {
