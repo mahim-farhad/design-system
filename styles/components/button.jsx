@@ -17,17 +17,15 @@ function getButtonClasses(params) {
     gradient,
     rounded,
     disabled,
-    restClasses
+    className
   } = params;
 
   const sizeVariants = getSizeVariants();
   const buttonVariants = getButtonVariants();
 
-  const hasValidSize = (
-    icon && !extended ? (
-      !sizeVariants?.iconOnly?.[size]
-    ) : !sizeVariants?.[size]
-  );
+  const hasValidSize = icon && !extended ? (
+    !sizeVariants?.iconOnly?.[size]
+  ) : !sizeVariants?.[size];
 
   const isValid = !hasValidSize || !buttonVariants?.[variant]?.[color];
 
@@ -36,7 +34,7 @@ function getButtonClasses(params) {
   const defaultClasses = (
     classNames(
       "relative",
-      (icon || extended) ? (
+      (icon && extended) ? (
         classNames(
           "inline-flex",
           "gap-x-2.5",
@@ -68,14 +66,14 @@ function getButtonClasses(params) {
       disabled && classNames(
         "disabled:opacity-50",
         "disabled:cursor-not-allowed",
-        "disabled:pointer-events-none",
+        "disabled:pointer-events-none"
       )
     )
   );
 
   return twMerge(
     defaultClasses,
-    restClasses
+    className
   );
 };
 

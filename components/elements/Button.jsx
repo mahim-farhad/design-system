@@ -1,52 +1,14 @@
-import { forwardRef } from "react"
+import { forwardRef } from "react";
 
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import classNames from "classnames"
+import classNames from "classnames";
 
-import getButtonClasses from "@styles/components/button"
+import { buttonVariantTypes } from "@styles/types";
 
-import Icon from "@components/elements/Icon"
+import getButtonClasses from "@styles/components/button";
 
-const validTypes = {
-  types: [
-    "button",
-    "submit"
-  ],
-  sizes: [
-    "xs",
-    "sm",
-    "base",
-    "lg",
-    "xl"
-  ],
-  variants: [
-    "filled",
-    "gradient",
-    "toned",
-    "outlined",
-    "text"
-  ],
-  gradients: [
-    "monochrome",
-    "duotune",
-    "outline"
-  ],
-  colors: [
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "google",
-    "facebook",
-    "instagram",
-    "whatsapp",
-    "twitter",
-    "pinterest",
-  ]
-}
+import Icon from "@components/elements/Icon";
 
 const Button = forwardRef(
   function Button(props, ref) {
@@ -65,7 +27,7 @@ const Button = forwardRef(
       disabled = false,
       children,
       ...rest
-    } = props
+    } = props;
 
     const btnClasses = (
       getButtonClasses({
@@ -79,14 +41,14 @@ const Button = forwardRef(
         disabled,
         className
       })
-    )
+    );
 
     const btnIcon = (
       <Icon
-        name={icon}
+        name={"facebook"}
         size={size}
         className={
-          icon && !extended ? (
+          (icon && !extended) ? (
             classNames(
               "absolute",
               "top-1/2",
@@ -97,17 +59,21 @@ const Button = forwardRef(
           ) : null
         }
       />
-    )
+    );
 
-    const hasValidType = (
-      !validTypes?.sizes?.includes(size) ||
-      !validTypes?.variants?.includes(variant) ||
-      !validTypes?.colors?.includes(color)
-    )
+    console.log(Boolean(btnIcon))
 
-    const isValid = (icon && !btnIcon) || hasValidType
+    const hasValidSize = !buttonVariantTypes?.sizes?.includes(size);
+    const hasValidVariant = (
+      !buttonVariantTypes?.variants?.includes(variant) ||
+      !buttonVariantTypes?.colors?.includes(color)
+    );
 
-    if (isValid) return null
+    const hasValidType = hasValidSize || hasValidVariant;
+
+    const isValid = !btnIcon || !hasValidType;
+
+    if (!isValid) return null;
 
     return (
       <button
@@ -119,7 +85,7 @@ const Button = forwardRef(
         disabled={disabled}
         {...rest}
       >
-        {icon ? (
+        {(icon && btnIcon) ? (
           !extended ? btnIcon : (
             <>
               {btnIcon}
@@ -128,23 +94,23 @@ const Button = forwardRef(
           )
         ) : children}
       </button>
-    )
+    );
   }
-)
+);
 
 Button.propTypes = {
-  type: PropTypes.oneOf(validTypes.types),
+  type: PropTypes.oneOf(buttonVariantTypes.types),
   icon: PropTypes.string,
   extended: PropTypes.bool,
-  size: PropTypes.oneOf(validTypes.sizes),
-  variant: PropTypes.oneOf(validTypes.variants),
-  color: PropTypes.oneOf(validTypes.colors),
-  gradient: PropTypes.oneOf(validTypes.gradients),
+  size: PropTypes.oneOf(buttonVariantTypes.sizes),
+  variant: PropTypes.oneOf(buttonVariantTypes.variants),
+  color: PropTypes.oneOf(buttonVariantTypes.colors),
+  gradient: PropTypes.oneOf(buttonVariantTypes.gradients),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
   disabled: PropTypes.bool,
   children: PropTypes.node
-}
+};
 
-export default Button
+export default Button;

@@ -1,8 +1,11 @@
-export function getSVGIcons({
-  iconClasses,
-  style
-}) {
-  return {
+function getSVGIcons(params) {
+  const {
+    name,
+    iconClasses,
+    style
+  } = params;
+
+  const icons = {
     "brand": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -366,4 +369,8 @@ export function getSVGIcons({
       </svg>
     ),
   }
-}
+
+  return icons?.[name] || null;
+};
+
+export default getSVGIcons;

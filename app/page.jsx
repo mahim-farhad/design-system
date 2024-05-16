@@ -17,6 +17,7 @@ import Section from "@components/layouts/Section"
 import Container from "@components/layouts/Container"
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
+import Icon from "@components/elements/Icon"
 
 const selectOptions = [{
   id: 1,
@@ -528,8 +529,8 @@ function Home() {
                   <svg
                     aria-hidden="true"
                     role="status"
-                    class="inline w-4 h-4 animate-spin"
-                    viewBox="0 0 100 101" f
+                    className="inline w-4 h-4 animate-spin"
+                    viewBox="0 0 100 101"
                     ill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -577,7 +578,7 @@ function Home() {
                 </Button>
 
                 <Button
-                  icon="settings"
+                  icon="settingss"
                   size="sm"
                 >
                   Settings
@@ -662,7 +663,7 @@ function Home() {
                 </Button>
 
                 <Button
-                  icon="instagram"
+                  icon="instagrams"
                   extended
                   color="instagram"
                 >

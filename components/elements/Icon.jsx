@@ -1,55 +1,48 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
+import getSVGIcons from "@utils/icons";
 
-import classNames from "classnames"
+import { iconVariantTypes } from "@styles/types";
 
-import { getSVGIcons } from "@utils/icons"
+import getIconClasses from "@styles/components/icon";
 
-function Icon({
-  name,
-  size = "base",
-  className = "",
-  style = {}
-}) {
-  const sizeVariants = {
-    xs: classNames("w-4", "h-4"),
-    sm: classNames("w-4", "h-4"),
-    base: classNames("w-5", "h-5"),
-    lg: classNames("w-6", "h-6"),
-    xl: classNames("w-6", "h-6")
-  }
+function Icon(props) {
+  const {
+    name,
+    size = "base",
+    className = "",
+    style = {}
+  } = props;
 
-  const iconClasses = twMerge(
-    classNames(
-      "inline-block",
-      { [sizeVariants[size]]: size },
-      "leading-none",
-      "whitespace-nowrap",
-    ),
-    className
-  )
+  const iconClasses = (
+    getIconClasses({
+      size,
+      className
+    })
+  );
 
-  const icons = getSVGIcons({ iconClasses, style })
+  const icon = (
+    getSVGIcons({
+      name,
+      iconClasses,
+      style
+    })
+  );
 
-  return (
-    icons[name] ? (
-      <>{icons[name]}</>
-    ) : null
-  )
+  const hasValidSize = !iconVariantTypes?.sizes?.includes(size);
+
+  const isValid = !icon || !hasValidSize;
+
+  if (!isValid) return null;
+
+  return icon;
 }
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf([
-    "xs",
-    "sm",
-    "base",
-    "lg",
-    "xl"
-  ]),
+  size: PropTypes.oneOf(iconVariantTypes.sizes),
   className: PropTypes.string,
   style: PropTypes.object
-}
+};
 
-export default Icon
+export default Icon;
