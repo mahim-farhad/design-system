@@ -36,7 +36,7 @@ function getButtonClasses(params) {
   const defaultClasses = (
     classNames(
       "relative",
-      (icon && extended) ? (
+      (icon || extended) ? (
         classNames(
           "inline-flex",
           "gap-x-2.5",

@@ -137,6 +137,7 @@ export const theme = {
     },
     google: "#3c7ff1",
     facebook: "#0165e1",
+    whatsapp: "#25D366",
     twitter: "#000000",
     instagram: "#125688",
     pinterest: "#cc2127",
