@@ -27,13 +27,24 @@ const validTypes = {
     "outlined",
     "text"
   ],
+  gradients: [
+    "monochrome",
+    "duotune",
+    "outline"
+  ],
   colors: [
     "primary",
     "secondary",
     "info",
     "success",
     "warning",
-    "error"
+    "error",
+    "google",
+    "facebook",
+    "instagram",
+    "whatsapp",
+    "twitter",
+    "pinterest",
   ]
 }
 
@@ -46,6 +57,7 @@ const Button = forwardRef(
       size = "base",
       variant = "filled",
       color = "primary",
+      gradient,
       rounded = false,
       className = "",
       style = {},
@@ -62,6 +74,7 @@ const Button = forwardRef(
         size,
         variant,
         color,
+        gradient,
         rounded,
         disabled,
         className
@@ -86,16 +99,15 @@ const Button = forwardRef(
       />
     )
 
-    const isInvalidType = (
-      !validTypes.sizes.includes(size) ||
-      !validTypes.variants.includes(variant) ||
-      !validTypes.colors.includes(color)
+    const hasValidType = (
+      !validTypes?.sizes?.includes(size) ||
+      !validTypes?.variants?.includes(variant) ||
+      !validTypes?.colors?.includes(color)
     )
 
-    // if (
-    //   isInvalidType ||
-    //   (icon && !btnIcon)
-    // ) return null
+    const isValid = (icon && !btnIcon) || hasValidType
+
+    if (isValid) return null
 
     return (
       <button
@@ -107,9 +119,14 @@ const Button = forwardRef(
         disabled={disabled}
         {...rest}
       >
-        {icon && btnIcon}
-
-        {(!icon || extended) && children}
+        {icon ? (
+          !extended ? btnIcon : (
+            <>
+              {btnIcon}
+              {children}
+            </>
+          )
+        ) : children}
       </button>
     )
   }
@@ -122,6 +139,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(validTypes.sizes),
   variant: PropTypes.oneOf(validTypes.variants),
   color: PropTypes.oneOf(validTypes.colors),
+  gradient: PropTypes.oneOf(validTypes.gradients),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,

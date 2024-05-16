@@ -84,11 +84,13 @@ function Home() {
           >
             <Box>
               <Typography type="h4">
-                Types
+                Default Button
               </Typography>
 
-              <Typography className="mb-4">
-                The most commonly used button styles.
+              <Typography className="mt-4 mb-8">
+                Use these default button styles with
+                multiple colors to indicate an action or
+                link with in a website.
               </Typography>
 
               <Flex
@@ -102,23 +104,21 @@ function Home() {
                   "shadow-sm",
                 )}
               >
-                <Button variant="filleds">
+                <Button>Filled</Button>
+
+                <Button variant="gradient">
                   Filled
                 </Button>
 
-                <Button variant="gradients">
+                <Button variant="toned">
                   Filled
                 </Button>
 
-                <Button variant="toneds">
+                <Button variant="outlined">
                   Filled
                 </Button>
 
-                <Button variant="outlineds">
-                  Filled
-                </Button>
-
-                <Button variant="texts">
+                <Button variant="text">
                   Filled
                 </Button>
               </Flex>
@@ -126,11 +126,12 @@ function Home() {
 
             <Box>
               <Typography type="h4">
-                Sizes
+                Size Variants
               </Typography>
 
-              <Typography className="mb-8">
-                Buttons stacked small to large sizes.
+              <Typography className="mt-4 mb-8">
+                Use these examples if you want to
+                use smaller or larger buttons.
               </Typography>
 
               <Flex
@@ -169,11 +170,64 @@ function Home() {
 
             <Box>
               <Typography type="h4">
-                Sizes
+                Filled
               </Typography>
 
-              <Typography className="mb-8">
-                Buttons stacked small to large sizes.
+              <Typography className="mt-4 mb-8">
+                These beautifully colored buttons built with
+                the gradient color stops utility classes from
+                Tailwind CSS can be used as a  creative
+                alternative to the default button styles.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
+              >
+                <Button color="primary">
+                  primary
+                </Button>
+
+                <Button color="secondary">
+                  secondary
+                </Button>
+
+                <Button color="info">
+                  info
+                </Button>
+
+                <Button color="success">
+                  success
+                </Button>
+
+                <Button color="warning">
+                  warning
+                </Button>
+
+                <Button color="error">
+                  error
+                </Button>
+              </Flex>
+            </Box>
+
+            <Box>
+              <Typography type="h4">
+                Gradient
+              </Typography>
+
+              <Typography className="mt-4 mb-8">
+                These beautifully colored buttons built with
+                the gradient color stops utility classes from
+                Tailwind CSS can be used as a  creative
+                alternative to the default button styles.
               </Typography>
 
               <Flex
@@ -189,36 +243,42 @@ function Home() {
                 )}
               >
                 <Button
+                  variant="gradient"
                   color="primary"
                 >
                   primary
                 </Button>
 
                 <Button
+                  variant="gradient"
                   color="secondary"
                 >
                   secondary
                 </Button>
 
                 <Button
+                  variant="gradient"
                   color="info"
                 >
                   info
                 </Button>
 
                 <Button
+                  variant="gradient"
                   color="success"
                 >
                   success
                 </Button>
 
                 <Button
+                  variant="gradient"
                   color="warning"
                 >
                   warning
                 </Button>
 
                 <Button
+                  variant="gradient"
                   color="error"
                 >
                   error
@@ -228,11 +288,14 @@ function Home() {
 
             <Box>
               <Typography type="h4">
-                Sizes
+                Toned
               </Typography>
 
-              <Typography className="mb-8">
-                Buttons stacked small to large sizes.
+              <Typography className="mt-4 mb-8">
+                These beautifully colored buttons built with
+                the gradient color stops utility classes from
+                Tailwind CSS can be used as a  creative
+                alternative to the default button styles.
               </Typography>
 
               <Flex
@@ -293,11 +356,12 @@ function Home() {
 
             <Box>
               <Typography type="h4">
-                Sizes
+                Outlined Buttons
               </Typography>
 
-              <Typography className="mb-8">
-                Buttons stacked small to large sizes.
+              <Typography className="mt-4 mb-8">
+                Use the following button styles to show
+                the colors only for the border of the element.
               </Typography>
 
               <Flex
@@ -358,11 +422,14 @@ function Home() {
 
             <Box>
               <Typography type="h4">
-                Sizes
+                Text / Link Buttons
               </Typography>
 
-              <Typography className="mb-8">
-                Buttons stacked small to large sizes.
+              <Typography className="mt-4 mb-8">
+                These beautifully colored buttons built with
+                the gradient color stops utility classes from
+                Tailwind CSS can be used as a  creative
+                alternative to the default button styles.
               </Typography>
 
               <Flex
@@ -423,11 +490,57 @@ function Home() {
 
             <Box>
               <Typography type="h4">
-                Sizes
+                Icon buttons
               </Typography>
 
-              <Typography className="mb-8">
-                Buttons stacked small to large sizes.
+              <Typography className="mt-4 mb-8">
+                Sometimes you need a button to indicate
+                an action using only an icon.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
+              >
+                <Button icon="menu">
+                  Settings
+                </Button>
+
+                <Button icon="settings">
+                  Settings
+                </Button>
+
+                <Button icon="check-circle">
+                  Settings
+                </Button>
+
+                <Button icon="sort">
+                  Settings
+                </Button>
+
+                <Button icon="facebook">
+                  Settings
+                </Button>
+              </Flex>
+            </Box>
+
+            <Box>
+              <Typography type="h4">
+                Button sizes with icon
+              </Typography>
+
+              <Typography className="mt-4 mb-8">
+                see the following examples to add a SVG icon
+                inside the button either on the
+                left or right side.
               </Typography>
 
               <Flex
@@ -443,57 +556,110 @@ function Home() {
                 )}
               >
                 <Button
-                  icon="facebook"
-                  color="primary"
+                  icon="settings"
                   size="xs"
                 >
-                  facebook
+                  Settings
                 </Button>
 
                 <Button
-                  icon="facebook"
-                  color="secondary"
+                  icon="settings"
                   size="sm"
                 >
-                  facebook
+                  Settings
                 </Button>
 
                 <Button
-                  icon="facebook"
-                  color="info"
+                  icon="settings"
                   size="base"
                 >
-                  facebook
+                  Settings
                 </Button>
 
                 <Button
-                  icon="facebook"
-                  color="success"
+                  icon="settings"
                   size="lg"
                 >
-                  facebook
+                  Settings
                 </Button>
 
                 <Button
-                  icon="facebook"
-                  color="warning"
+                  icon="settings"
                   size="xl"
                 >
+                  Settings
+                </Button>
+              </Flex>
+            </Box>
+
+            <Box>
+              <Typography type="h4">
+                Social buttons
+              </Typography>
+
+              <Typography className="mt-4 mb-8">
+                Use these button styles when building social
+                media login forms using Facebook, Twitter,
+                GitHub, Google, and Apple.
+              </Typography>
+
+              <Flex
+                className={classNames(
+                  "flex-wrap",
+                  "items-end",
+                  "justify-center",
+                  "gap-4",
+                  "p-8",
+                  "border-2",
+                  "rounded-xl",
+                  "shadow-sm",
+                )}
+              >
+                <Button
+                  icon="facebook"
+                  extended
+                  color="facebook"
+                >
                   facebook
                 </Button>
 
                 <Button
-                  icon="facebook"
-                  color="error"
+                  icon="twitter"
+                  extended
+                  color="twitter"
                 >
-                  facebook
+                  twitter
+                </Button>
+
+                <Button
+                  icon="whatsapp"
+                  extended
+                  color="whatsapp"
+                >
+                  whatsapp
+                </Button>
+
+                <Button
+                  icon="pinterest"
+                  extended
+                  color="pinterest"
+                >
+                  pinterest
+                </Button>
+
+                <Button
+                  icon="instagram"
+                  extended
+                  color="instagram"
+                >
+                  instagram
                 </Button>
               </Flex>
             </Box>
           </Flex>
         </Container>
-      </Section >
-    </Main >
+      </Section>
+    </Main>
   )
 }
 

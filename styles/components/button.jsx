@@ -14,6 +14,7 @@ function getButtonClasses(params) {
     size,
     variant,
     color,
+    gradient,
     rounded,
     disabled,
     restClasses
@@ -22,15 +23,20 @@ function getButtonClasses(params) {
   const sizeVariants = getSizeVariants();
   const buttonVariants = getButtonVariants();
 
-  const hasValidIcon = sizeVariants?.[size] || sizeVariants.iconOnly?.[size];
-  const isValid = hasValidIcon && buttonVariants?.[variant]?.[color];
+  const hasValidSize = (
+    icon && !extended ? (
+      !sizeVariants?.iconOnly?.[size]
+    ) : !sizeVariants?.[size]
+  );
+
+  const isValid = !hasValidSize || !buttonVariants?.[variant]?.[color];
 
   if (!isValid) return null;
 
   const defaultClasses = (
     classNames(
       "relative",
-      icon && extended ? (
+      (icon && extended) ? (
         classNames(
           "inline-flex",
           "gap-x-2.5",
@@ -38,12 +44,9 @@ function getButtonClasses(params) {
           "justify-center"
         )
       ) : "inline-block",
-      sizeVariants.iconOnly?.[size] && {
-        [sizeVariants.iconOnly[size]]: icon && !extended
-      },
-      sizeVariants?.[size] && {
-        [sizeVariants[size]]: !icon || extended
-      },
+      (icon && !extended) ? (
+        sizeVariants?.iconOnly?.[size]
+      ) : sizeVariants?.[size],
       "font-poppins",
       "font-medium",
       "uppercase",
@@ -53,24 +56,27 @@ function getButtonClasses(params) {
       "overflow-hidden",
       "cursor-pointer",
       buttonVariants?.[variant]?.[color],
+      // (gradient && variant === "gradient") ? (
+      //   buttonVariants?.[variant]?.[gradient]?.[color]
+      // ) : buttonVariants?.[variant]?.[color],
       "outline-none",
       "border-2",
       rounded ? "rounded-full" : "rounded-lg",
       "transition-all",
       "duration-300",
       "ease-in-out",
-      "focus:outline-none",
-      disabled && (
-        classNames(
-          "disabled:opacity-50",
-          "disabled:cursor-not-allowed",
-          "disabled:pointer-events-none",
-        )
-      ),
+      disabled && classNames(
+        "disabled:opacity-50",
+        "disabled:cursor-not-allowed",
+        "disabled:pointer-events-none",
+      )
     )
   );
 
-  return twMerge(defaultClasses, restClasses);
+  return twMerge(
+    defaultClasses,
+    restClasses
+  );
 };
 
 export default getButtonClasses;
