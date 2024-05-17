@@ -21,17 +21,19 @@ function Icon(props) {
     })
   );
 
-  const icon = (
+  const SVGicons = (
     getSVGIcons({
-      name,
       iconClasses,
       style
     })
   );
 
-  const hasValidSize = !iconVariantTypes?.sizes?.includes(size);
+  const icon = SVGicons?.[name];
 
-  const isValid = !icon || !hasValidSize;
+  const hasValidSize = !(!iconVariantTypes?.sizes?.includes(size));
+  const hasValidIcon = !(!SVGicons?.[name]);
+
+  const isValid = icon && hasValidSize && hasValidIcon;
 
   if (!isValid) return null;
 

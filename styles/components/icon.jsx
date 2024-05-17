@@ -12,9 +12,9 @@ function getIconClasses(params) {
 
   const sizeVariants = getSizeVariants();
 
-  const hasValidSize = !sizeVariants?.[size];
+  const hasValidSize = !(!sizeVariants?.[size]);
 
-  const isValid = !hasValidSize;
+  const isValid = hasValidSize;
 
   if (!isValid) return null;
 

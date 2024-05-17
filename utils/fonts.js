@@ -3,7 +3,7 @@ import {
   Arvo,
   Poppins,
   Fira_Code,
-} from "next/font/google"
+} from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,7 +19,7 @@ const inter = Inter({
     "900"
   ],
   variable: "--font-inter",
-})
+});
 
 const arvo = Arvo({
   subsets: ["latin"],
@@ -28,7 +28,7 @@ const arvo = Arvo({
     "700"
   ],
   variable: "--font-arvo",
-})
+});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -44,7 +44,7 @@ const poppins = Poppins({
     "900"
   ],
   variable: "--font-poppins",
-})
+});
 
 const firaCode = Fira_Code({
   subsets: ["latin"],
@@ -56,11 +56,11 @@ const firaCode = Fira_Code({
     "700",
   ],
   variable: "--font-fira-code",
-})
+});
 
 export {
   inter,
   arvo,
   poppins,
   firaCode
-}
+};

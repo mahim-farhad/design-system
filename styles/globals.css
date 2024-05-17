@@ -33,7 +33,7 @@
   @apply dark:bg-primary rounded-none;
 }
 
-/* body {
+body {
   background:
     url(https://images.pexels.com/photos/2339009/pexels-photo-2339009.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
     center / cover no-repeat fixed;
@@ -42,7 +42,7 @@
 
 main {
   background-color: transparent !important;
-} */
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -56,4 +56,30 @@ select:-webkit-autofill:focus {
   color: inherit;
   box-shadow: none;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(30px); }
+}
+
+@keyframes slide-to-left {
+  to { transform: translateX(-30px); }
+}
+
+::view-transition-old(root) {
+  animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(root) {
+  animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }

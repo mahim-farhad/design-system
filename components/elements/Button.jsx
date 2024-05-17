@@ -2,13 +2,12 @@ import { forwardRef } from "react";
 
 import PropTypes from "prop-types";
 
-import classNames from "classnames";
+import getSVGIcons from "@utils/icons";
 
 import { buttonVariantTypes } from "@styles/types";
 
 import getButtonClasses from "@styles/components/button";
-
-import Icon from "@components/elements/Icon";
+import getIconClasses from "@styles/components/icon";
 
 const Button = forwardRef(
   function Button(props, ref) {
@@ -43,35 +42,29 @@ const Button = forwardRef(
       })
     );
 
-    const btnIcon = (
-      <Icon
-        name={"facebook"}
-        size={size}
-        className={
-          (icon && !extended) ? (
-            classNames(
-              "absolute",
-              "top-1/2",
-              "left-1/2",
-              "-translate-y-1/2",
-              "-translate-x-1/2"
-            )
-          ) : null
-        }
-      />
+    const iconClasses = (
+      getIconClasses({
+        size,
+        className
+      })
     );
 
-    console.log(Boolean(btnIcon))
+    const SVGicons = (
+      getSVGIcons({
+        iconClasses,
+        style
+      })
+    );
 
-    const hasValidSize = !buttonVariantTypes?.sizes?.includes(size);
+    const btnIcon = SVGicons?.[icon];
+
+    const hasValidSize = !(!buttonVariantTypes?.sizes?.includes(size));
     const hasValidVariant = (
-      !buttonVariantTypes?.variants?.includes(variant) ||
-      !buttonVariantTypes?.colors?.includes(color)
+      !(!buttonVariantTypes?.variants?.includes(variant)) &&
+      !(!buttonVariantTypes?.colors?.includes(color))
     );
 
-    const hasValidType = hasValidSize || hasValidVariant;
-
-    const isValid = !btnIcon || !hasValidType;
+    const isValid = hasValidSize && hasValidVariant;
 
     if (!isValid) return null;
 

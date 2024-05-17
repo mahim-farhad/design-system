@@ -20,46 +20,7 @@ import Flex from "@components/layouts/Flex"
 import Icon from "@components/elements/Icon"
 import LinkTransition from "@components/elements/LinkTransition"
 
-const selectOptions = [{
-  id: 1,
-  label: "Canada",
-  value: "CA",
-}, {
-  id: 2,
-  label: "Germany",
-  value: "DE",
-}, {
-  id: 3,
-  label: "Australia",
-  value: "AS",
-}, {
-  id: 4,
-  label: "Saudi Arabia",
-  value: "",
-}]
-
-function Home() {
-  const initialValues = {
-    name: "Mahim Farhad",
-    email: "",
-    phone: "",
-    date: "",
-    quantity: 0,
-    country: selectOptions[2].value,
-    password: "",
-  }
-
-  const [inputValues, setInputValues] = useState(initialValues)
-
-  function handleChange(event) {
-    const { name, value } = event.target
-
-    setInputValues({
-      ...inputValues,
-      [name]: value
-    })
-  }
-
+function Page2() {
   return (
     <Main>
       <Section
@@ -89,9 +50,9 @@ function Home() {
               "shadow-md",
             )}
           >
-            <LinkTransition href="/page2">
+            <LinkTransition href="/">
               <Button variant="toned">
-                Go To Page 2
+                Go To Page 1
               </Button>
             </LinkTransition>
           </Flex>
@@ -101,4 +62,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Page2
