@@ -1,9 +1,4 @@
-function getSVGIcons(params) {
-  const {
-    iconClasses,
-    style
-  } = params;
-
+function getSVGIcons(iconClasses, style) {
   return {
     "brand": (
       <svg

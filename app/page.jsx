@@ -82,6 +82,7 @@ function Home() {
               "justify-center",
               "sm:max-w-[400px]",
               "sm:p-16",
+              "gap-y-4",
               "mx-auto",
               "bg-white",
               "border",
@@ -90,8 +91,8 @@ function Home() {
             )}
           >
             <LinkTransition href="/page2">
-              <Button variant="toned">
-                Go To Page 2
+              <Button>
+                Go to Page 2
               </Button>
             </LinkTransition>
           </Flex>

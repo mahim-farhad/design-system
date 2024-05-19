@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 * {
-  -webkit-tap-highlight-color: transparent;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @font-face {
@@ -33,17 +33,6 @@
   @apply dark:bg-primary rounded-none;
 }
 
-body {
-  background:
-    url(https://images.pexels.com/photos/2339009/pexels-photo-2339009.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
-    center / cover no-repeat fixed;
-    background-color: transparent;
-}
-
-main {
-  background-color: transparent !important;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -58,12 +47,9 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-@keyframes fade-in {
-  from { opacity: 0; }
-}
-
-@keyframes fade-out {
-  to { opacity: 0; }
+option {
+  background-color: black;
+  padding: 10px;
 }
 
 @keyframes slide-from-right {
@@ -75,9 +61,9 @@ select:-webkit-autofill:focus {
 }
 
 ::view-transition-old(root) {
-  animation:  700ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+  animation: 1s cubic-bezier(0.4, 0, 0.2, 1) slide-to-left;
 }
 
 ::view-transition-new(root) {
-  animation:  700ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+  animation: 1s cubic-bezier(0.4, 0, 0.2, 1) slide-from-right;
 }

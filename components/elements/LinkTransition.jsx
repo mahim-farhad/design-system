@@ -7,7 +7,6 @@ function LinkTransition(props) {
 
   const handleClick = (e) => {
     if (!document.startViewTransition) {
-      // browser does not support view transition. Continue the default behavior.
       return;
     } else {
       // browser supports view transition. Animate the transtion.
@@ -20,7 +19,10 @@ function LinkTransition(props) {
   };
 
   return (
-    <Link onClick={handleClick} {...props}>
+    <Link
+      onClick={handleClick}
+      {...props}
+    >
       {props.children}
     </Link>
   );

@@ -1,51 +1,65 @@
 const iconVariantTypes = {
-  sizes: [
-    "xs",
-    "sm",
-    "base",
-    "lg",
-    "xl"
-  ],
+  icons: {
+    "brand": true,
+    "grid": true,
+    "caret-down": true,
+    "chevron-down": true,
+    "facebook": true,
+    "instagram": true,
+    "whatsapp": true,
+    "twitter": true,
+    "pinterest": true,
+    "behance": true,
+    "dribbble": true
+  },
+  sizes: {
+    "xs": true,
+    "sm": true,
+    "base": true,
+    "lg": true,
+    "xl": true
+  }
 }
 
 const buttonVariantTypes = {
-  types: [
-    "button",
-    "submit"
-  ],
-  sizes: [
-    "xs",
-    "sm",
-    "base",
-    "lg",
-    "xl"
-  ],
-  variants: [
-    "filled",
-    "gradient",
-    "toned",
-    "outlined",
-    "text"
-  ],
-  gradients: [
-    "monochrome",
-    "duotune",
-    "outline"
-  ],
-  colors: [
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "google",
-    "facebook",
-    "instagram",
-    "whatsapp",
-    "twitter",
-    "pinterest",
-  ]
+  types: {
+    "button": true,
+    "submit": true
+  },
+  icons: iconVariantTypes.icons,
+  sizes: {
+    "xs": true,
+    "sm": true,
+    "base": true,
+    "lg": true,
+    "xl": true
+  },
+  variants: {
+    "filled": true,
+    "gradient": true,
+    "toned": true,
+    "outlined": true,
+    "text": true
+  },
+  gradients: {
+    "monochrome": true,
+    "duotune": true,
+    "outline": true
+  },
+  colors: {
+    "primary": true,
+    "secondary": true,
+    "info": true,
+    "success": true,
+    "warning": true,
+    "error": true,
+    "google": true,
+    "facebook": true,
+    "instagram": true,
+    "whatsapp": true,
+    "twitter": true,
+    "pinterest": true
+  }
 };
 
 export {

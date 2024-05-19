@@ -1,48 +1,42 @@
 import PropTypes from "prop-types";
 
-import getSVGIcons from "@utils/icons";
-
 import { iconVariantTypes } from "@styles/types";
 
-import getIconClasses from "@styles/components/icon";
+import getIconClasses from "@styles/components/iconClasses";
 
-function Icon(props) {
-  const {
-    name,
-    size = "base",
-    className = "",
-    style = {}
-  } = props;
+import getSVGIcons from "@utils/icons";
 
-  const iconClasses = (
-    getIconClasses({
-      size,
-      className
-    })
+function Icon({
+  name,
+  size = "base",
+  className,
+  style
+}) {
+  const iconClasses = getIconClasses(size, className);
+
+  const SVGIcons = getSVGIcons(iconClasses, style);
+  const icon = SVGIcons?.[name];
+
+  const hasValidIcon = (
+    !(!iconVariantTypes?.icons[name]) &&
+    !(!SVGIcons?.[name])
   );
+  const hasValidSize = !(!iconVariantTypes?.sizes[size]);
 
-  const SVGicons = (
-    getSVGIcons({
-      iconClasses,
-      style
-    })
-  );
-
-  const icon = SVGicons?.[name];
-
-  const hasValidSize = !(!iconVariantTypes?.sizes?.includes(size));
-  const hasValidIcon = !(!SVGicons?.[name]);
-
-  const isValid = icon && hasValidSize && hasValidIcon;
+  const isValid = hasValidIcon && hasValidSize;
 
   if (!isValid) return null;
 
   return icon;
-}
+};
 
 Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(iconVariantTypes.sizes),
+  name: PropTypes.oneOf(
+    Object.keys(iconVariantTypes.icons)
+  ).isRequired,
+  size: PropTypes.oneOf(
+    Object.keys(iconVariantTypes.sizes)
+  ),
   className: PropTypes.string,
   style: PropTypes.object
 };
