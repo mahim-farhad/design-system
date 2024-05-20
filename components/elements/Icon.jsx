@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { iconVariantTypes } from "@styles/types";
+import { iconTypes } from "@styles/types";
 
 import getIconClasses from "@styles/components/iconClasses";
 
@@ -18,10 +18,10 @@ function Icon({
   const icon = SVGIcons?.[name];
 
   const hasValidIcon = (
-    !(!iconVariantTypes?.icons[name]) &&
+    !(!iconTypes?.icons[name]) &&
     !(!SVGIcons?.[name])
   );
-  const hasValidSize = !(!iconVariantTypes?.sizes[size]);
+  const hasValidSize = !(!iconTypes?.sizes[size]);
 
   const isValid = hasValidIcon && hasValidSize;
 
@@ -32,10 +32,10 @@ function Icon({
 
 Icon.propTypes = {
   name: PropTypes.oneOf(
-    Object.keys(iconVariantTypes.icons)
+    Object.keys(iconTypes.icons)
   ).isRequired,
   size: PropTypes.oneOf(
-    Object.keys(iconVariantTypes.sizes)
+    Object.keys(iconTypes.sizes)
   ),
   className: PropTypes.string,
   style: PropTypes.object

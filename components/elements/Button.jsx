@@ -2,8 +2,8 @@ import { forwardRef } from "react";
 
 import PropTypes from "prop-types";
 
-import { iconVariantTypes } from "@styles/types";
-import { buttonVariantTypes } from "@styles/types";
+import { iconTypes } from "@styles/types";
+import { buttonTypes } from "@styles/types";
 
 import getIconClasses from "@styles/components/iconClasses";
 import getButtonClasses from "@styles/components/buttonClasses";
@@ -20,13 +20,13 @@ const Button = forwardRef(
     gradient,
     color = "primary",
     rounded = false,
-    className = "",
-    style = {},
+    className,
+    style,
     onClick,
     disabled = false,
     children,
     ...rest
-  }, ref) {
+  }, buttonRef) {
     const btnClasses = (
       getButtonClasses(
         icon,
@@ -47,13 +47,13 @@ const Button = forwardRef(
     const btnIcon = SVGIcons?.[icon];
 
     const hasValidIcon = (
-      !(!iconVariantTypes?.icons[icon]) &&
+      !(!iconTypes?.icons[icon]) &&
       !(!SVGIcons?.[icon])
     );
-    const hasValidSize = !(!buttonVariantTypes?.sizes?.[size]);
+    const hasValidSize = !(!buttonTypes?.sizes?.[size]);
     const hasValidVariant = (
-      !(!buttonVariantTypes?.variants?.[variant]) &&
-      !(!buttonVariantTypes?.colors?.[color])
+      !(!buttonTypes?.variants?.[variant]) &&
+      !(!buttonTypes?.colors?.[color])
     );
 
     const isValid = icon ? (
@@ -67,7 +67,7 @@ const Button = forwardRef(
 
     return (
       <button
-        ref={ref}
+        ref={buttonRef}
         type={type}
         className={btnClasses}
         style={style}
@@ -92,23 +92,23 @@ const Button = forwardRef(
 
 Button.propTypes = {
   type: PropTypes.oneOf(
-    Object.keys(buttonVariantTypes.types)
+    Object.keys(buttonTypes.types)
   ),
   icon: PropTypes.oneOf(
-    Object.keys(iconVariantTypes.icons)
+    Object.keys(iconTypes.icons)
   ),
   extended: PropTypes.bool,
   size: PropTypes.oneOf(
-    Object.keys(buttonVariantTypes.sizes)
+    Object.keys(buttonTypes.sizes)
   ),
   variant: PropTypes.oneOf(
-    Object.keys(buttonVariantTypes.variants)
+    Object.keys(buttonTypes.variants)
   ),
   gradient: PropTypes.oneOf(
-    Object.keys(buttonVariantTypes.gradients)
+    Object.keys(buttonTypes.gradients)
   ),
   color: PropTypes.oneOf(
-    Object.keys(buttonVariantTypes.colors)
+    Object.keys(buttonTypes.colors)
   ),
   rounded: PropTypes.bool,
   className: PropTypes.string,

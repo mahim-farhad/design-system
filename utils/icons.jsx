@@ -1,5 +1,5 @@
 function getSVGIcons(iconClasses, style) {
-  return {
+  const icons = {
     "brand": (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -362,7 +362,9 @@ function getSVGIcons(iconClasses, style) {
         </g>
       </svg>
     ),
-  }
+  };
+
+  return icons;
 };
 
 export default getSVGIcons;

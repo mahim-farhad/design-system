@@ -7,7 +7,7 @@ import {
   firaCode,
 } from "@utils/fonts"
 
-import "@styles/globals.css"
+import "@public/globals.css"
 
 import ModalProvider from "@contexts/ModalProvider"
 import SidebarProvider from "@contexts/SidebarProvider"

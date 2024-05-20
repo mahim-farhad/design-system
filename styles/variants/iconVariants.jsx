@@ -7,9 +7,7 @@ function getIconVariants() {
     xl: "w-6 h-6"
   };
 
-  return {
-    sizes: sizeVariants
-  };
+  return { sizes: sizeVariants };
 };
 
 export default getIconVariants;

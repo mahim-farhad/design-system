@@ -1,9 +1,11 @@
-const iconVariantTypes = {
+const iconTypes = {
   icons: {
     "brand": true,
     "grid": true,
     "caret-down": true,
     "chevron-down": true,
+    "check-circle": true,
+    "exclamation": true,
     "facebook": true,
     "instagram": true,
     "whatsapp": true,
@@ -21,12 +23,47 @@ const iconVariantTypes = {
   }
 }
 
-const buttonVariantTypes = {
+const typographyTypes = {
+  types: {
+    "h1": true,
+    "h2": true,
+    "h3": true,
+    "h4": true,
+    "h5": true,
+    "h6": true,
+    "p": true,
+    "small": true,
+    "blockquote": true
+  }
+}
+
+const inputTypes = {
+  types: {
+    "text": true,
+    "email": true,
+    "password": true,
+    "number": true,
+    "tel": true,
+  },
+  variants: {
+    "filled": true,
+    "outlined": true,
+    "static": true
+  },
+  sizes: {
+    "xs": true,
+    "sm": true,
+    "base": true,
+    "lg": true,
+    "xl": true
+  }
+};
+
+const buttonTypes = {
   types: {
     "button": true,
     "submit": true
   },
-  icons: iconVariantTypes.icons,
   sizes: {
     "xs": true,
     "sm": true,
@@ -62,7 +99,17 @@ const buttonVariantTypes = {
   }
 };
 
+const listTypes = {
+  types: {
+    "ul": true,
+    "ol": true
+  }
+};
+
 export {
-  iconVariantTypes,
-  buttonVariantTypes,
+  iconTypes,
+  typographyTypes,
+  inputTypes,
+  buttonTypes,
+  listTypes,
 };

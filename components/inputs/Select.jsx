@@ -16,8 +16,8 @@ function Select({
   options,
   size = "base",
   disabled = false,
-  className = "",
-  style = {},
+  className,
+  style,
   onChange,
   ...rest
 }) {

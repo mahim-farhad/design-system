@@ -1,31 +1,32 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import getTypographyClasses from "@styles/components/typography"
+import { typographyTypes } from "@styles/types";
 
-const validTypes = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "p",
-  "small",
-  "blockquote"
-]
+import getTypographyClasses from "@styles/components/typographyClasses";
 
 function Typography({
   type = "p",
-  className = "",
-  style = {},
+  gradient,
+  className,
+  style,
   children,
   ...rest
 }) {
-  const Tag = type
+  const Tag = type;
 
-  const typographyClasses = getTypographyClasses(type, className)
+  const typographyClasses = (
+    getTypographyClasses(
+      type,
+      gradient,
+      className
+    )
+  );
 
-  if (!validTypes.includes(type)) return null
+  const hasValidType = !(!typographyTypes.types[type]);
+
+  const isValid = hasValidType;
+
+  if (!children || !isValid) return null;
 
   return (
     <Tag
@@ -36,13 +37,15 @@ function Typography({
       {children}
     </Tag>
   )
-}
+};
 
 Typography.propTypes = {
-  type: PropTypes.oneOf(validTypes),
+  type: PropTypes.oneOf(
+    Object.keys(typographyTypes.types)
+  ),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
-}
+};
 
-export default Typography
+export default Typography;

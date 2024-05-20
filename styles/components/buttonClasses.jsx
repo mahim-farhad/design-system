@@ -10,13 +10,14 @@ function getButtonClasses(
   size,
   variant,
   color,
+  gradient,
   rounded,
   disabled,
   className
 ) {
   const buttonVariants = getbuttonVariants();
 
-  const defaultClasses = (
+  const defaultClasses = twMerge(
     classNames(
       "relative",
       (icon && extended) ? (
@@ -48,17 +49,17 @@ function getButtonClasses(
       "border-2",
       rounded ? "rounded-full" : "rounded-lg",
       disabled && classNames(
-        "disabled:opacity-50",
+        "disabled:pointer-events-none",
         "disabled:cursor-not-allowed",
-        "disabled:pointer-events-none"
+        "disabled:opacity-50"
       ),
       "transition-all",
       "duration-300",
       "ease-in-out"
-    )
+    ), className
   );
 
-  return twMerge(defaultClasses, className);
+  return defaultClasses;
 };
 
 export default getButtonClasses;

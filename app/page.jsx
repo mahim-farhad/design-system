@@ -18,7 +18,6 @@ import Container from "@components/layouts/Container"
 import Box from "@components/layouts/Box"
 import Flex from "@components/layouts/Flex"
 import Icon from "@components/elements/Icon"
-import LinkTransition from "@components/elements/LinkTransition"
 
 const selectOptions = [{
   id: 1,
@@ -70,7 +69,7 @@ function Home() {
           "justify-center",
           "h-full",
           "min-h-[calc(100vh)]",
-          "sm:p-16",
+          "md:p-16",
         )}
       >
         <Container>
@@ -80,21 +79,48 @@ function Home() {
               "flex-col",
               "items-center",
               "justify-center",
-              "sm:max-w-[400px]",
-              "sm:p-16",
-              "gap-y-4",
+              "p-4 sm:p-16",
+              "gap-y-8",
               "mx-auto",
-              "bg-white",
               "border",
               "rounded-lg",
-              "shadow-md",
+              "shadow-lg",
             )}
           >
-            <LinkTransition href="/page2">
-              <Button>
-                Go to Page 2
-              </Button>
-            </LinkTransition>
+            <Textfield
+              type="password"
+              name="firstName"
+              label="First Name"
+              size="sm"
+            />
+
+            <Textfield
+              type="password"
+              name="firstName"
+              label="First Name"
+              size="bas"
+            />
+
+            <Textfield
+              type="password"
+              name="firstName"
+              label="First Name"
+              size="lg"
+            />
+
+            <Textfield
+              type="password"
+              name="firstName"
+              label="First Name"
+              size="xl"
+            />
+
+            <Select
+              name="country"
+              label="country"
+              value={inputValues.country}
+              options={selectOptions}
+            />
           </Flex>
         </Container>
       </Section>
