@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { typographyTypes } from "@styles/types";
+import { typographyTypes } from "@utils/types";
 
 import getTypographyClasses from "@styles/components/typographyClasses";
 

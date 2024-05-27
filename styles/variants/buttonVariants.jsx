@@ -1,36 +1,39 @@
-import classNames from "classnames";
+import clsx from "clsx";
 
-function getButtonVariants() {
+function getButtonVariants(
+  icon, extended, size,
+  variant, color
+) {
   const sizeVariants = {
-    xs: classNames(
+    xs: clsx(
       "h-8",
       "py-1.5",
       "px-6",
       "text-sm",
       "leading-[16px]",
     ),
-    sm: classNames(
+    sm: clsx(
       "h-10",
       "py-2",
       "px-6",
       "text-sm",
       "leading-[16px]",
     ),
-    base: classNames(
+    base: clsx(
       "h-12",
       "py-3",
       "px-8",
       "text-base",
       "leading-[15px]",
     ),
-    lg: classNames(
+    lg: clsx(
       "h-14",
       "py-4",
       "px-8",
       "text-lg",
       "leading-[16px]",
     ),
-    xl: classNames(
+    xl: clsx(
       "h-16",
       "py-5",
       "px-10",
@@ -48,7 +51,7 @@ function getButtonVariants() {
 
   const gradientVariants = {
     monochrome: {
-      primary: classNames(
+      primary: clsx(
         "text-white",
         "bg-gradient-to-br",
         "from-primary-300",
@@ -59,7 +62,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-primary-300",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-secondary-500",
@@ -70,7 +73,7 @@ function getButtonVariants() {
         "hover:bg-secondary-500",
         "active:bg-secondary-600",
       ),
-      info: classNames(
+      info: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-info-500",
@@ -81,7 +84,7 @@ function getButtonVariants() {
         "hover:bg-info-500",
         "active:bg-info-600",
       ),
-      success: classNames(
+      success: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-success-500",
@@ -92,7 +95,7 @@ function getButtonVariants() {
         "hover:bg-success-500",
         "active:bg-success-600",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-warning-500",
@@ -103,7 +106,7 @@ function getButtonVariants() {
         "hover:bg-warning-500",
         "active:bg-warning-600",
       ),
-      error: classNames(
+      error: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-error-500",
@@ -116,7 +119,7 @@ function getButtonVariants() {
       )
     },
     duotone: {
-      primary: classNames(
+      primary: clsx(
         "text-white",
         "bg-gradient-to-br",
         "from-primary-500",
@@ -128,7 +131,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-primary-300",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-secondary-500",
@@ -139,7 +142,7 @@ function getButtonVariants() {
         "hover:bg-secondary-500",
         "active:bg-secondary-600",
       ),
-      info: classNames(
+      info: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-info-500",
@@ -150,7 +153,7 @@ function getButtonVariants() {
         "hover:bg-info-500",
         "active:bg-info-600",
       ),
-      success: classNames(
+      success: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-success-500",
@@ -161,7 +164,7 @@ function getButtonVariants() {
         "hover:bg-success-500",
         "active:bg-success-600",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-warning-500",
@@ -172,7 +175,7 @@ function getButtonVariants() {
         "hover:bg-warning-500",
         "active:bg-warning-600",
       ),
-      error: classNames(
+      error: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-error-500",
@@ -185,7 +188,7 @@ function getButtonVariants() {
       )
     },
     outline: {
-      primary: classNames(
+      primary: clsx(
         "text-white",
         "bg-gradient-to-br",
         "from-primary-500",
@@ -197,7 +200,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-primary-300",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-secondary-500",
@@ -208,7 +211,7 @@ function getButtonVariants() {
         "hover:bg-secondary-500",
         "active:bg-secondary-600",
       ),
-      info: classNames(
+      info: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-info-500",
@@ -219,7 +222,7 @@ function getButtonVariants() {
         "hover:bg-info-500",
         "active:bg-info-600",
       ),
-      success: classNames(
+      success: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-success-500",
@@ -230,7 +233,7 @@ function getButtonVariants() {
         "hover:bg-success-500",
         "active:bg-success-600",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-warning-500",
@@ -241,7 +244,7 @@ function getButtonVariants() {
         "hover:bg-warning-500",
         "active:bg-warning-600",
       ),
-      error: classNames(
+      error: clsx(
         "text-white",
         "bg-gradient-to-b",
         "from-error-500",
@@ -257,7 +260,7 @@ function getButtonVariants() {
 
   const colorVariants = {
     filled: {
-      gray: classNames(
+      gray: clsx(
         "text-white",
         "bg-gray-300",
         "border-transparent",
@@ -267,7 +270,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-gray-300",
       ),
-      primary: classNames(
+      primary: clsx(
         "text-white",
         "bg-primary",
         "border-transparent",
@@ -277,7 +280,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-primary-300",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-white",
         "bg-secondary",
         "border-transparent",
@@ -287,7 +290,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-secondary-300",
       ),
-      info: classNames(
+      info: clsx(
         "text-white",
         "bg-info",
         "border-transparent",
@@ -297,7 +300,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-info-300",
       ),
-      success: classNames(
+      success: clsx(
         "text-white",
         "bg-success",
         "border-transparent",
@@ -307,7 +310,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-success-300",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-white",
         "bg-warning",
         "border-transparent",
@@ -317,7 +320,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-warning-300",
       ),
-      error: classNames(
+      error: clsx(
         "text-white",
         "bg-error",
         "border-transparent",
@@ -327,7 +330,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-error-300",
       ),
-      facebook: classNames(
+      facebook: clsx(
         "text-white",
         "bg-facebook",
         "border-transparent",
@@ -337,7 +340,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-facebook",
       ),
-      whatsapp: classNames(
+      whatsapp: clsx(
         "text-white",
         "bg-whatsapp",
         "border-transparent",
@@ -347,7 +350,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-whatsapp",
       ),
-      twitter: classNames(
+      twitter: clsx(
         "text-white",
         "bg-twitter",
         "border-transparent",
@@ -357,7 +360,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-twitter",
       ),
-      instagram: classNames(
+      instagram: clsx(
         "text-white",
         "bg-instagram",
         "border-transparent",
@@ -367,7 +370,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-instagram",
       ),
-      pinterest: classNames(
+      pinterest: clsx(
         "text-white",
         "bg-pinterest",
         "border-transparent",
@@ -379,7 +382,7 @@ function getButtonVariants() {
       ),
     },
     gradient: {
-      primary: classNames(
+      primary: clsx(
         "text-white",
         "bg-gradient-to-t",
         "from-primary-400",
@@ -390,7 +393,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-primary-300",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-white",
         "bg-gradient-to-t",
         "from-secondary-400",
@@ -401,7 +404,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-secondary-300",
       ),
-      info: classNames(
+      info: clsx(
         "text-white",
         "bg-gradient-to-t",
         "from-info-400",
@@ -412,7 +415,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-info-300",
       ),
-      success: classNames(
+      success: clsx(
         "text-white",
         "bg-gradient-to-t",
         "from-success-400",
@@ -423,7 +426,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-success-300",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-white",
         "bg-gradient-to-t",
         "from-warning-400",
@@ -434,7 +437,7 @@ function getButtonVariants() {
         "active:shadow-lg",
         "active:shadow-warning-300",
       ),
-      error: classNames(
+      error: clsx(
         "text-white",
         "bg-gradient-to-t",
         "from-error-400",
@@ -447,7 +450,7 @@ function getButtonVariants() {
       )
     },
     toned: {
-      primary: classNames(
+      primary: clsx(
         "text-primary",
         "bg-primary-100",
         "border-transparent",
@@ -455,7 +458,7 @@ function getButtonVariants() {
         "hover:bg-primary-500",
         "active:bg-primary-600",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-secondary",
         "bg-secondary-100",
         "border-transparent",
@@ -463,7 +466,7 @@ function getButtonVariants() {
         "hover:bg-secondary-500",
         "active:bg-secondary-600",
       ),
-      info: classNames(
+      info: clsx(
         "text-info",
         "bg-info-100",
         "border-transparent",
@@ -471,7 +474,7 @@ function getButtonVariants() {
         "hover:bg-info-500",
         "active:bg-info-600",
       ),
-      success: classNames(
+      success: clsx(
         "text-success",
         "bg-success-100",
         "border-transparent",
@@ -479,7 +482,7 @@ function getButtonVariants() {
         "hover:bg-success-500",
         "active:bg-success-600",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-warning",
         "bg-warning-100",
         "border-transparent",
@@ -487,7 +490,7 @@ function getButtonVariants() {
         "hover:bg-warning-500",
         "active:bg-warning-600",
       ),
-      error: classNames(
+      error: clsx(
         "text-error",
         "bg-error-100",
         "border-transparent",
@@ -497,42 +500,42 @@ function getButtonVariants() {
       )
     },
     outlined: {
-      primary: classNames(
+      primary: clsx(
         "text-primary",
         "bg-transparent",
         "border-primary",
         "shadow-none",
         "hover:bg-primary-100",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-secondary",
         "bg-transparent",
         "border-secondary",
         "shadow-none",
         "hover:bg-secondary-100",
       ),
-      info: classNames(
+      info: clsx(
         "text-info",
         "bg-transparent",
         "border-info",
         "shadow-none",
         "hover:bg-info-100",
       ),
-      success: classNames(
+      success: clsx(
         "text-success",
         "bg-transparent",
         "border-success",
         "shadow-none",
         "hover:bg-success-100",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-warning",
         "bg-transparent",
         "border-warning",
         "shadow-none",
         "hover:bg-warning-100",
       ),
-      error: classNames(
+      error: clsx(
         "text-error",
         "bg-transparent",
         "border-error",
@@ -541,37 +544,37 @@ function getButtonVariants() {
       )
     },
     text: {
-      primary: classNames(
+      primary: clsx(
         "text-primary",
         "bg-transparent",
         "border-transparent",
         "hover:text-primary-500",
       ),
-      secondary: classNames(
+      secondary: clsx(
         "text-secondary",
         "bg-transparent",
         "border-transparent",
         "hover:text-secondary-500",
       ),
-      info: classNames(
+      info: clsx(
         "text-info",
         "bg-transparent",
         "border-transparent",
         "hover:text-info-500",
       ),
-      success: classNames(
+      success: clsx(
         "text-success",
         "bg-transparent",
         "border-transparent",
         "hover:text-success-500",
       ),
-      warning: classNames(
+      warning: clsx(
         "text-warning",
         "bg-transparent",
         "border-transparent",
         "hover:text-warning-500",
       ),
-      error: classNames(
+      error: clsx(
         "text-error",
         "bg-transparent",
         "border-transparent",
@@ -580,11 +583,24 @@ function getButtonVariants() {
     }
   };
 
-  return {
-    sizes: sizeVariants,
-    gradients: gradientVariants,
-    colors: colorVariants
+  const hasValidSize = icon && !extended ? (
+    !(!sizeVariants?.iconOnly?.[size])
+  ) : !(!sizeVariants?.[size]);
+
+  const hasValidColor = !(!colorVariants?.[variant]?.[color]);
+
+  const isValid = hasValidSize && hasValidColor;
+
+  if (!isValid) return null;
+
+  const buttonVariants = {
+    size: icon && !extended ? (
+      sizeVariants.iconOnly[size]
+    ) : sizeVariants[size],
+    color: colorVariants[variant][color]
   };
-};
+
+  return buttonVariants;
+}
 
 export default getButtonVariants;

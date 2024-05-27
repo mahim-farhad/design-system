@@ -1,26 +1,25 @@
-import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
 
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 
 import getIconVariants from "@styles/variants/iconVariants";
 
 function getIconClasses(size, className) {
-  const iconVariants = getIconVariants();
+  const iconVariants = getIconVariants(size);
 
-  const hasValidSize = !(!iconVariants.sizes[size]);
+  if (!iconVariants) return null;
 
-  const isValid = hasValidSize;
-
-  if (!isValid) return null;
-
-  const defaultClasses = classNames(
-    "inline-block",
-    iconVariants?.sizes?.[size],
-    "leading-none",
-    "whitespace-nowrap"
+  const iconClasses = twMerge(
+    clsx(
+      "inline-block",
+      iconVariants.size,
+      "leading-none",
+      "whitespace-nowrap"
+    ),
+    className
   );
 
-  return twMerge(defaultClasses, className);
-};
+  return iconClasses;
+}
 
 export default getIconClasses;

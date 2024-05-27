@@ -2,13 +2,12 @@ import { forwardRef } from "react";
 
 import PropTypes from "prop-types";
 
-import { iconTypes } from "@styles/types";
-import { buttonTypes } from "@styles/types";
+import { iconTypes, buttonTypes } from "@utils/types";
 
 import getIconClasses from "@styles/components/iconClasses";
 import getButtonClasses from "@styles/components/buttonClasses";
 
-import getSVGIcons from "@utils/icons";
+import getSVGIcon from "@utils/icons";
 
 const Button = forwardRef(
   function Button({
@@ -27,43 +26,29 @@ const Button = forwardRef(
     children,
     ...rest
   }, buttonRef) {
-    const btnClasses = (
-      getButtonClasses(
-        icon,
-        extended,
-        size,
-        variant,
-        color,
-        gradient,
-        rounded,
-        disabled,
-        className
-      )
+    const btnClasses = getButtonClasses(
+      icon, extended, size,
+      variant, color,
+      rounded, disabled,
+      className
     );
 
     const iconClasses = getIconClasses(size, className);
 
-    const SVGIcons = getSVGIcons(iconClasses, style);
-    const btnIcon = SVGIcons?.[icon];
+    const SVGIcon = getSVGIcon(icon, iconClasses, style);
 
-    const hasValidIcon = (
-      !(!iconTypes?.icons[icon]) &&
-      !(!SVGIcons?.[icon])
-    );
+    const hasValidIcon = !(!iconTypes?.icons[icon]) && SVGIcon;
     const hasValidSize = !(!buttonTypes?.sizes?.[size]);
     const hasValidVariant = (
       !(!buttonTypes?.variants?.[variant]) &&
       !(!buttonTypes?.colors?.[color])
     );
 
-    const isValid = icon ? (
-      hasValidIcon &&
-      hasValidSize && hasValidVariant
-    ) : (
-      hasValidSize && hasValidVariant
-    );
+    const isValid = icon || icon === "" ? (
+      hasValidIcon && hasValidSize && hasValidVariant
+    ) : hasValidSize && hasValidVariant;
 
-    if (!children || !isValid) return null;
+    if (!isValid) return null;
 
     return (
       <button
@@ -75,41 +60,25 @@ const Button = forwardRef(
         disabled={disabled}
         {...rest}
       >
-        {
-          icon ? (
-            !extended ? btnIcon : (
-              <>
-                {btnIcon}
-                {children}
-              </>
-            )
-          ) : children
-        }
+        {icon ? !extended ? SVGIcon : (
+          <>
+            {SVGIcon}
+            {children}
+          </>
+        ) : children}
       </button>
     );
   }
 );
 
 Button.propTypes = {
-  type: PropTypes.oneOf(
-    Object.keys(buttonTypes.types)
-  ),
-  icon: PropTypes.oneOf(
-    Object.keys(iconTypes.icons)
-  ),
+  type: PropTypes.oneOf(Object.keys(buttonTypes.types)),
+  icon: PropTypes.oneOf(Object.keys(iconTypes.icons)),
   extended: PropTypes.bool,
-  size: PropTypes.oneOf(
-    Object.keys(buttonTypes.sizes)
-  ),
-  variant: PropTypes.oneOf(
-    Object.keys(buttonTypes.variants)
-  ),
-  gradient: PropTypes.oneOf(
-    Object.keys(buttonTypes.gradients)
-  ),
-  color: PropTypes.oneOf(
-    Object.keys(buttonTypes.colors)
-  ),
+  size: PropTypes.oneOf(Object.keys(buttonTypes.sizes)),
+  variant: PropTypes.oneOf(Object.keys(buttonTypes.variants)),
+  gradient: PropTypes.oneOf(Object.keys(buttonTypes.gradients)),
+  color: PropTypes.oneOf(Object.keys(buttonTypes.colors)),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,

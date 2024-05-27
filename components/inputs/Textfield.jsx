@@ -4,7 +4,7 @@ import { forwardRef, useState } from "react";
 
 import PropTypes from "prop-types";
 
-import { inputTypes } from "@styles/types";
+import { inputTypes } from "@utils/types";
 
 import getTextfieldClasses from "@styles/components/textfieldClasses";
 
@@ -30,10 +30,6 @@ const Textfield = forwardRef(
     const [isFilled, setFill] = useState(false);
     const [isInvalid, setInvalid] = useState(false);
 
-    const isLabelFloating = (
-      isFocused || isFilled || value
-    );
-
     function handleFocus(event) {
       setFocus(true)
 
@@ -56,12 +52,13 @@ const Textfield = forwardRef(
 
     const textfiledClasses = (
       getTextfieldClasses(
+        value,
         size,
         rounded,
         disabled,
         isFocused,
+        isFilled,
         isInvalid,
-        isLabelFloating,
         className
       )
     );
@@ -71,7 +68,7 @@ const Textfield = forwardRef(
 
     const isValid = hasValidType && hasValidSize;
 
-    // if (!isValid) return null;
+    if (!isValid) return null;
 
     return (
       <div

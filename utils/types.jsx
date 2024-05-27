@@ -1,7 +1,9 @@
 const iconTypes = {
   icons: {
     "brand": true,
+    "search": true,
     "grid": true,
+    "sort": true,
     "caret-down": true,
     "chevron-down": true,
     "check-circle": true,
@@ -43,6 +45,7 @@ const inputTypes = {
     "email": true,
     "password": true,
     "number": true,
+    "date": true,
     "tel": true,
   },
   variants: {

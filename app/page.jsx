@@ -1,23 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
-import classNames from "classnames"
+import classNames from "classnames";
 
-import Typography from "@components/elements/Typography"
-import Textfield from "@components/inputs/Textfield"
-import Counter from "@components/inputs/Counter"
+import Typography from "@components/elements/Typography";
+import Textfield from "@components/inputs/Textfield";
+import Counter from "@components/inputs/Counter";
 import Select from "@components/inputs/Select"
-import CustomSelect from "@components/inputs/CustomSelect"
-import Button from "@components/elements/Button"
-import { List, ListItem } from "@components/elements/List"
+import CustomSelect from "@components/inputs/CustomSelect";
+import Button from "@components/elements/Button";
 
-import Main from "@components/layouts/Main"
-import Section from "@components/layouts/Section"
-import Container from "@components/layouts/Container"
-import Box from "@components/layouts/Box"
-import Flex from "@components/layouts/Flex"
-import Icon from "@components/elements/Icon"
+import Main from "@components/layouts/Main";
+import Section from "@components/layouts/Section";
+import Container from "@components/layouts/Container";
+import Box from "@components/layouts/Box";
+import Flex from "@components/layouts/Flex";
+import Icon from "@components/elements/Icon";
 
 const selectOptions = [{
   id: 1,
@@ -73,6 +72,12 @@ function Home() {
         )}
       >
         <Container>
+          <Box>
+            <Typography>
+              Country: {inputValues.country}
+            </Typography>
+          </Box>
+
           <Flex
             className={classNames(
               "flex",
@@ -81,46 +86,139 @@ function Home() {
               "justify-center",
               "p-4 sm:p-16",
               "gap-y-8",
+              "max-w-[800px]",
               "mx-auto",
               "border",
               "rounded-lg",
               "shadow-lg",
             )}
           >
-            <Textfield
-              type="password"
-              name="firstName"
-              label="First Name"
-              size="sm"
-            />
+            <Flex
+              className={classNames(
+                "flex",
+                "items-center",
+                "gap-x-4",
+                "w-full",
+              )}
+            >
+              <Textfield
+                type="text"
+                name="name"
+                label="Name"
+                value={inputValues.name}
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+                disabled
+              />
 
-            <Textfield
-              type="password"
-              name="firstName"
-              label="First Name"
-              size="bas"
-            />
+              <Textfield
+                type="email"
+                name="email"
+                label="Email"
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+              />
+            </Flex>
 
-            <Textfield
-              type="password"
-              name="firstName"
-              label="First Name"
-              size="lg"
-            />
+            <Flex
+              className={classNames(
+                "flex",
+                "items-center",
+                "gap-x-4",
+                "w-full",
+              )}
+            >
+              <Textfield
+                type="tel"
+                name="phone"
+                label="Phone"
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+              />
 
-            <Textfield
-              type="password"
-              name="firstName"
-              label="First Name"
-              size="xl"
-            />
+              {/* <Textfield
+                type="date"
+                name="date"
+                label="Date"
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+              /> */}
 
-            <Select
-              name="country"
-              label="country"
-              value={inputValues.country}
-              options={selectOptions}
-            />
+              <Textfield
+                type="number"
+                name="quantity"
+                label="Quantity"
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+              />
+            </Flex>
+
+            <Flex
+              className={classNames(
+                "flex",
+                "items-center",
+                "gap-x-4",
+                "w-full",
+              )}
+            >
+              <CustomSelect
+                name="country"
+                label="country"
+                value={inputValues.country}
+                options={selectOptions}
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+              />
+
+              {/* <Select
+                name="country"
+                label="country"
+                value={inputValues.country}
+                options={selectOptions}
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+              /> */}
+
+              <Textfield
+                type="password"
+                name="password"
+                label="Password"
+                className={classNames(
+                  "flex-1",
+                )}
+                onChange={handleChange}
+              />
+            </Flex>
+
+            <Button
+              icon="facebook"
+              extended
+              variant="toned"
+              color="error"
+            >
+              Submit
+            </Button>
+
+            <Button
+              icon="facebook"
+              variant="toned"
+            >
+              Submit
+            </Button>
           </Flex>
         </Container>
       </Section>
@@ -128,4 +226,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Home;

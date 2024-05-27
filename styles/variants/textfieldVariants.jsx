@@ -17,19 +17,23 @@ function getInputVariants(isLabelFloating) {
     label: {
       sm: classNames(
         "text-base",
-        { "-translate-y-[19px] text-sm": isLabelFloating }
+        isLabelFloating &&
+        "-translate-y-[19px] text-sm"
       ),
       base: classNames(
         "text-base",
-        { "-translate-y-[23px] text-sm": isLabelFloating }
+        isLabelFloating &&
+        "-translate-y-[23px] text-sm"
       ),
       lg: classNames(
         "text-lg",
-        { "-translate-y-[27px] text-base": isLabelFloating }
+        isLabelFloating &&
+        "-translate-y-[27px] text-base"
       ),
       xl: classNames(
         "text-lg",
-        { "-translate-y-[31px] text-base": isLabelFloating }
+        isLabelFloating &&
+        "-translate-y-[31px] text-base"
       )
     },
     input: {
@@ -73,6 +77,8 @@ function getInputVariants(isLabelFloating) {
       )
     }
   };
+
+  const typeVariants = {};
 
   return {
     sizes: sizeVariants

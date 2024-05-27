@@ -1,40 +1,32 @@
+import clsx from "clsx";
+
 import { twMerge } from "tailwind-merge";
 
-import classNames from "classnames";
-
-import getbuttonVariants from "@styles/variants/buttonVariants";
+import getButtonVariants from "@styles/variants/buttonVariants";
 
 function getButtonClasses(
-  icon,
-  extended,
-  size,
-  variant,
-  color,
-  gradient,
-  rounded,
-  disabled,
+  icon, extended, size,
+  variant, color,
+  rounded, disabled,
   className
 ) {
-  const buttonVariants = getbuttonVariants();
+  const buttonVariants = getButtonVariants(
+    icon, extended, size,
+    variant, color
+  );
 
-  const defaultClasses = twMerge(
-    classNames(
+  if (!buttonVariants) return null;
+
+  const buttonClasses = twMerge(
+    clsx(
       "relative",
-      (icon && extended) ? (
-        classNames(
-          "inline-flex",
-          "gap-x-2.5",
-          "items-center",
-          "justify-center"
-        )
-      ) : "inline-block",
-      (icon && !extended) ? (
-        buttonVariants?.sizes?.iconOnly?.[size] ||
-        buttonVariants?.sizes?.iconOnly?.base
-      ) : (
-        buttonVariants?.sizes?.[size] ||
-        buttonVariants?.sizes?.base
-      ),
+      icon && extended ? [
+        "inline-flex",
+        "gap-x-2.5",
+        "items-center",
+        "justify-center"
+      ] : "inline-block",
+      buttonVariants.size,
       "font-poppins",
       "font-medium",
       "uppercase",
@@ -43,23 +35,23 @@ function getButtonClasses(
       "appearance-none",
       "overflow-hidden",
       "cursor-pointer",
-      buttonVariants?.colors?.[variant]?.[color] ||
-      buttonVariants?.colors?.filled?.gray,
+      buttonVariants.color,
       "outline-none",
       "border-2",
       rounded ? "rounded-full" : "rounded-lg",
-      disabled && classNames(
+      disabled ? [
         "disabled:pointer-events-none",
         "disabled:cursor-not-allowed",
         "disabled:opacity-50"
-      ),
+      ] : null,
       "transition-all",
       "duration-300",
       "ease-in-out"
-    ), className
+    ),
+    className
   );
 
-  return defaultClasses;
-};
+  return buttonClasses;
+}
 
 export default getButtonClasses;

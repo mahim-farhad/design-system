@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-import { iconTypes } from "@styles/types";
+import { iconTypes } from "@utils/types";
 
 import getIconClasses from "@styles/components/iconClasses";
 
-import getSVGIcons from "@utils/icons";
+import getSVGIcon from "@utils/icons";
 
 function Icon({
   name,
@@ -14,29 +14,21 @@ function Icon({
 }) {
   const iconClasses = getIconClasses(size, className);
 
-  const SVGIcons = getSVGIcons(iconClasses, style);
-  const icon = SVGIcons?.[name];
+  const SVGIcon = getSVGIcon(name, iconClasses, style);
 
-  const hasValidIcon = (
-    !(!iconTypes?.icons[name]) &&
-    !(!SVGIcons?.[name])
-  );
+  const hasValidIcon = !(!iconTypes?.icons[name]) && SVGIcon;
   const hasValidSize = !(!iconTypes?.sizes[size]);
 
   const isValid = hasValidIcon && hasValidSize;
 
   if (!isValid) return null;
 
-  return icon;
-};
+  return SVGIcon;
+}
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(
-    Object.keys(iconTypes.icons)
-  ).isRequired,
-  size: PropTypes.oneOf(
-    Object.keys(iconTypes.sizes)
-  ),
+  name: PropTypes.oneOf(Object.keys(iconTypes.icons)).isRequired,
+  size: PropTypes.oneOf(Object.keys(iconTypes.sizes)),
   className: PropTypes.string,
   style: PropTypes.object
 };

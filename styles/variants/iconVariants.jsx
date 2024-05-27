@@ -1,4 +1,4 @@
-function getIconVariants() {
+function getIconVariants(size) {
   const sizeVariants = {
     xs: "w-4 h-4",
     sm: "w-4 h-4",
@@ -7,7 +7,15 @@ function getIconVariants() {
     xl: "w-6 h-6"
   };
 
-  return { sizes: sizeVariants };
-};
+  const hasValidSize = !(!sizeVariants?.[size]);
+
+  const isValid = hasValidSize;
+
+  if (!isValid) return null;
+
+  const iconVariants = { size: sizeVariants[size] };
+
+  return iconVariants;
+}
 
 export default getIconVariants;

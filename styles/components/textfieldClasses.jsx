@@ -5,17 +5,23 @@ import classNames from "classnames";
 import getTextfieldVariants from "@styles/variants/textfieldVariants";
 
 function getTextfieldClasses(
+  value,
   size,
   rounded,
   disabled,
   isFocused,
+  isFilled,
   isInvalid,
-  isLabelFloating,
   className
 ) {
+  const isLabelFloating = (
+    isFocused || isFilled ||
+    isInvalid || value
+  );
+
   const textfieldVariants = getTextfieldVariants(isLabelFloating);
 
-  const hasValidSize = !(!textfieldVariants.sizes?.input?.[size]);
+  const hasValidSize = !(!textfieldVariants.sizes?.inputWrapper?.[size]);
 
   const isValid = hasValidSize;
 
@@ -30,9 +36,9 @@ function getTextfieldClasses(
         "w-full",
         textfieldVariants.sizes?.inputWrapper?.[size],
         "border-2",
-        (isFocused && !isInvalid)
+        isFocused && !isInvalid
           ? "border-primary"
-          : (!isFocused && isInvalid)
+          : !isFocused && isInvalid
             ? "border-error"
             : "border-gray-300",
         rounded ? "rounded-full" : "rounded-md",
@@ -47,7 +53,6 @@ function getTextfieldClasses(
         "relative",
         "flex",
         "items-center",
-        "justify-center",
         "-my-0.5",
         "mr-auto",
         textfieldVariants.sizes?.labelWrapper?.[size],
@@ -78,9 +83,9 @@ function getTextfieldClasses(
         "font-poppins",
         "leading-[16px]",
         "font-medium",
-        (isFocused && !isInvalid)
+        isFocused && !isInvalid
           ? "text-primary"
-          : (!isFocused && isInvalid)
+          : !isFocused && isInvalid
             ? "text-error"
             : "text-gray-400",
         "bg-transparent",

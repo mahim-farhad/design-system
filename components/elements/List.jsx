@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import { twMerge } from "tailwind-merge";
 
-import { listTypes } from "@styles/types";
+import { listTypes } from "@utils/types";
 
 import getListClasses from "@styles/components/listClasses";
 
