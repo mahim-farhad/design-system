@@ -1,47 +1,43 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { iconTypes } from "@utils/types"
+import { icons } from 'lucide-react';
 
-import getIconClasses from "@styles/components/iconClasses"
+import { iconTypes } from "@utils/types";
 
-import { icons } from 'lucide-react'
+import getIconClasses from "@styles/components/iconClasses";
 
 const LucideIcon = ({
   name,
-  color,
   size = 'base',
   className,
-  style
+  style,
+  ...rest
 }) => {
-  const iconClasses = getIconClasses(size, className)
+  const iconClasses = getIconClasses(size, className);
 
-  const LucideIcon = icons[name]
+  const LucideIcon = icons[name];
 
-  const hasValidIcon = !(!icons[name])
-  const hasValidSize = !(!iconTypes?.sizes[size])
+  const hasValidIcon = !(!icons[name]);
+  const hasValidSize = !(!iconTypes?.sizes[size]);
 
-  const isValid = hasValidIcon && hasValidSize
+  const isValid = hasValidIcon && hasValidSize;
 
-  if (!isValid) return null
+  if (!isValid) return null;
 
   return (
     <LucideIcon
-      color={color}
       className={iconClasses}
       style={style}
+      {...rest}
     />
-  )
+  );
 }
 
 LucideIcon.propTypes = {
-  name: PropTypes.oneOf(
-    Object.keys(iconTypes.icons)
-  ).isRequired,
-  size: PropTypes.oneOf(
-    Object.keys(iconTypes.sizes)
-  ),
+  name: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(Object.keys(iconTypes.sizes)),
   className: PropTypes.string,
   style: PropTypes.object
-}
+};
 
-export default LucideIcon
+export default LucideIcon;

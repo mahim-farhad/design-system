@@ -1,8 +1,8 @@
-import classNames from "classnames";
+import clsx from "clsx";
 
-function getTypeVariants() {
+function getTypeVariants(type) {
   const typeVariants = {
-    h1: classNames(
+    h1: clsx(
       "font-headings",
       "text-4xl lg:text-7xl",
       "leading-[1.1]",
@@ -11,7 +11,7 @@ function getTypeVariants() {
       "tracking-wide",
       "text-heading-light"
     ),
-    h2: classNames(
+    h2: clsx(
       "font-headings",
       "text-3xl lg:text-5xl",
       "leading-[1.25]",
@@ -20,7 +20,7 @@ function getTypeVariants() {
       "tracking-wide",
       "text-heading-light"
     ),
-    h3: classNames(
+    h3: clsx(
       "font-headings",
       "text-2xl lg:text-4xl",
       "leading-[1.5]",
@@ -29,7 +29,7 @@ function getTypeVariants() {
       "tracking-wide",
       "text-heading-light"
     ),
-    h4: classNames(
+    h4: clsx(
       "font-headings",
       "text-xl lg:text-3xl",
       "leading-[1.75]",
@@ -38,7 +38,7 @@ function getTypeVariants() {
       "tracking-wide",
       "text-heading-light"
     ),
-    h5: classNames(
+    h5: clsx(
       "font-headings",
       "text-lg lg:text-2xl",
       "leading-[1.75]",
@@ -47,7 +47,7 @@ function getTypeVariants() {
       "tracking-wide",
       "text-heading-light"
     ),
-    h6: classNames(
+    h6: clsx(
       "font-headings",
       "text-base lg:text-xl",
       "leading-[1.75]",
@@ -56,7 +56,7 @@ function getTypeVariants() {
       "tracking-wide",
       "text-heading-light"
     ),
-    p: classNames(
+    p: clsx(
       "font-poppins",
       "text-base",
       "leading-[1.75]",
@@ -64,7 +64,7 @@ function getTypeVariants() {
       "tracking-normal",
       "text-font-light"
     ),
-    small: classNames(
+    small: clsx(
       "font-poppins",
       "text-sm",
       "leading-[1.75]",
@@ -73,7 +73,7 @@ function getTypeVariants() {
       "tracking-normal",
       "text-font-light"
     ),
-    blockquote: classNames(
+    blockquote: clsx(
       "p-4",
       "font-poppins",
       "text-base",
@@ -86,7 +86,15 @@ function getTypeVariants() {
     )
   };
 
-  return { types: typeVariants };
-};
+  const hasValidType = !(!typeVariants?.[type]);
+
+  const isValid = hasValidType;
+
+  if (!isValid) return null;
+
+  const typographyVariants = { type: typeVariants[type] };
+
+  return typographyVariants;
+}
 
 export default getTypeVariants;

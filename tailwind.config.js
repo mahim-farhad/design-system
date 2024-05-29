@@ -6,16 +6,16 @@ import {
   green,
   amber,
   red
-} from "tailwindcss/colors"
+} from "tailwindcss/colors";
 
 /** @type {import("tailwindcss").Config} */
-export const mode = "jit"
+export const mode = "jit";
 export const content = [
   "./app/**/*.{js,ts,jsx,tsx,mdx}",
   "./pages/**/*.{js,ts,jsx,tsx,mdx}",
   "./components/**/*.{js,ts,jsx,tsx,mdx}",
   "./styles/**/*.{js,jsx,ts,tsx}",
-]
+];
 
 export const theme = {
   screens: {
@@ -147,9 +147,7 @@ export const theme = {
   },
   extend: {
     minHeight: {
-      screen: [
-        "100dvh"
-      ],
+      screen: ["100dvh"],
     },
     animation: {
       gradient: "gradient 2s linear infinite",
@@ -165,6 +163,6 @@ export const theme = {
       }
     }
   }
-}
+};
 
-export const plugins = []
+export const plugins = [];

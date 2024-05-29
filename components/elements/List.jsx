@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge";
-
 import { listTypes } from "@utils/types";
 
-import getListClasses from "@styles/components/listClasses";
+import {
+  getListClasses,
+  getListItemClasses
+} from "@styles/components/listClasses";
 
 function List({
   type = "ul",
@@ -21,7 +22,7 @@ function List({
 
   const isValid = hasValidType;
 
-  if (!children || !isValid) return null;
+  if (!isValid) return null;
 
   return (
     <Tag
@@ -31,8 +32,8 @@ function List({
     >
       {children}
     </Tag>
-  )
-};
+  );
+}
 
 function ListItem({
   uniqueKey,
@@ -41,9 +42,7 @@ function ListItem({
   children,
   ...rest
 }) {
-  const listItemClasses = className ? twMerge(className) : null;
-
-  if (!children) return null;
+  const listItemClasses = getListItemClasses(className);
 
   return (
     <li
@@ -54,13 +53,11 @@ function ListItem({
     >
       {children}
     </li>
-  )
-};
+  );
+}
 
 List.propTypes = {
-  type: PropTypes.oneOf(
-    Object.keys(listTypes.types)
-  ),
+  type: PropTypes.oneOf(Object.keys(listTypes.types)),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
@@ -73,4 +70,7 @@ ListItem.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export { List, ListItem };
+export {
+  List,
+  ListItem
+};

@@ -52,13 +52,9 @@ const Textfield = forwardRef(
 
     const textfiledClasses = (
       getTextfieldClasses(
-        value,
-        size,
-        rounded,
-        disabled,
-        isFocused,
-        isFilled,
-        isInvalid,
+        value, size,
+        rounded, disabled,
+        isFocused, isFilled, isInvalid,
         className
       )
     );
@@ -72,14 +68,14 @@ const Textfield = forwardRef(
 
     return (
       <div
-        className={textfiledClasses?.inputWrapper}
+        className={textfiledClasses.textfieldWrapper}
         style={style}
         {...rest}
       >
-        <span className={textfiledClasses?.labelWrapper}>
+        <span className={textfiledClasses.labelWrapper}>
           <label
             htmlFor={name}
-            className={textfiledClasses?.label}
+            className={textfiledClasses.label}
           >
             {label}
           </label>
@@ -91,7 +87,7 @@ const Textfield = forwardRef(
           role="textfield"
           aria-label="textfield"
           aria-labelledby="textfield"
-          className={textfiledClasses?.input}
+          className={textfiledClasses.input}
           name={name}
           id={name}
           value={value}
@@ -107,18 +103,9 @@ const Textfield = forwardRef(
 );
 
 Textfield.propTypes = {
-  type: PropTypes.oneOf(
-    Object.keys(inputTypes.types)
-  ),
-  // icon: PropTypes.oneOf(
-  //   Object.keys(iconTypes.icons)
-  // ),
-  // size: PropTypes.oneOf(
-  //   Object.keys(buttonTypes.sizes)
-  // ),
-  // variant: PropTypes.oneOf(
-  //   Object.keys(buttonTypes.variants)
-  // ),
+  type: PropTypes.oneOf(Object.keys(inputTypes.types)),
+  size: PropTypes.oneOf(Object.keys(inputTypes.sizes)),
+  variant: PropTypes.oneOf(Object.keys(inputTypes.variants)),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,

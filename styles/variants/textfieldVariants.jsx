@@ -1,8 +1,8 @@
-import classNames from "classnames";
+import clsx from "clsx";
 
-function getInputVariants(isLabelFloating) {
+function getTextfieldVariants(size, isLabelFloating) {
   const sizeVariants = {
-    inputWrapper: {
+    textfieldWrapper: {
       sm: "h-10",
       base: "h-12",
       lg: "h-14",
@@ -15,62 +15,70 @@ function getInputVariants(isLabelFloating) {
       xl: "ml-2.5"
     },
     label: {
-      sm: classNames(
+      sm: clsx(
         "text-base",
-        isLabelFloating &&
-        "-translate-y-[19px] text-sm"
+        isLabelFloating && [
+          "-translate-y-[19px]",
+          "text-sm"
+        ]
       ),
-      base: classNames(
+      base: clsx(
         "text-base",
-        isLabelFloating &&
-        "-translate-y-[23px] text-sm"
+        isLabelFloating && [
+          "-translate-y-[23px]",
+          "text-sm"
+        ]
       ),
-      lg: classNames(
+      lg: clsx(
         "text-lg",
-        isLabelFloating &&
-        "-translate-y-[27px] text-base"
+        isLabelFloating && [
+          "-translate-y-[27px]",
+          "text-base"
+        ]
       ),
-      xl: classNames(
+      xl: clsx(
         "text-lg",
-        isLabelFloating &&
-        "-translate-y-[31px] text-base"
+        isLabelFloating && [
+          "-translate-y-[31px]",
+          "text-base"
+        ]
       )
     },
     input: {
-      sm: classNames(
+      sm: clsx(
         "px-3.5",
         "text-sm"
       ),
-      base: classNames(
+      base: clsx(
         "px-4",
         "text-base"
       ),
-      lg: classNames(
+      lg: clsx(
         "px-4",
         "text-lg"
       ),
-      xl: classNames(
+      xl: clsx(
         "px-4",
         "text-xl"
       )
     },
     iconWrapper: {
-      sm: classNames(
+      sm: clsx(
         "w-10",
         "h-10",
         "p-3"
       ),
-      base: classNames(
+      base: clsx(
         "w-12",
         "h-12",
         "p-3.5"
       ),
-      lg: classNames(
+      lg: clsx(
         "w-14",
         "h-14",
         "p-4"
       ),
-      xl: classNames(
+      xl: clsx(
         "w-16",
         "h-16",
         "p-5"
@@ -78,11 +86,23 @@ function getInputVariants(isLabelFloating) {
     }
   };
 
-  const typeVariants = {};
+  const hasValidSize = !(!sizeVariants?.input?.[size]);
 
-  return {
-    sizes: sizeVariants
+  const isValid = hasValidSize;
+
+  if (!isValid) return null;
+
+  const textfieldVariants = {
+    size: {
+      textfieldWrapper: sizeVariants.textfieldWrapper[size],
+      labelWrapper: sizeVariants.labelWrapper[size],
+      label: sizeVariants.label[size],
+      input: sizeVariants.input[size],
+      iconWrapper: sizeVariants.iconWrapper[size],
+    }
   };
+
+  return textfieldVariants;
 };
 
-export default getInputVariants;
+export default getTextfieldVariants;

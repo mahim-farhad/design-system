@@ -1,16 +1,16 @@
-import {
-  useState,
-  useEffect,
-  useRef
-} from "react";
+import { useState, useEffect, useRef } from "react";
 
 function useOutsideClick() {
-  const [isOpen, setIsOpen] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const modalRef = useRef(null);
 
   function handleClickOutside(event) {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
+    const isClickOutside = (
+      modalRef.current && !modalRef.current.contains(event.target)
+    );
+
+    if (isClickOutside) {
       setIsOpen(false);
     }
   }
@@ -23,11 +23,7 @@ function useOutsideClick() {
     };
   }, []);
 
-  return {
-    isOpen,
-    setIsOpen,
-    modalRef
-  };
+  return { isOpen, setIsOpen, modalRef };
 }
 
 export default useOutsideClick;

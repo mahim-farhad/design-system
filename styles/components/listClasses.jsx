@@ -1,31 +1,37 @@
-import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
 
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 
 import getListVariants from "@styles/variants/listVariants";
 
 function getListClasses(type, className) {
-  const listVariants = getListVariants();
+  const listVariants = getListVariants(type);
 
-  const hasValidType = !(!listVariants.types[type]);
+  if (!listVariants) return null;
 
-  const isValid = hasValidType;
-
-  if (!isValid) return null;
-
-  const defaultClasses = (
-    classNames(
+  const listClasses = twMerge(
+    clsx(
       "flex",
       "flex-col",
       "min-w-[240px]",
       "p-0",
       "m-0",
-      listVariants?.types?.[type],
+      listVariants.type,
       "list-inside",
-    )
+    ),
+    className
   );
 
-  return twMerge(defaultClasses, className);
-};
+  return listClasses;
+}
 
-export default getListClasses;
+function getListItemClasses(className) {
+  const listItemClasses = className ? twMerge(className) : null;
+
+  return listItemClasses;
+}
+
+export {
+  getListClasses,
+  getListItemClasses
+};

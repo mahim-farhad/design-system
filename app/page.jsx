@@ -17,6 +17,8 @@ import Container from "@components/layouts/Container";
 import Box from "@components/layouts/Box";
 import Flex from "@components/layouts/Flex";
 import Icon from "@components/elements/Icon";
+import { List, ListItem } from "@components/elements/List";
+import LucideIcon from "@components/elements/LucideIcon";
 
 const selectOptions = [{
   id: 1,
@@ -182,17 +184,6 @@ function Home() {
                 onChange={handleChange}
               />
 
-              {/* <Select
-                name="country"
-                label="country"
-                value={inputValues.country}
-                options={selectOptions}
-                className={classNames(
-                  "flex-1",
-                )}
-                onChange={handleChange}
-              /> */}
-
               <Textfield
                 type="password"
                 name="password"
@@ -203,22 +194,6 @@ function Home() {
                 onChange={handleChange}
               />
             </Flex>
-
-            <Button
-              icon="facebook"
-              extended
-              variant="toned"
-              color="error"
-            >
-              Submit
-            </Button>
-
-            <Button
-              icon="facebook"
-              variant="toned"
-            >
-              Submit
-            </Button>
           </Flex>
         </Container>
       </Section>

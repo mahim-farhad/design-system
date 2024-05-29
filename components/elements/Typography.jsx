@@ -14,19 +14,13 @@ function Typography({
 }) {
   const Tag = type;
 
-  const typographyClasses = (
-    getTypographyClasses(
-      type,
-      gradient,
-      className
-    )
-  );
+  const typographyClasses = getTypographyClasses(type, gradient, className);
 
   const hasValidType = !(!typographyTypes.types[type]);
 
   const isValid = hasValidType;
 
-  if (!children || !isValid) return null;
+  if (!isValid) return null;
 
   return (
     <Tag
@@ -36,13 +30,11 @@ function Typography({
     >
       {children}
     </Tag>
-  )
-};
+  );
+}
 
 Typography.propTypes = {
-  type: PropTypes.oneOf(
-    Object.keys(typographyTypes.types)
-  ),
+  type: PropTypes.oneOf(Object.keys(typographyTypes.types)),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired

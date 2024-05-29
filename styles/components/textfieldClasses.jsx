@@ -1,17 +1,13 @@
-import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
 
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 
 import getTextfieldVariants from "@styles/variants/textfieldVariants";
 
 function getTextfieldClasses(
-  value,
-  size,
-  rounded,
-  disabled,
-  isFocused,
-  isFilled,
-  isInvalid,
+  value, size,
+  rounded, disabled,
+  isFocused, isFilled, isInvalid,
   className
 ) {
   const isLabelFloating = (
@@ -19,22 +15,18 @@ function getTextfieldClasses(
     isInvalid || value
   );
 
-  const textfieldVariants = getTextfieldVariants(isLabelFloating);
+  const textfieldVariants = getTextfieldVariants(size, isLabelFloating);
 
-  const hasValidSize = !(!textfieldVariants.sizes?.inputWrapper?.[size]);
-
-  const isValid = hasValidSize;
-
-  if (!isValid) return null;
+  if (!textfieldVariants) return null;
 
   const defaultClasses = {
-    inputWrapper: twMerge(
-      classNames(
+    textfieldWrapper: twMerge(
+      clsx(
         "relative",
         "flex",
         "flex-nowrap",
         "w-full",
-        textfieldVariants.sizes?.inputWrapper?.[size],
+        textfieldVariants.size.textfieldWrapper,
         "border-2",
         isFocused && !isInvalid
           ? "border-primary"
@@ -49,13 +41,13 @@ function getTextfieldClasses(
       ), className
     ),
     labelWrapper: twMerge(
-      classNames(
+      clsx(
         "relative",
         "flex",
         "items-center",
         "-my-0.5",
         "mr-auto",
-        textfieldVariants.sizes?.labelWrapper?.[size],
+        textfieldVariants.size.labelWrapper,
         "after:content-['']",
         "after:z-0",
         "after:absolute",
@@ -74,10 +66,10 @@ function getTextfieldClasses(
       )
     ),
     label: twMerge(
-      classNames(
+      clsx(
         "z-10",
         "translate-y-0 ",
-        textfieldVariants.sizes?.label?.[size],
+        textfieldVariants.size.label,
         "py-0.5",
         "px-1.5",
         "font-poppins",
@@ -96,14 +88,14 @@ function getTextfieldClasses(
       )
     ),
     input: twMerge(
-      classNames(
+      clsx(
         "z-10",
         "absolute",
         "top-0",
         "right-0",
         "bottom-0",
         "left-0",
-        textfieldVariants.sizes?.input?.[size],
+        textfieldVariants.size.input,
         "-my-0.5",
         "-mx-0.5",
         "font-poppins",
@@ -119,11 +111,11 @@ function getTextfieldClasses(
         "border-2",
         "border-transparent",
         rounded ? "rounded-full" : "rounded-lg",
-        disabled && classNames(
+        disabled && [
           "disabled:pointer-events-none",
           "disabled:cursor-not-allowed",
           "disabled:opacity-50"
-        ),
+        ],
         "transition-all",
         "duration-300",
         "ease-in-out"

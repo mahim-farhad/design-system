@@ -23,7 +23,7 @@ const iconTypes = {
     "lg": true,
     "xl": true
   }
-}
+};
 
 const typographyTypes = {
   types: {
@@ -37,7 +37,7 @@ const typographyTypes = {
     "small": true,
     "blockquote": true
   }
-}
+};
 
 const inputTypes = {
   types: {

@@ -1,16 +1,18 @@
-import classNames from "classnames";
-
-function getListVariants() {
+function getListVariants(type) {
   const typeVariants = {
-    ul: classNames(
-      "list-none",
-    ),
-    ol: classNames(
-      "list-disc",
-    )
+    ul: "list-none",
+    ol: "list-disc"
   };
 
-  return { types: typeVariants };
-};
+  const hasValidType = !(!typeVariants?.[type]);
+
+  const isValid = hasValidType;
+
+  if (!isValid) return null;
+
+  const listVariants = { type: typeVariants[type] };
+
+  return listVariants;
+}
 
 export default getListVariants;

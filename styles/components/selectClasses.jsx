@@ -1,17 +1,13 @@
-import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
 
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 
 import getTextfieldVariants from "@styles/variants/textfieldVariants";
 
 function getSelectClasses(
-  value,
-  size,
-  rounded,
-  disabled,
-  isFocused,
-  isFilled,
-  isInvalid,
+  value, size,
+  rounded, disabled,
+  isFocused, isFilled, isInvalid,
   className
 ) {
   const isLabelFloating = (
@@ -19,22 +15,18 @@ function getSelectClasses(
     isInvalid || value
   );
 
-  const textfieldVariants = getTextfieldVariants(isLabelFloating);
+  const textfieldVariants = getTextfieldVariants(size, isLabelFloating);
 
-  const hasValidSize = !(!textfieldVariants.sizes?.inputWrapper?.[size]);
-
-  const isValid = hasValidSize;
-
-  if (!isValid) return null;
+  if (!textfieldVariants) return null;
 
   const defaultClasses = {
     selectWrapper: twMerge(
-      classNames(
+      clsx(
         "relative",
         "flex",
         "flex-nowrap",
         "w-full",
-        textfieldVariants.sizes?.inputWrapper?.[size],
+        textfieldVariants.size.inputWrapper,
         "border-2",
         isFocused && !isInvalid
           ? "border-primary"
@@ -49,13 +41,13 @@ function getSelectClasses(
       ), className
     ),
     labelWrapper: twMerge(
-      classNames(
+      clsx(
         "relative",
         "flex",
         "items-center",
         "-my-0.5",
         "mr-auto",
-        textfieldVariants.sizes?.labelWrapper?.[size],
+        textfieldVariants.size.labelWrapper,
         "after:content-['']",
         "after:z-0",
         "after:absolute",
@@ -74,10 +66,10 @@ function getSelectClasses(
       )
     ),
     label: twMerge(
-      classNames(
+      clsx(
         "z-10",
         "translate-y-0 ",
-        textfieldVariants.sizes?.label?.[size],
+        textfieldVariants.size.label,
         "py-0.5",
         "px-1.5",
         "font-poppins",
@@ -96,7 +88,7 @@ function getSelectClasses(
       )
     ),
     button: twMerge(
-      classNames(
+      clsx(
         "z-10",
         "absolute",
         "top-0",
@@ -108,14 +100,14 @@ function getSelectClasses(
       )
     ),
     select: twMerge(
-      classNames(
+      clsx(
         "z-0",
         "absolute",
         "top-0",
         "right-0",
         "bottom-0",
         "left-0",
-        textfieldVariants.sizes?.input?.[size],
+        textfieldVariants.size.input,
         "-my-0.5",
         "-mx-0.5",
         "font-poppins",
@@ -131,24 +123,24 @@ function getSelectClasses(
         "border-2",
         "border-transparent",
         rounded ? "rounded-full" : "rounded-lg",
-        disabled && classNames(
+        disabled && [
           "disabled:pointer-events-none",
           "disabled:cursor-not-allowed",
           "disabled:opacity-50"
-        ),
+        ],
         "transition-all",
         "duration-300",
         "ease-in-out"
       )
     ),
     iconWrapper: twMerge(
-      classNames(
+      clsx(
         "flex",
         "items-center",
         "justify-center",
         "-my-0.5",
         "-mr-0.5",
-        textfieldVariants.sizes?.iconWrapper?.[size],
+        textfieldVariants.size.iconWrapper,
         "!w-auto",
         "!pl-0",
         { "text-error": isInvalid },
@@ -159,13 +151,13 @@ function getSelectClasses(
       )
     ),
     caret: twMerge(
-      classNames(
+      clsx(
         "flex",
         "items-center",
         "justify-center",
         "-my-0.5",
         "ml-auto",
-        textfieldVariants.sizes?.iconWrapper?.[size],
+        textfieldVariants.size.iconWrapper,
         "text-gray-400",
         "rounded-md",
         "transition-all",

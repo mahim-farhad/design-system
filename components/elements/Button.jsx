@@ -2,7 +2,10 @@ import { forwardRef } from "react";
 
 import PropTypes from "prop-types";
 
-import { iconTypes, buttonTypes } from "@utils/types";
+import {
+  iconTypes,
+  buttonTypes
+} from "@utils/types";
 
 import getIconClasses from "@styles/components/iconClasses";
 import getButtonClasses from "@styles/components/buttonClasses";
@@ -26,11 +29,13 @@ const Button = forwardRef(
     children,
     ...rest
   }, buttonRef) {
-    const btnClasses = getButtonClasses(
-      icon, extended, size,
-      variant, color,
-      rounded, disabled,
-      className
+    const btnClasses = (
+      getButtonClasses(
+        icon, extended, size,
+        variant, color,
+        rounded, disabled,
+        className
+      )
     );
 
     const iconClasses = getIconClasses(size, className);
@@ -44,7 +49,7 @@ const Button = forwardRef(
       !(!buttonTypes?.colors?.[color])
     );
 
-    const isValid = icon || icon === "" ? (
+    const isValid = icon ? (
       hasValidIcon && hasValidSize && hasValidVariant
     ) : hasValidSize && hasValidVariant;
 
@@ -60,12 +65,13 @@ const Button = forwardRef(
         disabled={disabled}
         {...rest}
       >
-        {icon ? !extended ? SVGIcon : (
-          <>
-            {SVGIcon}
-            {children}
-          </>
-        ) : children}
+        {
+          icon
+            ? !extended
+              ? SVGIcon
+              : <>{SVGIcon} {children}</>
+            : children
+        }
       </button>
     );
   }

@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { forwardRef, useState } from "react"
+import { forwardRef, useState } from "react";
 
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import classNames from "classnames"
+import classNames from "classnames";
 
-import useOutsideClick from "@hooks/useOutsideClick"
+import useOutsideClick from "@hooks/useOutsideClick";
 
-import { inputTypes } from "@utils/types"
+import { inputTypes } from "@utils/types";
 
-import getSelectClasses from "@styles/components/selectClasses"
+import getSelectClasses from "@styles/components/selectClasses";
 
-import Icon from "@components/elements/Icon"
+import Icon from "@components/elements/Icon";
 
 const CustomSelect = forwardRef(
   function CustomSelect({
@@ -31,33 +31,33 @@ const CustomSelect = forwardRef(
     disabled = false,
     ...rest
   }, selectRef) {
-    const [isFocused, setFocus] = useState(false)
-    const [isFilled, setFill] = useState(false)
-    const [isInvalid, setInvalid] = useState(false)
+    const [isFocused, setFocus] = useState(false);
+    const [isFilled, setFill] = useState(false);
+    const [isInvalid, setInvalid] = useState(false);
 
     const {
       isOpen,
       setIsOpen,
       modalRef
-    } = useOutsideClick()
+    } = useOutsideClick();
 
     function handleFocus() {
-      setFocus(true)
+      setFocus(true);
 
-      if (value) setFill(true)
+      if (value) setFill(true);
 
-      setInvalid(false)
+      setInvalid(false);
     }
 
     function handleBlur() {
-      setFocus(false)
+      setFocus(false);
 
       if (!value) {
-        setFill(false)
+        setFill(false);
 
-        setInvalid(true)
+        setInvalid(true);
       } else {
-        setFill(true)
+        setFill(true);
       }
     }
 
@@ -67,35 +67,29 @@ const CustomSelect = forwardRef(
           name,
           value: val
         }
-      })
+      });
 
-      console.log(value, val)
-
-      setIsOpen(false)
+      setIsOpen(false);
     }
 
     const selectClasses = (
       getSelectClasses(
-        value,
-        size,
-        rounded,
-        disabled,
-        isFocused,
-        isFilled,
-        isInvalid,
+        value, size,
+        rounded, disabled,
+        isFocused, isFilled, isInvalid,
         className
       )
-    )
+    );
 
-    const hasValidSize = !(!inputTypes.sizes?.[size])
+    const hasValidSize = !(!inputTypes.sizes?.[size]);
 
-    const isValid = hasValidSize
+    const isValid = hasValidSize;
 
-    if (!options || !isValid) return null
+    if (!options || !isValid) return null;
 
     return (
       <div
-        ref={modalRef}
+        // ref={modalRef}
         className={selectClasses?.selectWrapper}
         style={style}
         {...rest}
@@ -193,7 +187,7 @@ const CustomSelect = forwardRef(
                       "font-medium",
                       "capitalize",
                       "cursor-pointer",
-                      option.value === value
+                      option?.value === value
                         ? "text-primary bg-primary-100"
                         : "text-gray-400",
                       "hover:bg-gray-100",
@@ -212,18 +206,16 @@ const CustomSelect = forwardRef(
           </ul>
         )}
       </div>
-    )
+    );
   }
-)
+);
 
 CustomSelect.propTypes = {
-  size: PropTypes.oneOf(
-    Object.keys(inputTypes.sizes)
-  ),
+  size: PropTypes.oneOf(Object.keys(inputTypes.sizes)),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
   disabled: PropTypes.bool
-}
+};
 
-export default CustomSelect
+export default CustomSelect;
