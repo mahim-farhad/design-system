@@ -14,7 +14,7 @@ function Image({
 }) {
   const imgClasses = twMerge(
     classNames(
-      "w-full",
+      "w-full"
     ), className
   )
 

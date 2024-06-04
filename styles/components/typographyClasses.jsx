@@ -2,10 +2,10 @@ import clsx from "clsx";
 
 import { twMerge } from "tailwind-merge";
 
-import getTypeVariants from "@styles/variants/typographyVariants";
+import getTypographyVariants from "@styles/variants/typographyVariants";
 
 function getTypographyClasses(type, gradient, className) {
-  const typographyVariants = getTypeVariants(type);
+  const typographyVariants = getTypographyVariants(type);
 
   if (!typographyVariants) return null;
 

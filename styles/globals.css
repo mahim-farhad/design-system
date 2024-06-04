@@ -44,7 +44,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   color: inherit;
   box-shadow: none;
-  transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5s ease-in-out 0s;
 }
 
 @keyframes slide-from-right {

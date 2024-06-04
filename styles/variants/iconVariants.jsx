@@ -7,13 +7,13 @@ function getIconVariants(size) {
     xl: "w-6 h-6"
   };
 
-  const hasValidSize = !(!sizeVariants?.[size]);
+  const sizeVariant = sizeVariants?.[size];
 
-  const isValid = hasValidSize;
+  const isValid = sizeVariant;
 
   if (!isValid) return null;
 
-  const iconVariants = { size: sizeVariants[size] };
+  const iconVariants = { size: sizeVariant };
 
   return iconVariants;
 }

@@ -39,29 +39,6 @@ const typographyTypes = {
   }
 };
 
-const inputTypes = {
-  types: {
-    "text": true,
-    "email": true,
-    "password": true,
-    "number": true,
-    "date": true,
-    "tel": true,
-  },
-  variants: {
-    "filled": true,
-    "outlined": true,
-    "static": true
-  },
-  sizes: {
-    "xs": true,
-    "sm": true,
-    "base": true,
-    "lg": true,
-    "xl": true
-  }
-};
-
 const buttonTypes = {
   types: {
     "button": true,
@@ -102,6 +79,29 @@ const buttonTypes = {
   }
 };
 
+const inputTypes = {
+  types: {
+    "text": true,
+    "email": true,
+    "password": true,
+    "number": true,
+    "date": true,
+    "tel": true,
+  },
+  variants: {
+    "filled": true,
+    "outlined": true,
+    "static": true
+  },
+  sizes: {
+    "xs": true,
+    "sm": true,
+    "base": true,
+    "lg": true,
+    "xl": true
+  }
+};
+
 const listTypes = {
   types: {
     "ul": true,
@@ -110,9 +110,7 @@ const listTypes = {
 };
 
 export {
-  iconTypes,
-  typographyTypes,
-  inputTypes,
-  buttonTypes,
+  iconTypes, typographyTypes,
+  buttonTypes, inputTypes,
   listTypes,
 };

@@ -111,11 +111,9 @@ function getTextfieldClasses(
         "border-2",
         "border-transparent",
         rounded ? "rounded-full" : "rounded-lg",
-        disabled && [
-          "disabled:pointer-events-none",
-          "disabled:cursor-not-allowed",
-          "disabled:opacity-50"
-        ],
+        "disabled:pointer-events-none",
+        "disabled:cursor-not-allowed",
+        "disabled:opacity-50",
         "transition-all",
         "duration-300",
         "ease-in-out"

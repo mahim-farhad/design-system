@@ -1,45 +1,12 @@
 import clsx from "clsx";
 
-function getButtonVariants(
-  icon, extended, size,
-  variant, color
-) {
+function getSizeVariant(icon, extended, size) {
   const sizeVariants = {
-    xs: clsx(
-      "h-8",
-      "py-1.5",
-      "px-6",
-      "text-sm",
-      "leading-[16px]",
-    ),
-    sm: clsx(
-      "h-10",
-      "py-2",
-      "px-6",
-      "text-sm",
-      "leading-[16px]",
-    ),
-    base: clsx(
-      "h-12",
-      "py-3",
-      "px-8",
-      "text-base",
-      "leading-[15px]",
-    ),
-    lg: clsx(
-      "h-14",
-      "py-4",
-      "px-8",
-      "text-lg",
-      "leading-[16px]",
-    ),
-    xl: clsx(
-      "h-16",
-      "py-5",
-      "px-10",
-      "text-xl",
-      "leading-[15px]",
-    ),
+    xs: "h-8 py-1.5 px-6 text-sm leading-[16px]",
+    sm: "h-10 py-2 px-6 text-sm leading-[16px]",
+    base: "h-12 py-3 px-8 text-base leading-[15px]",
+    lg: "h-14 py-4 px-8 text-lg leading-[16px]",
+    xl: "h-16 py-5 px-10 text-xl leading-[15px]",
     iconOnly: {
       xs: "w-8 h-8",
       sm: "w-10 h-10",
@@ -49,6 +16,14 @@ function getButtonVariants(
     }
   };
 
+  const sizeVariant = icon && !extended ? (
+    sizeVariants?.iconOnly?.[size]
+  ) : sizeVariants?.[size];
+
+  return sizeVariant;
+}
+
+function getGradientVariants() {
   const gradientVariants = {
     monochrome: {
       primary: clsx(
@@ -257,7 +232,9 @@ function getButtonVariants(
       )
     }
   };
+}
 
+function getColorVariant(variant, color) {
   const colorVariants = {
     filled: {
       gray: clsx(
@@ -583,21 +560,23 @@ function getButtonVariants(
     }
   };
 
-  const hasValidSize = icon && !extended ? (
-    !(!sizeVariants?.iconOnly?.[size])
-  ) : !(!sizeVariants?.[size]);
+  const colorVariant = colorVariants?.[variant]?.[color];
 
-  const hasValidColor = !(!colorVariants?.[variant]?.[color]);
+  return colorVariant;
+}
 
-  const isValid = hasValidSize && hasValidColor;
+function getButtonVariants(icon, extended, size, variant, color) {
+  const sizeVariant = getSizeVariant(icon, extended, size);
+
+  const colorVariant = getColorVariant(variant, color);
+
+  const isValid = sizeVariant && colorVariant;
 
   if (!isValid) return null;
 
   const buttonVariants = {
-    size: icon && !extended ? (
-      sizeVariants.iconOnly[size]
-    ) : sizeVariants[size],
-    color: colorVariants[variant][color]
+    size: sizeVariant,
+    color: colorVariant
   };
 
   return buttonVariants;

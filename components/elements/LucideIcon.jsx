@@ -15,14 +15,14 @@ const LucideIcon = ({
 }) => {
   const iconClasses = getIconClasses(size, className);
 
-  const LucideIcon = icons[name];
-
-  const hasValidIcon = !(!icons[name]);
-  const hasValidSize = !(!iconTypes?.sizes[size]);
+  const hasValidIcon = icons?.[name];
+  const hasValidSize = iconTypes?.sizes?.[size];
 
   const isValid = hasValidIcon && hasValidSize;
 
   if (!isValid) return null;
+
+  const LucideIcon = icons[name];
 
   return (
     <LucideIcon
@@ -35,7 +35,7 @@ const LucideIcon = ({
 
 LucideIcon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(Object.keys(iconTypes.sizes)),
+  size: PropTypes.oneOf(Object.keys(iconTypes?.sizes)),
   className: PropTypes.string,
   style: PropTypes.object
 };

@@ -16,8 +16,8 @@ function Icon({
 
   const SVGIcon = getSVGIcon(name, iconClasses, style);
 
-  const hasValidIcon = !(!iconTypes?.icons[name]) && SVGIcon;
-  const hasValidSize = !(!iconTypes?.sizes[size]);
+  const hasValidIcon = iconTypes?.icons?.[name] && SVGIcon;
+  const hasValidSize = iconTypes?.sizes?.[size];
 
   const isValid = hasValidIcon && hasValidSize;
 
@@ -27,8 +27,8 @@ function Icon({
 }
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(Object.keys(iconTypes.icons)).isRequired,
-  size: PropTypes.oneOf(Object.keys(iconTypes.sizes)),
+  name: PropTypes.oneOf(Object.keys(iconTypes?.icons)).isRequired,
+  size: PropTypes.oneOf(Object.keys(iconTypes?.sizes)),
   className: PropTypes.string,
   style: PropTypes.object
 };

@@ -1,11 +1,8 @@
+import { fontFamily } from "tailwindcss/defaultTheme";
+
 import {
-  white,
-  gray,
-  black,
-  blue,
-  green,
-  amber,
-  red
+  white, gray, black, blue,
+  green, amber, red
 } from "tailwindcss/colors";
 
 /** @type {import("tailwindcss").Config} */
@@ -14,7 +11,7 @@ export const content = [
   "./app/**/*.{js,ts,jsx,tsx,mdx}",
   "./pages/**/*.{js,ts,jsx,tsx,mdx}",
   "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  "./styles/**/*.{js,jsx,ts,tsx}",
+  "./styles/**/*.{js,jsx,ts,tsx}"
 ];
 
 export const theme = {
@@ -22,17 +19,14 @@ export const theme = {
     sm: "40rem",
     md: "48rem",
     lg: "64rem",
-    xl: "80rem",
-    "2xl": "97.5rem",
+    xl: "80rem"
   },
   fontFamily: {
     inherit: "inherit",
-    default: ["var(--font-inter)"],
-    arvo: ["var(--font-arvo)"],
-    poppins: ["var(--font-poppins)"],
-    headings: ["var(--font-arvo)"],
-    mono: ["var(--font-fira-code)"],
-    custom: ["AkiraExpanded"],
+    sans: ["var(--font-sans)", ...fontFamily.sans],
+    serif: ["var(--font-serif)", ...fontFamily.serif],
+    headings: ["var(--font-serif)", ...fontFamily.serif],
+    mono: ["var(--font-mono)", ...fontFamily.mono]
   },
   colors: {
     inherit: "inherit",
@@ -41,21 +35,13 @@ export const theme = {
     white: white,
     gray: gray,
     black: black,
-    font: {
-      dark: gray[100],
-      light: gray[900],
-    },
-    heading: {
-      dark: white,
-      light: gray[800],
-    },
     surface: {
-      dark: "#182029",
       light: "#FFFFFF",
+      dark: "#182029",
     },
     background: {
-      dark: "#0e151a",
       light: "#F9FAFB",
+      dark: "#0e151a",
     },
     primary: {
       DEFAULT: blue[600],
@@ -151,15 +137,15 @@ export const theme = {
     },
     animation: {
       gradient: "gradient 2s linear infinite",
-      'infinite-scroll': 'infinite-scroll 25s linear infinite',
+      infiniteScroll: "infiniteScroll 25s linear infinite",
     },
     keyframes: {
       gradient: {
-        to: { "background-position": "200% center" },
+        to: { backgrounPosition: "200% center" }
       },
-      'infinite-scroll': {
-        from: { transform: 'translateX(0)' },
-        to: { transform: 'translateX(-100%)' },
+      infiniteScroll: {
+        from: { transform: "translateX(0)" },
+        to: { transform: "translateX(-100%)" }
       }
     }
   }

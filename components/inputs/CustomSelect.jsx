@@ -22,7 +22,7 @@ const CustomSelect = forwardRef(
     value,
     options,
     size = "base",
-    variant = "outlined",
+    // variant = "outlined",
     validation,
     rounded = false,
     className,
@@ -72,24 +72,22 @@ const CustomSelect = forwardRef(
       setIsOpen(false);
     }
 
-    const selectClasses = (
-      getSelectClasses(
-        value, size,
-        rounded, disabled,
-        isFocused, isFilled, isInvalid,
-        className
-      )
+    const selectClasses = getSelectClasses(
+      value, size,
+      rounded, disabled,
+      isFocused, isFilled, isInvalid,
+      className
     );
 
     const hasValidSize = !(!inputTypes.sizes?.[size]);
 
-    const isValid = hasValidSize;
+    const isValid = hasValidSize && options;
 
-    if (!options || !isValid) return null;
+    if (!isValid) return null;
 
     return (
       <div
-        // ref={modalRef}
+        ref={modalRef}
         className={selectClasses?.selectWrapper}
         style={style}
         {...rest}
@@ -161,6 +159,7 @@ const CustomSelect = forwardRef(
                 "flex",
                 "flex-col",
                 "gap-y-2",
+                "max-h-80",
                 "p-4",
                 "mt-2",
                 "-mx-0.5",
@@ -183,11 +182,11 @@ const CustomSelect = forwardRef(
                       "py-2",
                       "px-3",
                       "font-poppins",
-                      "text-base",
+                      "text-sm",
                       "font-medium",
                       "capitalize",
                       "cursor-pointer",
-                      option?.value === value
+                      option?.name === value
                         ? "text-primary bg-primary-100"
                         : "text-gray-400",
                       "hover:bg-gray-100",
@@ -197,9 +196,9 @@ const CustomSelect = forwardRef(
                       "ease-in-out"
                     )
                   }
-                  onClick={() => handleOptionClick(option?.value)}
+                  onClick={() => handleOptionClick(option?.name)}
                 >
-                  {option.label}
+                  {option.name}
                 </li>
               )
             ))}
@@ -212,6 +211,7 @@ const CustomSelect = forwardRef(
 
 CustomSelect.propTypes = {
   size: PropTypes.oneOf(Object.keys(inputTypes.sizes)),
+  // variant: PropTypes.oneOf(Object.keys(inputTypes.variants)),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,

@@ -1,66 +1,32 @@
 import {
-  Inter,
-  Arvo,
-  Poppins,
-  Fira_Code,
+  Poppins as Sans,
+  Arvo as Serif,
+  Fira_Code as Mono
 } from "next/font/google";
 
-const inter = Inter({
+const sans = Sans({
   subsets: ["latin"],
   weight: [
-    "100",
-    "200",
-    "300",
-    "400",
-    "500",
-    "600",
-    "700",
-    "800",
-    "900"
+    "100", "200", "300", "400",
+    "500", "600", "700",
+    "800", "900"
   ],
-  variable: "--font-inter",
+  variable: "--font-sans",
 });
 
-const arvo = Arvo({
+const serif = Serif({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-serif",
+});
+
+const mono = Mono({
   subsets: ["latin"],
   weight: [
-    "400",
-    "700"
+    "300", "400", "500",
+    "600", "700"
   ],
-  variable: "--font-arvo",
+  variable: "--font-mono",
 });
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: [
-    "100",
-    "200",
-    "300",
-    "400",
-    "500",
-    "600",
-    "700",
-    "800",
-    "900"
-  ],
-  variable: "--font-poppins",
-});
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  weight: [
-    "300",
-    "400",
-    "500",
-    "600",
-    "700",
-  ],
-  variable: "--font-fira-code",
-});
-
-export {
-  inter,
-  arvo,
-  poppins,
-  firaCode
-};
+export { sans, serif, mono };

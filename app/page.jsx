@@ -19,6 +19,9 @@ import Flex from "@components/layouts/Flex";
 import Icon from "@components/elements/Icon";
 import { List, ListItem } from "@components/elements/List";
 import LucideIcon from "@components/elements/LucideIcon";
+import CustomField from "@components/inputs/CustomField";
+import { Froala } from "@components/inputs/Editor";
+import Image from "@components/elements/Image";
 
 const selectOptions = [{
   id: 1,
@@ -59,6 +62,8 @@ function Home() {
       [name]: value
     })
   }
+
+  const [blockContent, setBlockContent] = useState();
 
   return (
     <Main>
@@ -144,16 +149,6 @@ function Home() {
                 onChange={handleChange}
               />
 
-              {/* <Textfield
-                type="date"
-                name="date"
-                label="Date"
-                className={classNames(
-                  "flex-1",
-                )}
-                onChange={handleChange}
-              /> */}
-
               <Textfield
                 type="number"
                 name="quantity"
@@ -174,8 +169,8 @@ function Home() {
               )}
             >
               <CustomSelect
-                name="country"
                 label="country"
+                name="country"
                 value={inputValues.country}
                 options={selectOptions}
                 className={classNames(
@@ -194,11 +189,13 @@ function Home() {
                 onChange={handleChange}
               />
             </Flex>
+
+            <Button variant="toned">Proceed to Payment</Button>
           </Flex>
         </Container>
       </Section>
     </Main>
-  )
+  );
 }
 
 export default Home;

@@ -4,13 +4,13 @@ function getListVariants(type) {
     ol: "list-disc"
   };
 
-  const hasValidType = !(!typeVariants?.[type]);
+  const typeVariant = typeVariants?.[type];
 
-  const isValid = hasValidType;
+  const isValid = typeVariant;
 
   if (!isValid) return null;
 
-  const listVariants = { type: typeVariants[type] };
+  const listVariants = { type: typeVariant };
 
   return listVariants;
 }

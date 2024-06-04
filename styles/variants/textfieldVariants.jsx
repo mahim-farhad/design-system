@@ -45,62 +45,36 @@ function getTextfieldVariants(size, isLabelFloating) {
       )
     },
     input: {
-      sm: clsx(
-        "px-3.5",
-        "text-sm"
-      ),
-      base: clsx(
-        "px-4",
-        "text-base"
-      ),
-      lg: clsx(
-        "px-4",
-        "text-lg"
-      ),
-      xl: clsx(
-        "px-4",
-        "text-xl"
-      )
+      sm: "px-3.5 text-sm",
+      base: "px-4 text-base",
+      lg: "px-4 text-lg",
+      xl: "px-4 text-xl"
     },
     iconWrapper: {
-      sm: clsx(
-        "w-10",
-        "h-10",
-        "p-3"
-      ),
-      base: clsx(
-        "w-12",
-        "h-12",
-        "p-3.5"
-      ),
-      lg: clsx(
-        "w-14",
-        "h-14",
-        "p-4"
-      ),
-      xl: clsx(
-        "w-16",
-        "h-16",
-        "p-5"
-      )
+      sm: "w-10 h-10 p-3",
+      base: "w-12 h-12 p-3.5",
+      lg: "w-14 h-14 p-4",
+      xl: "w-16 h-16 p-5"
     }
   };
 
-  const hasValidSize = !(!sizeVariants?.input?.[size]);
+  const sizeVariant = {
+    textfieldWrapper: sizeVariants?.textfieldWrapper?.[size],
+    labelWrapper: sizeVariants?.labelWrapper?.[size],
+    label: sizeVariants?.label?.[size],
+    input: sizeVariants?.input?.[size],
+    iconWrapper: sizeVariants?.iconWrapper?.[size]
+  };
 
-  const isValid = hasValidSize;
+  const isValid = (
+    sizeVariant.iconWrapper && sizeVariant.labelWrapper &&
+    sizeVariant.label && sizeVariant.input &&
+    sizeVariant.iconWrapper
+  );
 
   if (!isValid) return null;
 
-  const textfieldVariants = {
-    size: {
-      textfieldWrapper: sizeVariants.textfieldWrapper[size],
-      labelWrapper: sizeVariants.labelWrapper[size],
-      label: sizeVariants.label[size],
-      input: sizeVariants.input[size],
-      iconWrapper: sizeVariants.iconWrapper[size],
-    }
-  };
+  const textfieldVariants = { size: sizeVariant };
 
   return textfieldVariants;
 };

@@ -1,8 +1,4 @@
-function getSVGIcon(
-  name,
-  iconClasses,
-  style
-) {
+function getSVGIcon(name, iconClasses, style) {
   const SVGIcons = {
     "brand": (
       <svg
@@ -391,9 +387,7 @@ function getSVGIcon(
 
   const hasValidIcon = !(!SVGIcons?.[name]);
 
-  const isValid = hasValidIcon;
-
-  if (!isValid) return null;
+  if (!hasValidIcon) return null;
 
   return SVGIcons[name];
 }

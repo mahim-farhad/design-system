@@ -77,12 +77,11 @@ function TopNav() {
           >
             {
               <Button
-                onClick={openSidebar}
-                icon="settings"
                 size="xs"
                 variant="outlined"
                 color="secondary"
-              />
+                onClick={openSidebar}
+              >dfs</Button>
             }
           </GridItem>
         </Grid>

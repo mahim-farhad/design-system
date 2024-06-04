@@ -11,13 +11,11 @@ import getTextfieldClasses from "@styles/components/textfieldClasses";
 const Textfield = forwardRef(
   function Textfield({
     type = "text",
-    name,
     label,
+    name,
     placeholder,
     value,
-    icon,
     size = "base",
-    variant = "outlined",
     validation,
     rounded = false,
     className,
@@ -31,36 +29,33 @@ const Textfield = forwardRef(
     const [isInvalid, setInvalid] = useState(false);
 
     function handleFocus(event) {
-      setFocus(true)
+      setFocus(true);
 
-      if (event.target.value) setFill(true)
+      if (event.target.value) setFill(true);
 
-      setInvalid(false)
-    };
+      setInvalid(false);
+    }
 
     function handleBlur(event) {
-      setFocus(false)
+      setFocus(false);
 
       if (!event.target.value) {
-        setFill(false)
+        setFill(false);
 
-        setInvalid(true)
+        setInvalid(true);
       } else {
-        setFill(true)
+        setFill(true);
       }
-    };
+    }
 
-    const textfiledClasses = (
-      getTextfieldClasses(
-        value, size,
-        rounded, disabled,
-        isFocused, isFilled, isInvalid,
-        className
-      )
+    const textfiledClasses = getTextfieldClasses(
+      value, size, rounded, disabled,
+      isFocused, isFilled, isInvalid,
+      className
     );
 
-    const hasValidType = !(!inputTypes.types?.[type]);
-    const hasValidSize = !(!inputTypes.sizes?.[size]);
+    const hasValidType = inputTypes?.types?.[type];
+    const hasValidSize = inputTypes?.sizes?.[size];
 
     const isValid = hasValidType && hasValidSize;
 
@@ -68,14 +63,14 @@ const Textfield = forwardRef(
 
     return (
       <div
-        className={textfiledClasses.textfieldWrapper}
+        className={textfiledClasses?.textfieldWrapper}
         style={style}
         {...rest}
       >
-        <span className={textfiledClasses.labelWrapper}>
+        <span className={textfiledClasses?.labelWrapper}>
           <label
             htmlFor={name}
-            className={textfiledClasses.label}
+            className={textfiledClasses?.label}
           >
             {label}
           </label>
@@ -86,8 +81,8 @@ const Textfield = forwardRef(
           type={type}
           role="textfield"
           aria-label="textfield"
-          aria-labelledby="textfield"
-          className={textfiledClasses.input}
+          aria-labelledby={name}
+          className={textfiledClasses?.input}
           name={name}
           id={name}
           value={value}
@@ -102,10 +97,11 @@ const Textfield = forwardRef(
   }
 );
 
+Textfield.displayName = "Textfield";
+
 Textfield.propTypes = {
-  type: PropTypes.oneOf(Object.keys(inputTypes.types)),
-  size: PropTypes.oneOf(Object.keys(inputTypes.sizes)),
-  variant: PropTypes.oneOf(Object.keys(inputTypes.variants)),
+  type: PropTypes.oneOf(Object.keys(inputTypes?.types)),
+  size: PropTypes.oneOf(Object.keys(inputTypes?.sizes)),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,

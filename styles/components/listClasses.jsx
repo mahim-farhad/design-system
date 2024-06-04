@@ -31,7 +31,4 @@ function getListItemClasses(className) {
   return listItemClasses;
 }
 
-export {
-  getListClasses,
-  getListItemClasses
-};
+export { getListClasses, getListItemClasses };

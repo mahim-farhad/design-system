@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-function getTypeVariants(type) {
+function getTypographyVariants(type) {
   const typeVariants = {
     h1: clsx(
       "font-headings",
@@ -86,15 +86,15 @@ function getTypeVariants(type) {
     )
   };
 
-  const hasValidType = !(!typeVariants?.[type]);
+  const typeVariant = typeVariants?.[type];
 
-  const isValid = hasValidType;
+  const isValid = typeVariant;
 
   if (!isValid) return null;
 
-  const typographyVariants = { type: typeVariants[type] };
+  const typographyVariants = { type: typeVariant };
 
   return typographyVariants;
 }
 
-export default getTypeVariants;
+export default getTypographyVariants;

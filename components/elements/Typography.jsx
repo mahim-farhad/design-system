@@ -16,7 +16,7 @@ function Typography({
 
   const typographyClasses = getTypographyClasses(type, gradient, className);
 
-  const hasValidType = !(!typographyTypes.types[type]);
+  const hasValidType = typographyTypes?.types?.[type];
 
   const isValid = hasValidType;
 
@@ -33,8 +33,10 @@ function Typography({
   );
 }
 
+Typography.displayName = "Typography";
+
 Typography.propTypes = {
-  type: PropTypes.oneOf(Object.keys(typographyTypes.types)),
+  type: PropTypes.oneOf(Object.keys(typographyTypes?.types)),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired

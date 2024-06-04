@@ -2,10 +2,7 @@ import PropTypes from "prop-types";
 
 import { listTypes } from "@utils/types";
 
-import {
-  getListClasses,
-  getListItemClasses
-} from "@styles/components/listClasses";
+import { getListClasses, getListItemClasses } from "@styles/components/listClasses";
 
 function List({
   type = "ul",
@@ -18,7 +15,7 @@ function List({
 
   const listClasses = getListClasses(type, className);
 
-  const hasValidType = !(!listTypes.types[type]);
+  const hasValidType = listTypes?.types?.[type];
 
   const isValid = hasValidType;
 
@@ -57,7 +54,7 @@ function ListItem({
 }
 
 List.propTypes = {
-  type: PropTypes.oneOf(Object.keys(listTypes.types)),
+  type: PropTypes.oneOf(Object.keys(listTypes?.types)),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
@@ -70,7 +67,4 @@ ListItem.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export {
-  List,
-  ListItem
-};
+export { List, ListItem };
