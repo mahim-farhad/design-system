@@ -27,12 +27,12 @@
 
 ::-webkit-scrollbar-track {
   @apply dark:bg-white;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply dark:bg-primary rounded-none;
-}
-
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply dark:bg-primary rounded-none;
+    }
+    
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -43,7 +43,10 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   color: inherit;
+  @apply !bg-transparent;
+  -webkit-box-shadow: none;
   box-shadow: none;
+  -webkit-text-fill-color: #5e5e5e; /* Change the text color if needed */
   transition: background-color 5s ease-in-out 0s;
 }
 

@@ -110,7 +110,6 @@ const listTypes = {
 };
 
 export {
-  iconTypes, typographyTypes,
-  buttonTypes, inputTypes,
-  listTypes,
+  iconTypes, typographyTypes, buttonTypes,
+  inputTypes, listTypes,
 };

@@ -124,7 +124,7 @@ const CustomField = forwardRef(
             Material Tailwind HTML
           </li>
         </ul>
-      </div >
+      </div>
     );
   }
 );

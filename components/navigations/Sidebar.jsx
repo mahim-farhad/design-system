@@ -11,7 +11,7 @@ import classNames from "classnames"
 import { useToggleSidebar } from "@contexts/SidebarProvider"
 
 import Icon from "@components/elements/Icon"
-import DynamicLink from "@components/elements/DynamicLink"
+import Link from "@components/elements/Link"
 import Typography from "@components/elements/Typography"
 import Button from "@components/elements/Button"
 import {
@@ -130,7 +130,7 @@ function Body() {
               <ListItem
                 key={id}
               >
-                <DynamicLink
+                <Link
                   href={path}
                   className={classNames(
                     "relative",
@@ -201,7 +201,7 @@ function Body() {
                       />
                     </span>
                   }
-                </DynamicLink>
+                </Link>
               </ListItem>
             ))
           }

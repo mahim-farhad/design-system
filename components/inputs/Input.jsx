@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 
 import { inputTypes } from "@utils/types";
 
-import getTextfieldClasses from "@styles/components/textfieldClasses";
+import getInputClasses from "@styles/components/inputClasses";
 
-const Textfield = forwardRef(
-  function Textfield({
+const Input = forwardRef(
+  function Input({
     type = "text",
     name,
     placeholder,
@@ -48,7 +48,7 @@ const Textfield = forwardRef(
       }
     }
 
-    const textfiledClasses = getTextfieldClasses(
+    const textfiledClasses = getInputClasses(
       value, size, rounded, disabled,
       isFocused, isFilled, isInvalid,
       className
@@ -67,14 +67,11 @@ const Textfield = forwardRef(
         style={style}
         {...rest}
       >
-        <span className={textfiledClasses?.labelWrapper}>
-          <label
-            htmlFor={name}
-            className={textfiledClasses?.label}
-          >
-            {label}
-          </label>
-        </span>
+        <label
+          htmlFor={name}
+          before={label}
+          className={textfiledClasses?.label}
+        />
 
         <input
           ref={inputRef}
@@ -97,9 +94,9 @@ const Textfield = forwardRef(
   }
 );
 
-Textfield.displayName = "Textfield";
+Input.displayName = "Input";
 
-Textfield.propTypes = {
+Input.propTypes = {
   type: PropTypes.oneOf(Object.keys(inputTypes?.types)),
   name: PropTypes.string,
   placeholder: PropTypes.string,
@@ -112,4 +109,4 @@ Textfield.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default Textfield;
+export default Input;

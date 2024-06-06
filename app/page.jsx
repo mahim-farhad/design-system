@@ -22,6 +22,8 @@ import LucideIcon from "@components/elements/LucideIcon";
 import CustomField from "@components/inputs/CustomField";
 import { Froala } from "@components/inputs/Editor";
 import Image from "@components/elements/Image";
+import Link from "@components/elements/Link";
+import Input from "@components/inputs/Input";
 
 const selectOptions = [{
   id: 1,
@@ -163,8 +165,9 @@ function Home() {
             <Flex
               className={classNames(
                 "flex",
+                "flex-wrap",
                 "items-center",
-                "gap-x-4",
+                "gap-4",
                 "w-full",
               )}
             >
@@ -174,17 +177,17 @@ function Home() {
                 value={inputValues.country}
                 options={selectOptions}
                 className={classNames(
-                  "flex-1",
+                  "sm:flex-1",
                 )}
                 onChange={handleChange}
               />
 
-              <Textfield
-                type="password"
-                name="password"
-                label="Password"
+              <Input
+                type="email"
+                name="email"
+                label="email"
                 className={classNames(
-                  "flex-1",
+                  "sm:flex-1",
                 )}
                 onChange={handleChange}
               />

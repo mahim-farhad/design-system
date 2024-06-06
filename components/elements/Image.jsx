@@ -1,27 +1,23 @@
-import PropTypes from "prop-types"
+import NextImage from "next/image"
 
-import { twMerge } from "tailwind-merge"
+import PropTypes from "prop-types";
 
-import classNames from "classnames"
+import { twMerge } from "tailwind-merge";
 
 function Image({
   uniqueKey,
   src,
   alt,
-  className = "",
-  style = {},
+  className,
+  style,
   ...rest
 }) {
-  const imgClasses = twMerge(
-    classNames(
-      "w-full"
-    ), className
-  )
+  const imgClasses = twMerge("w-full", className);
 
-  if (!src && !alt) return null
+  if (!src && !alt) return null;
 
   return (
-    <img
+    <NextImage
       key={uniqueKey}
       src={src}
       alt={alt}
@@ -30,8 +26,10 @@ function Image({
       style={style}
       {...rest}
     />
-  )
+  );
 }
+
+Image.displayName = "Image";
 
 Image.propTypes = {
   uniqueKey: PropTypes.any,
@@ -39,6 +37,6 @@ Image.propTypes = {
   alt: PropTypes.string.isRequired,
   className: PropTypes.string,
   style: PropTypes.object
-}
+};
 
-export default Image
+export default Image;

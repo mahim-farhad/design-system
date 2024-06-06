@@ -2,7 +2,10 @@ import PropTypes from "prop-types";
 
 import { listTypes } from "@utils/types";
 
-import { getListClasses, getListItemClasses } from "@styles/components/listClasses";
+import {
+  getListClasses,
+  getListItemClasses
+} from "@styles/components/listClasses";
 
 function List({
   type = "ul",
@@ -53,12 +56,16 @@ function ListItem({
   );
 }
 
+List.displayName = "List";
+
 List.propTypes = {
   type: PropTypes.oneOf(Object.keys(listTypes?.types)),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
 };
+
+ListItem.displayName = "ListItem";
 
 ListItem.propTypes = {
   uniqueKey: PropTypes.any,

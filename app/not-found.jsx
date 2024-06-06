@@ -1,6 +1,6 @@
 import classNames from "classnames"
 
-import DynamicLink from "@components/elements/DynamicLink"
+import Link from "@components/elements/Link"
 import Typography from "@components/elements/Typography"
 
 import Main from "@components/layouts/Main"
@@ -47,7 +47,7 @@ function NotFound() {
               Page Not Found
             </Typography>
 
-            <DynamicLink
+            <Link
               href={"/"}
               className={classNames(
                 "inline-block",
@@ -64,7 +64,7 @@ function NotFound() {
               )}
             >
               Go Back To Home
-            </DynamicLink>
+            </Link>
           </Box>
         </Container>
       </Section>

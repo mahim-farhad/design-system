@@ -10,12 +10,9 @@ function getSelectClasses(
   isFocused, isFilled, isInvalid,
   className
 ) {
-  const isLabelFloating = (
-    isFocused || isFilled ||
-    isInvalid || value
-  );
+  const isActive = isFocused || isFilled || value;
 
-  const textfieldVariants = getTextfieldVariants(size, isLabelFloating);
+  const textfieldVariants = getTextfieldVariants(size, isActive);
 
   if (!textfieldVariants) return null;
 
@@ -53,7 +50,7 @@ function getSelectClasses(
         "after:absolute",
         "after:top-0",
         "after:left-0",
-        isLabelFloating
+        isActive
           ? "after:scale-x-1 after:opacity-1"
           : "after:scale-x-0 after:opacity-0",
         "after:origin-center",

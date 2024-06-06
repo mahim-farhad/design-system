@@ -1,10 +1,20 @@
 import PropTypes from "prop-types";
 
-import { icons } from 'lucide-react';
-
 import { iconTypes } from "@utils/types";
 
 import getIconClasses from "@styles/components/iconClasses";
+
+import { icons } from 'lucide-react';
+
+function capitalize(word) {
+  if (typeof word !== 'string' || word.length === 0) {
+    return word;
+  }
+
+  return (
+    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  );
+}
 
 const LucideIcon = ({
   name,
@@ -15,23 +25,24 @@ const LucideIcon = ({
 }) => {
   const iconClasses = getIconClasses(size, className);
 
-  const hasValidIcon = icons?.[name];
+  const Icon = icons?.[capitalize(name)];
+
   const hasValidSize = iconTypes?.sizes?.[size];
 
-  const isValid = hasValidIcon && hasValidSize;
+  const isValid = Icon && hasValidSize;
 
   if (!isValid) return null;
 
-  const LucideIcon = icons[name];
-
   return (
-    <LucideIcon
+    <Icon
       className={iconClasses}
       style={style}
       {...rest}
     />
   );
 }
+
+LucideIcon.displayName = "Icon";
 
 LucideIcon.propTypes = {
   name: PropTypes.string.isRequired,

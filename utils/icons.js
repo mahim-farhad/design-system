@@ -385,7 +385,7 @@ function getSVGIcon(name, iconClasses, style) {
     ),
   };
 
-  const hasValidIcon = !(!SVGIcons?.[name]);
+  const hasValidIcon = SVGIcons?.[name];
 
   if (!hasValidIcon) return null;
 

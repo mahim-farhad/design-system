@@ -38,11 +38,11 @@ function getButtonClasses(
       "outline-none",
       "border-2",
       rounded ? "rounded-full" : "rounded-lg",
-      disabled && [
+      disabled ? [
         "disabled:pointer-events-none",
         "disabled:cursor-not-allowed",
         "disabled:opacity-50"
-      ],
+      ] : null,
       "transition-all",
       "duration-300",
       "ease-in-out"

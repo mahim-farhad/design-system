@@ -3,7 +3,7 @@ import classNames from "classnames"
 import Animate from "@components/animation/Animate"
 
 import Typography from "@components/elements/Typography"
-import DynamicLink from "@components/elements/DynamicLink"
+import Link from "@components/elements/Link"
 
 import Container from "@components/layouts/Container"
 import Box from "@components/layouts/Box"
@@ -55,7 +55,7 @@ function Footer() {
                 "col-span-1",
               )}
             >
-              <DynamicLink
+              <Link
                 path={`/`}
                 className={classNames(
                   "block",
@@ -67,7 +67,7 @@ function Footer() {
                 )}
               >
                 {"<Know The Developer />"}
-              </DynamicLink>
+              </Link>
             </Box>
           </Box>
         </Container>

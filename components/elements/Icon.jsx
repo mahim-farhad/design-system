@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-import getSVGIcon from "@utils/icons";
-
 import { iconTypes } from "@utils/types";
 
 import getIconClasses from "@styles/components/iconClasses";
+
+import getSVGIcon from "@utils/icons";
 
 function Icon({
   name,
@@ -25,6 +25,8 @@ function Icon({
 
   return SVGIcon;
 }
+
+Icon.displayName = "Icon";
 
 Icon.propTypes = {
   name: PropTypes.oneOf(Object.keys(iconTypes?.icons)).isRequired,

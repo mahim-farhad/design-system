@@ -1,22 +1,13 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
-
-import classNames from "classnames"
+import getDividerClasses from "@styles/components/dividerClasses";
 
 function Divider({
-  className = "",
-  style = {},
+  className,
+  style,
   ...rest
 }) {
-  const dividerClasses = twMerge(
-    classNames(
-      "w-full",
-      "h-px",
-      "bg-gray-300",
-      "border-0",
-    ), className
-  )
+  const dividerClasses = getDividerClasses(className);
 
   return (
     <hr
@@ -24,12 +15,14 @@ function Divider({
       style={style}
       {...rest}
     />
-  )
+  );
 }
+
+Divider.displayName = "Divider";
 
 Divider.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object
-}
+};
 
-export default Divider
+export default Divider;

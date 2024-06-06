@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-function getTextfieldVariants(size, isLabelFloating) {
+function getTextfieldVariants(size, isActive) {
   const sizeVariants = {
     textfieldWrapper: {
       sm: "h-10",
@@ -17,28 +17,28 @@ function getTextfieldVariants(size, isLabelFloating) {
     label: {
       sm: clsx(
         "text-base",
-        isLabelFloating && [
+        isActive && [
           "-translate-y-[19px]",
           "text-sm"
         ]
       ),
       base: clsx(
         "text-base",
-        isLabelFloating && [
+        isActive && [
           "-translate-y-[23px]",
           "text-sm"
         ]
       ),
       lg: clsx(
         "text-lg",
-        isLabelFloating && [
+        isActive && [
           "-translate-y-[27px]",
           "text-base"
         ]
       ),
       xl: clsx(
         "text-lg",
-        isLabelFloating && [
+        isActive && [
           "-translate-y-[31px]",
           "text-base"
         ]
@@ -67,7 +67,7 @@ function getTextfieldVariants(size, isLabelFloating) {
   };
 
   const isValid = (
-    sizeVariant.iconWrapper && sizeVariant.labelWrapper &&
+    sizeVariant.textfieldWrapper && sizeVariant.labelWrapper &&
     sizeVariant.label && sizeVariant.input &&
     sizeVariant.iconWrapper
   );
