@@ -27,12 +27,12 @@
 
 ::-webkit-scrollbar-track {
   @apply dark:bg-white;
-  }
+}
   
-  ::-webkit-scrollbar-thumb {
-    @apply dark:bg-primary rounded-none;
-    }
-    
+::-webkit-scrollbar-thumb {
+  @apply dark:bg-primary rounded-none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

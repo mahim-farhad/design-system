@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 import {
   AnimatePresence,
   motion,
   easeInOut
-} from "framer-motion"
+} from "framer-motion";
 
 function Animate({
   key,
@@ -19,7 +19,7 @@ function Animate({
     duration: 0.3,
     easeInOut
   },
-  className = "",
+  className,
   children
 }) {
   return (
@@ -39,11 +39,11 @@ function Animate({
         {children}
       </motion.div>
     </AnimatePresence>
-  )
+  );
 }
 
 Animate.propTypes = {
   children: PropTypes.node.isRequired
-}
+};
 
-export default Animate
+export default Animate;

@@ -6,9 +6,12 @@ import PropTypes from "prop-types";
 
 import { inputTypes } from "@utils/types";
 
+import useOutsideClick from "@hooks/useOutsideClick";
+
 import getSelectClasses from "@styles/components/selectClasses";
 
 import Icon from "@components/elements/Icon";
+import { Menu, MenuItem } from "@components/elements/Menu";
 
 const Select = forwardRef(
   function Select({
@@ -27,13 +30,19 @@ const Select = forwardRef(
     ...rest
   }, selectRef) {
     const [isFocused, setFocused] = useState(false);
-    const [isFilled, setFilled] = useState(false);
+    const [isFilled, setFill] = useState(false);
     const [isInvalid, setInvalid] = useState(false);
+
+    const {
+      isModalOpen,
+      setModalOpen,
+      modalRef
+    } = useOutsideClick();
 
     function handleFocus(event) {
       setFocused(true);
 
-      if (event.target.value) setFilled(true);
+      if (event.target.value) setFill(true);
 
       setInvalid(false);
     }
@@ -42,12 +51,31 @@ const Select = forwardRef(
       setFocused(false);
 
       if (!event.target.value) {
-        setFilled(false);
+        setFill(false);
 
         setInvalid(true);
       } else {
-        setFilled(true);
+        setFill(true);
       }
+    }
+
+    function handleClick(event) {
+      event.preventDefault();
+
+      // event.target.focus();
+
+      setModalOpen(!isModalOpen);
+    }
+
+    function handleOptionClick(val) {
+      onChange({
+        target: {
+          name: name,
+          value: val
+        }
+      });
+
+      setModalOpen(false);
     }
 
     const selectClasses = getSelectClasses(
@@ -64,6 +92,7 @@ const Select = forwardRef(
 
     return (
       <div
+        ref={modalRef}
         className={selectClasses?.selectWrapper}
         style={style}
         {...rest}
@@ -77,21 +106,54 @@ const Select = forwardRef(
           </label>
         </span>
 
+        {/* <button
+          type="button"
+          role="combobox"
+          aria-expanded={isModalOpen}
+          aria-haspopup="menubox"
+          className={selectClasses?.button}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onClick={() => setModalOpen(!isModalOpen)}
+          disabled={disabled}
+        >
+          {
+            value ? (
+              options.find(
+                option => option.value === value
+              )?.label
+            ) : placeholder
+          }
+
+          <span className={selectClasses?.caret}>
+            <Icon
+              name="caret-down"
+              size={size}
+              className={
+                classNames(
+                  { "-rotate-180": isModalOpen },
+                  "duration-[inherit]",
+                )
+              }
+            />
+          </span>
+        </button> */}
+
         <select
           ref={selectRef}
           role="combobox"
+          aria-expanded={isModalOpen}
           aria-haspopup="menubox"
           aria-label="select"
           aria-labelledby={name}
           className={selectClasses?.button}
           name={name}
           id={name}
-          value={value}
           placeholder={placeholder}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          onChange={onChange}
-          disabled={disabled}
+          onClick={handleClick}
+        // disabled
         >
           {options?.map((option) => (
             <option
@@ -104,14 +166,32 @@ const Select = forwardRef(
           ))}
         </select>
 
-        <span className={selectClasses?.caret}>
-          <Icon
-            name="angles-up-down"
-            size={"sm"}
-          />
-        </span>
+        {isModalOpen && (
+          <Menu
+            role="listbox"
+            aria-label="Options Menu"
+            aria-orientation="vertical"
+            className="origin-top"
+          >
+            {options?.map((option) => (
+              (option) && (
+                <MenuItem
+                  uniqueKey={option.id}
+                  role="option"
+                  aria-selected={option.value === value}
+                  aria-hidden={option.hidden || false}
+                  selected={option.value === value}
+                  tabIndex={0}
+                  onClick={() => handleOptionClick(option.value)}
+                >
+                  {option.label}
+                </MenuItem>
+              )
+            ))}
+          </Menu>
+        )}
       </div>
-    )
+    );
   }
 );
 

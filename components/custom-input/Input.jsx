@@ -6,54 +6,51 @@ import PropTypes from "prop-types";
 
 import { inputTypes } from "@utils/types";
 
-import getTextfieldClasses from "@styles/components/textfieldClasses";
+import getInputClasses from "@styles/components/inputClasses";
 
-const Textfield = forwardRef(
-  function Textfield({
+const Input = forwardRef(
+  function Input({
     type = "text",
     name,
-    label,
-    defaultValue,
-    value,
     placeholder,
+    label,
+    value,
     size = "base",
     validation,
     rounded = false,
     className,
     style,
-    onFocus = () => { },
-    onBlur = () => { },
-    onChange = () => { },
-    required,
+    onChange,
     disabled = false,
     ...rest
   }, inputRef) {
     const [isFocused, setFocus] = useState(false);
+    const [isFilled, setFill] = useState(false);
     const [isInvalid, setInvalid] = useState(false);
 
     function handleFocus(event) {
       setFocus(true);
 
-      setInvalid(false);
+      if (event.target.value) setFill(true);
 
-      onFocus && onFocus(event);
+      setInvalid(false);
     }
 
     function handleBlur(event) {
       setFocus(false);
 
-      if (required) setInvalid(!event.target.value);
+      if (!event.target.value) {
+        setFill(false);
 
-      onBlur && onBlur(event);
+        setInvalid(true);
+      } else {
+        setFill(true);
+      }
     }
 
-    function handleChange(event) {
-      onChange && onChange(event);
-    }
-
-    const textfiledClasses = getTextfieldClasses(
-      value, defaultValue, size, rounded,
-      isFocused, isInvalid, disabled,
+    const textfiledClasses = getInputClasses(
+      value, size, rounded, disabled,
+      isFocused, isFilled, isInvalid,
       className
     );
 
@@ -68,15 +65,13 @@ const Textfield = forwardRef(
       <div
         className={textfiledClasses?.textfieldWrapper}
         style={style}
+        {...rest}
       >
-        <span className={textfiledClasses?.labelWrapper}>
-          <label
-            htmlFor={name}
-            className={textfiledClasses?.label}
-          >
-            {label}
-          </label>
-        </span>
+        <label
+          htmlFor={name}
+          before={label}
+          className={textfiledClasses?.label}
+        />
 
         <input
           ref={inputRef}
@@ -87,38 +82,31 @@ const Textfield = forwardRef(
           className={textfiledClasses?.input}
           name={name}
           id={name}
-          defaultValue={defaultValue}
           value={value}
           placeholder={placeholder}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          onChange={handleChange}
-          required={required}
+          onChange={onChange}
           disabled={disabled}
-          {...rest}
         />
       </div>
     );
   }
 );
 
-Textfield.displayName = "Textfield";
+Input.displayName = "Input";
 
-Textfield.propTypes = {
+Input.propTypes = {
   type: PropTypes.oneOf(Object.keys(inputTypes?.types)),
   name: PropTypes.string,
-  label: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.any,
+  label: PropTypes.string,
+  value: PropTypes.string,
   size: PropTypes.oneOf(Object.keys(inputTypes?.sizes)),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
   disabled: PropTypes.bool
 };
 
-export default Textfield;
+export default Input;

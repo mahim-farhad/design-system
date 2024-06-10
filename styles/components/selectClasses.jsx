@@ -5,12 +5,11 @@ import { twMerge } from "tailwind-merge";
 import getTextfieldVariants from "@styles/variants/textfieldVariants";
 
 function getSelectClasses(
-  value, size,
-  rounded, disabled,
+  value, size, rounded, disabled,
   isFocused, isFilled, isInvalid,
   className
 ) {
-  const isActive = isFocused || isFilled || value;
+  const isActive = isFocused || isFilled || isInvalid || value;
 
   const textfieldVariants = getTextfieldVariants(size, isActive);
 
@@ -23,7 +22,7 @@ function getSelectClasses(
         "flex",
         "flex-nowrap",
         "w-full",
-        textfieldVariants.size.inputWrapper,
+        textfieldVariants.size.textfieldWrapper,
         "border-2",
         isFocused && !isInvalid
           ? "border-primary"
@@ -35,7 +34,8 @@ function getSelectClasses(
         "transition-all",
         "duration-300",
         "ease-in-out"
-      ), className
+      ),
+      className
     ),
     labelWrapper: twMerge(
       clsx(
@@ -69,7 +69,7 @@ function getSelectClasses(
         textfieldVariants.size.label,
         "py-0.5",
         "px-1.5",
-        "font-poppins",
+        "font-sans",
         "leading-[16px]",
         "font-medium",
         isFocused && !isInvalid
@@ -86,30 +86,22 @@ function getSelectClasses(
     ),
     button: twMerge(
       clsx(
-        "z-10",
-        "absolute",
-        "top-0",
-        "right-0",
-        "bottom-0",
-        "left-0",
-        "-my-0.5",
-        "-mx-0.5"
-      )
-    ),
-    select: twMerge(
-      clsx(
         "z-0",
         "absolute",
         "top-0",
         "right-0",
         "bottom-0",
         "left-0",
+        "flex",
+        "items-center",
         textfieldVariants.size.input,
+        "pr-0",
         "-my-0.5",
         "-mx-0.5",
-        "font-poppins",
+        "font-sans",
         "leading-[25px]",
         "font-medium",
+        "text-left",
         "uppercase",
         "whitespace-nowrap",
         "appearance-none",
@@ -125,23 +117,6 @@ function getSelectClasses(
           "disabled:cursor-not-allowed",
           "disabled:opacity-50"
         ],
-        "transition-all",
-        "duration-300",
-        "ease-in-out"
-      )
-    ),
-    iconWrapper: twMerge(
-      clsx(
-        "flex",
-        "items-center",
-        "justify-center",
-        "-my-0.5",
-        "-mr-0.5",
-        textfieldVariants.size.iconWrapper,
-        "!w-auto",
-        "!pl-0",
-        { "text-error": isInvalid },
-        "rounded-md",
         "transition-all",
         "duration-300",
         "ease-in-out"

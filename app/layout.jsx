@@ -40,11 +40,11 @@ function RootLayout({ children }) {
       )}
     >
       <body className={bodyClasses}>
-        <SidebarProvider>
+        {/* <SidebarProvider>
           <TopNav />
 
           <Sidebar />
-        </SidebarProvider>
+        </SidebarProvider> */}
 
         {/* <ModalProvider> */}
         {children}

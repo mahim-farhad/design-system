@@ -38,14 +38,13 @@ const Button = forwardRef(
 
     const hasValidIcon = iconTypes?.icons?.[icon] && SVGIcon;
     const hasValidSize = buttonTypes?.sizes?.[size];
-    const hasValidVariant = (
+    const hasValidVariant =
       buttonTypes?.variants?.[variant] &&
-      buttonTypes?.colors?.[color]
-    );
+      buttonTypes?.colors?.[color];
 
-    const isValid = icon ? (
-      hasValidIcon && hasValidSize && hasValidVariant
-    ) : hasValidSize && hasValidVariant;
+    const isValid = icon
+      ? hasValidIcon && hasValidSize && hasValidVariant
+      : hasValidSize && hasValidVariant;
 
     if (!isValid) return null;
 

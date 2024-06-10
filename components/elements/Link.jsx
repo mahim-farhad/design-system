@@ -24,7 +24,7 @@ function Link({
 
   function handleClick(event) {
     if (!transition && !document.startViewTransition) {
-      return null;
+      return;
     } else {
       event.preventDefault();
 

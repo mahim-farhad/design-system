@@ -5,11 +5,11 @@ import { twMerge } from "tailwind-merge";
 import getTextfieldVariants from "@styles/variants/textfieldVariants";
 
 function getTextfieldClasses(
-  value, size, rounded, disabled,
-  isFocused, isFilled, isInvalid,
+  value, defaultValue, size, rounded,
+  isFocused, isInvalid, disabled,
   className
 ) {
-  const isActive = isFocused || isFilled || value;
+  const isActive = isFocused || defaultValue || value;
 
   const textfieldVariants = getTextfieldVariants(size, isActive);
 

@@ -1,112 +1,114 @@
-"use client";
+import { useState } from "react";
 
-import { forwardRef, useState } from "react";
+import clsx from "clsx";
 
-import PropTypes from "prop-types";
+import { twMerge } from "tailwind-merge";
 
-import { inputTypes } from "@utils/types";
+const FormInput = (props) => {
+  const [isFocused, setFocused] = useState(false);
+  const [isFilled, setFill] = useState(false);
+  const [isInvalid, setInvalid] = useState(false);
 
-import getInputClasses from "@styles/components/inputClasses";
-
-const Input = forwardRef(
-  function Input({
-    type = "text",
+  const {
     name,
-    placeholder,
     label,
-    value,
-    size = "base",
-    validation,
-    rounded = false,
-    className,
-    style,
+    errorMessage,
     onChange,
-    disabled = false,
-    ...rest
-  }, inputRef) {
-    const [isFocused, setFocus] = useState(false);
-    const [isFilled, setFill] = useState(false);
-    const [isInvalid, setInvalid] = useState(false);
+    id,
+    ...inputProps
+  } = props;
 
-    function handleFocus(event) {
-      setFocus(true);
+  const handleFocus = (e) => {
+    setFocused(true);
+  };
 
-      if (event.target.value) setFill(true);
-
-      setInvalid(false);
-    }
-
-    function handleBlur(event) {
-      setFocus(false);
-
-      if (!event.target.value) {
-        setFill(false);
-
-        setInvalid(true);
-      } else {
-        setFill(true);
-      }
-    }
-
-    const textfiledClasses = getInputClasses(
-      value, size, rounded, disabled,
-      isFocused, isFilled, isInvalid,
-      className
-    );
-
-    const hasValidType = inputTypes?.types?.[type];
-    const hasValidSize = inputTypes?.sizes?.[size];
-
-    const isValid = hasValidType && hasValidSize;
-
-    if (!isValid) return null;
-
-    return (
-      <div
-        className={textfiledClasses?.textfieldWrapper}
-        style={style}
-        {...rest}
+  return (
+    <div
+      className={twMerge(
+        clsx(
+          "flex",
+          "flex-col",
+        )
+      )}
+    >
+      <label
+        htmlFor={name}
+        className={twMerge(
+          clsx(
+            "py-0.5",
+            "px-1.5",
+            "font-sans",
+            "text-base",
+            "leading-[16px]",
+            "font-medium",
+            "bg-transparent",
+            "rounded-sm",
+            "transition-all",
+            "duration-300",
+            "ease-in-out"
+          )
+        )}
       >
-        <label
-          htmlFor={name}
-          before={label}
-          className={textfiledClasses?.label}
-        />
+        {label}
+      </label>
 
-        <input
-          ref={inputRef}
-          type={type}
-          role="textfield"
-          aria-label="textfield"
-          aria-labelledby={name}
-          className={textfiledClasses?.input}
-          name={name}
-          id={name}
-          value={value}
-          placeholder={placeholder}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={onChange}
-          disabled={disabled}
-        />
-      </div>
-    );
-  }
-);
+      <input
+        {...inputProps}
+        className={twMerge(
+          clsx(
+            "h-14",
+            "py-3",
+            "px-4",
+            "mt-2",
+            "mb-1",
+            "font-sans",
+            "leading-[25px]",
+            "font-medium",
+            "uppercase",
+            "peer",
+            "whitespace-nowrap",
+            "appearance-none",
+            "cursor-pointer",
+            "text-gray-400",
+            "bg-transparent",
+            "outline-none",
+            "border-[1px]",
+            "border-gray-400",
+            "valid:border-success",
+            "invalid:border-error",
+            "rounded-lg",
+            "disabled:pointer-events-none",
+            "disabled:cursor-not-allowed",
+            "disabled:opacity-50",
+            "transition-all",
+            "duration-300",
+            "ease-in-out"
+          )
+        )}
+        onChange={onChange}
+        onBlur={handleFocus}
+        onFocus={() =>
+          setFocused(true)
+        }
+        focused={isFocused.toString()}
+      />
 
-Input.displayName = "Input";
-
-Input.propTypes = {
-  type: PropTypes.oneOf(Object.keys(inputTypes?.types)),
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  label: PropTypes.string,
-  value: PropTypes.string,
-  size: PropTypes.oneOf(Object.keys(inputTypes?.sizes)),
-  rounded: PropTypes.bool,
-  className: PropTypes.string,
-  style: PropTypes.object,
-  disabled: PropTypes.bool
+      {errorMessage && (
+        <span
+          className={twMerge(
+            clsx(
+              "hidden",
+              "font-sans",
+              "text-xs",
+              "font-medium",
+            )
+          )}
+        >
+          {errorMessage}
+        </span>
+      )}
+    </div>
+  );
 };
 
-export default Input;
+export default FormInput;

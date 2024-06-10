@@ -14,7 +14,8 @@ function getIconClasses(size, className) {
       "inline-block",
       iconVariants.size,
       "leading-none",
-      "whitespace-nowrap"
+      "whitespace-nowrap",
+      "text-gray-400",
     ),
     className
   );
