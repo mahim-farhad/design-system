@@ -1,8 +1,8 @@
-"use client";
-
 import { forwardRef, useState } from "react";
 
 import PropTypes from "prop-types";
+
+import { motion } from "framer-motion";
 
 import { inputTypes } from "@utils/types";
 
@@ -13,11 +13,9 @@ const Textfield = forwardRef(
     type = "text",
     name,
     label,
-    defaultValue,
     value,
     placeholder,
     size = "base",
-    validation,
     rounded = false,
     className,
     style,
@@ -25,6 +23,7 @@ const Textfield = forwardRef(
     onBlur = () => { },
     onChange = () => { },
     required,
+    error,
     disabled = false,
     ...rest
   }, inputRef) {
@@ -42,7 +41,7 @@ const Textfield = forwardRef(
     function handleBlur(event) {
       setFocus(false);
 
-      if (required) setInvalid(!event.target.value);
+      setInvalid(error);
 
       onBlur && onBlur(event);
     }
@@ -52,8 +51,8 @@ const Textfield = forwardRef(
     }
 
     const textfiledClasses = getTextfieldClasses(
-      value, defaultValue, size, rounded,
-      isFocused, isInvalid, disabled,
+      value, size, rounded, isFocused,
+      error, disabled,
       className
     );
 
@@ -65,38 +64,50 @@ const Textfield = forwardRef(
     if (!isValid) return null;
 
     return (
-      <div
-        className={textfiledClasses?.textfieldWrapper}
-        style={style}
-      >
-        <span className={textfiledClasses?.labelWrapper}>
-          <label
-            htmlFor={name}
-            className={textfiledClasses?.label}
-          >
-            {label}
-          </label>
-        </span>
+      <div className="w-full">
+        <div
+          className={textfiledClasses?.textfieldWrapper}
+          style={style}
+        >
+          <span className={textfiledClasses?.labelWrapper}>
+            <label
+              htmlFor={name}
+              className={textfiledClasses?.label}
+            >
+              {label}
+            </label>
+          </span>
 
-        <input
-          ref={inputRef}
-          type={type}
-          role="textfield"
-          aria-label="textfield"
-          aria-labelledby={name}
-          className={textfiledClasses?.input}
-          name={name}
-          id={name}
-          defaultValue={defaultValue}
-          value={value}
-          placeholder={placeholder}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          required={required}
-          disabled={disabled}
-          {...rest}
-        />
+          <input
+            ref={inputRef}
+            type={type}
+            role="textfield"
+            aria-label="textfield"
+            aria-labelledby={name}
+            className={textfiledClasses?.input}
+            name={name}
+            id={name}
+            value={value}
+            placeholder={placeholder}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            required={required}
+            disabled={disabled}
+            {...rest}
+          />
+        </div>
+
+        {error && (
+          <motion.p
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            className="p-1 font-sans text-xs font-medium text-error-600"
+          >
+            {error}
+          </motion.p>
+        )}
       </div>
     );
   }
