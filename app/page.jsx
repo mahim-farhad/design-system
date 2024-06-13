@@ -5,6 +5,7 @@ import Section from "@components/layouts/Section";
 import Container from "@components/layouts/Container";
 
 import Auth from "@components/forms/Auth";
+import Link from "@components/elements/Link";
 
 function Home() {
   return (
@@ -22,6 +23,8 @@ function Home() {
       >
         <Container>
           <Auth />
+
+          <Link href="/"></Link>
         </Container>
       </Section>
     </Main>
