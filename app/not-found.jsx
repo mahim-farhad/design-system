@@ -1,6 +1,5 @@
 import classNames from "classnames"
 
-import Link from "@components/elements/Link"
 import Typography from "@components/elements/Typography"
 
 import Main from "@components/layouts/Main"
@@ -46,25 +45,6 @@ function NotFound() {
             >
               Page Not Found
             </Typography>
-
-            <Link
-              href={"/"}
-              className={classNames(
-                "inline-block",
-                "h-12",
-                "py-3",
-                "px-6",
-                "text-base",
-                "leading-[1.65]",
-                "font-medium",
-                "uppercase",
-                "text-gray-100",
-                "bg-primary",
-                "rounded-md",
-              )}
-            >
-              Go Back To Home
-            </Link>
           </Box>
         </Container>
       </Section>

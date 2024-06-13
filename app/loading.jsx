@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 
 import Animate from "@components/animation/Animate";
 
@@ -11,20 +11,20 @@ function Loading() {
   return (
     <Animate>
       <Main
-        className={classNames(
+        className={clsx(
           "min-h-screen",
           "ml-80",
           "bg-surface-light",
         )}
       >
         <Section
-          className={classNames(
+          className={clsx(
             "h-screen",
           )}
         >
           <Container>
             <Box
-              className={classNames(
+              className={clsx(
                 "absolute",
                 "top-1/2",
                 "left-1/2",
