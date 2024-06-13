@@ -66,11 +66,10 @@ function getTextfieldVariants(size, isActive) {
     iconWrapper: sizeVariants?.iconWrapper?.[size]
   };
 
-  const isValid = (
+  const isValid =
     sizeVariant.textfieldWrapper && sizeVariant.labelWrapper &&
     sizeVariant.label && sizeVariant.input &&
-    sizeVariant.iconWrapper
-  );
+    sizeVariant.iconWrapper;
 
   if (!isValid) return null;
 

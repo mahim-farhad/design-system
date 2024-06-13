@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-
 import classNames from "classnames";
+
+import useForm from "@hooks/useFormValidation";
 
 import Button from "@components/elements/Button";
 import Textfield from "@components/inputs/Textfield";
@@ -13,67 +13,21 @@ import Container from "@components/layouts/Container";
 import Flex from "@components/layouts/Flex";
 
 function Home() {
-  const inputs = [{
-    type: "text",
-    name: "username",
-    label: "Username",
-    placeholder: "Username",
-    pattern: "^[A-Za-z0-9]{3,16}$",
-    required: true
-  }, {
-    type: "email",
-    name: "email",
-    label: "Email",
-    placeholder: "Email",
-    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-    required: true
-  }, {
-    type: "tel",
-    name: "phone",
-    label: "Phone",
-    placeholder: "+880-1XXX-XXXXXX",
-    pattern: "^\+?(\d{1,4})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$",
-    required: true
-  }, {
-    type: "number",
-    name: "quantity",
-    label: "Quantity",
-    placeholder: "Quantity",
-    pattern: `^(0|[1-9]\d{0,5}|1000000)$`,
-    required: true
-  }, {
-    type: "password",
-    name: "password",
-    label: "Password",
-    placeholder: "Password",
-    pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-    required: true
-  }];
-
-  const [inputValues, setInputValues] = useState({
+  const initialValues = {
     username: "mahim-farhad",
     email: "",
     phone: "",
-    quantity: "1",
+    quantity: "0",
     password: "",
     confirmPassword: ""
-  });
+  };
 
-  const [errors, setErrors] = useState({
-    username: "",
-    email: "",
-    phone: "",
-    quantity: "",
-    password: "",
-    confirmPassword: ""
-  });
-
-  const validate = () => {
+  const validate = (inputValues) => {
     let errors = {};
 
     if (!inputValues.username) {
       errors.username = 'Username is required';
-    } else if (!/\S+@\S+\.\S+/.test(inputValues.username)) {
+    } else if (!/[A-Za-z0-9]{3, 16}/.test(inputValues.username)) {
       errors.username = 'Username is invalid';
     } else {
       errors.username = "";
@@ -81,7 +35,7 @@ function Home() {
 
     if (!inputValues.email) {
       errors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(inputValues.email)) {
+    } else if (!/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(inputValues.email)) {
       errors.email = 'Email is invalid';
     } else {
       errors.email = "";
@@ -89,80 +43,47 @@ function Home() {
 
     if (!inputValues.phone) {
       errors.phone = 'Phone is required';
-    } else if (!/\S+@\S+\.\S+/.test(inputValues.phone)) {
+    } else if (!/\+?(\d{1,4})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/.test(inputValues.phone)) {
       errors.phone = 'Phone is invalid';
     } else {
       errors.phone = "";
+    }
+
+    if (!inputValues.quantity) {
+      errors.quantity = 'Quantity is required';
+    } else if (!/^(0|[1-9]\d{0,5}|1000000)$/.test(inputValues.quantity)) {
+      errors.quantity = 'Quantity is invalid';
+    } else {
+      errors.quantity = "";
     }
 
     if (!inputValues.password) {
       errors.password = 'Password is required';
     } else if (inputValues.password.length < 6) {
       errors.password = 'Password must be at least 6 characters';
+    } else if (!/(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}/.test(inputValues.password)) {
+      errors.password = 'Password is invalid';
     } else {
       errors.password = "";
     }
 
-    const isValid = !errors.username && !errors.email && !errors.password;
+    const isValid =
+      !errors.username && !errors.email && !errors.phone &&
+      !errors.quantity && !errors.password;
 
     if (isValid) return null;
 
     return errors;
   };
 
-  function handleFocus(event) {
-    const { name } = event.target;
-
-    setErrors({
-      ...errors,
-      [name]: "",
-    });
-  }
-
-  function handleBlur(event) {
-    const { name, value } = event.target;
-
-    const validationErrors = validate();
-
-    setErrors(validationErrors);
-
-    if (!value) {
-      setErrors({
-        ...errors,
-        [name]: `${name} field is required`,
-      });
-    } else {
-      setErrors({
-        ...errors,
-        [name]: validationErrors[name],
-      });
-    }
-  }
-
-  console.log(errors);
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-
-    setInputValues(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const validationErrors = validate();
-
-    setErrors(validationErrors);
-
-    console.log(errors);
-
-    if (!validationErrors) {
-      console.log('Form submitted:', inputValues);
-    }
-  };
+  const {
+    inputValues,
+    errors,
+    handleFocus,
+    handleBlur,
+    handleChange,
+    handleSubmit
+  } = useForm(initialValues, validate);
 
   return (
     <Main>
@@ -198,35 +119,74 @@ function Home() {
                 "shadow-lg",
               )}
             >
-              {inputs?.map((input) => (
-                <Textfield
-                  type={input?.type}
-                  name={input?.name}
-                  label={input?.label}
-                  // placeholder = {input?.placeholder}
-                  value={inputValues?.[input?.name]}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  pattern={input?.pattern}
-                  required={input?.required}
-                  disabled={input?.disabled}
-                  error={errors?.[input?.name]}
-                />
-              ))}
-
               <Textfield
-                type="password"
-                name="confirmPassword"
-                label="Confirm Password"
-                // placeholder="Password"
-                value={inputValues?.confirmPassword}
+                type="text"
+                name="username"
+                label="Username"
+                // placeholder= "Username"
+                value={inputValues.username}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8, 20}$`}
-                // required={true}
-                error={errors?.confirmPassword}
+                pattern="^[A-Za-z0-9]{3, 16}$"
+                required={true}
+                error={errors.username}
+              />
+
+              <Textfield
+                type="email"
+                name="email"
+                label="Email"
+                // placeholder= "Email"
+                value={inputValues.email}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                required={true}
+                error={errors.email}
+              />
+
+              <Textfield
+                type="tel"
+                name="phone"
+                label="Phone"
+                // placeholder= "Phone"
+                value={inputValues.phone}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                pattern="^\+?(\d{1,4})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$"
+                required={true}
+                error={errors.phone}
+              />
+
+              <Textfield
+                type="number"
+                name="quantity"
+                label="Quantity"
+                // placeholder= "Quantity"
+                value={inputValues.quantity}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                pattern="^(0|[1-9]\d{0,5}|1000000)$"
+                required={true}
+                error={errors.quantity}
+              />
+
+              <Textfield
+                type="password"
+                name="password"
+                label="Password"
+                // placeholder= "Password"
+                value={inputValues.password}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$"
+                required={true}
+                error={errors.password}
               />
 
               <Button type="submit">

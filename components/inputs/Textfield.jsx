@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, useCallback } from "react";
 
 import PropTypes from "prop-types";
 
@@ -23,37 +23,35 @@ const Textfield = forwardRef(
     onBlur = () => { },
     onChange = () => { },
     required,
+    success,
     error,
     disabled = false,
     ...rest
   }, inputRef) {
-    const [isFocused, setFocus] = useState(false);
-    const [isInvalid, setInvalid] = useState(false);
+    const [isFocused, setFocused] = useState(false);
+    const [isFilled, setFilled] = useState(value);
 
-    function handleFocus(event) {
-      setFocus(true);
-
-      setInvalid(false);
+    const handleFocus = useCallback((event) => {
+      setFocused(true);
 
       onFocus && onFocus(event);
-    }
+    }, [onFocus]);
 
-    function handleBlur(event) {
-      setFocus(false);
+    const handleBlur = useCallback((event) => {
+      setFocused(false);
 
-      setInvalid(error);
+      setFilled(event.target.value);
 
       onBlur && onBlur(event);
-    }
+    }, [onBlur]);
 
-    function handleChange(event) {
+    const handleChange = useCallback((event) => {
       onChange && onChange(event);
-    }
+    }, [onChange]);
 
     const textfiledClasses = getTextfieldClasses(
-      value, size, rounded, isFocused,
-      error, disabled,
-      className
+      size, rounded, isFocused, isFilled,
+      success, error, disabled
     );
 
     const hasValidType = inputTypes?.types?.[type];
@@ -64,19 +62,21 @@ const Textfield = forwardRef(
     if (!isValid) return null;
 
     return (
-      <div className="w-full">
+      <div className="relative w-full">
         <div
           className={textfiledClasses?.textfieldWrapper}
           style={style}
         >
-          <span className={textfiledClasses?.labelWrapper}>
-            <label
-              htmlFor={name}
-              className={textfiledClasses?.label}
-            >
-              {label}
-            </label>
-          </span>
+          {label && (
+            <span className={textfiledClasses?.labelWrapper}>
+              <label
+                htmlFor={name}
+                className={textfiledClasses?.label}
+              >
+                {label}
+              </label>
+            </span>
+          )}
 
           <input
             ref={inputRef}
@@ -103,7 +103,7 @@ const Textfield = forwardRef(
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -10, opacity: 0 }}
-            className="p-1 font-sans text-xs font-medium text-error-600"
+            className={textfiledClasses?.helperText}
           >
             {error}
           </motion.p>
@@ -116,19 +116,21 @@ const Textfield = forwardRef(
 Textfield.displayName = "Textfield";
 
 Textfield.propTypes = {
-  type: PropTypes.oneOf(Object.keys(inputTypes?.types)),
-  name: PropTypes.string,
-  label: PropTypes.string,
+  type: PropTypes.oneOf(Object.keys(inputTypes?.types)).isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
   size: PropTypes.oneOf(Object.keys(inputTypes?.sizes)),
   rounded: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
+  success: PropTypes.string,
+  error: PropTypes.string,
   disabled: PropTypes.bool
 };
 

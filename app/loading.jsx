@@ -1,11 +1,11 @@
-import classNames from "classnames"
+import classNames from "classnames";
 
-import Animate from "@components/animation/Animate"
+import Animate from "@components/animation/Animate";
 
-import Main from "@components/layouts/Main"
-import Section from "@components/layouts/Section"
-import Container from "@components/layouts/Container"
-import Box from "@components/layouts/Box"
+import Main from "@components/layouts/Main";
+import Section from "@components/layouts/Section";
+import Container from "@components/layouts/Container";
+import Box from "@components/layouts/Box";
 
 function Loading() {
   return (
@@ -39,7 +39,7 @@ function Loading() {
         </Section>
       </Main>
     </Animate>
-  )
+  );
 }
 
-export default Loading
+export default Loading;

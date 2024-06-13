@@ -6,13 +6,11 @@ function useOutsideClick() {
   const modalRef = useRef(null);
 
   function handleClickOutside(event) {
-    const clickedOutside = (
-      modalRef.current &&
-      !modalRef.current.contains(event.target)
-    );
+    const clickedOutside =
+      modalRef.current && !modalRef.current.contains(event.target);
 
     if (clickedOutside) {
-      setModalOpen(false);
+      setModalOpen(false)
     }
   }
 
