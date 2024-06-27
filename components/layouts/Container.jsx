@@ -1,8 +1,6 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
-
-import classNames from "classnames"
+import { twMerge } from "tailwind-merge";
 
 function Container({
   className = "",
@@ -11,14 +9,11 @@ function Container({
   ...props
 }) {
   const containerClasses = twMerge(
-    classNames(
-      "container",
-      "max-w-full",
-      "px-4 sm:px-8",
-      "mx-auto",
-    ),
+    "container max-w-full",
+    "px-4 sm:px-8",
+    "mx-auto",
     className
-  )
+  );
 
   return (
     <div
@@ -28,13 +23,15 @@ function Container({
     >
       {children}
     </div>
-  )
+  );
 }
+
+Container.displayName = "Container";
 
 Container.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
-}
+};
 
-export default Container
+export default Container;

@@ -10,11 +10,11 @@ import { twMerge } from "tailwind-merge";
 
 function Link({
   uniqueKey,
-  href = "/",
+  href,
   title,
   transition = false,
-  className,
-  style,
+  className = "",
+  style = {},
   children,
   ...rest
 }) {
@@ -25,11 +25,11 @@ function Link({
   if (!href) return null;
 
   function handleClick(event) {
-    if (!transition && !document.startViewTransition) {
-      return;
-    } else {
-      event.preventDefault();
+    event.preventDefault();
 
+    if (!transition && !document.startViewTransition) {
+      return null;
+    } else {
       document.startViewTransition(() => {
         router.push(href);
       });

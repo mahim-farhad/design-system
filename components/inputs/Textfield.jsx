@@ -17,8 +17,8 @@ const Textfield = forwardRef(
     placeholder,
     size = "base",
     rounded = false,
-    className,
-    style,
+    className = "",
+    style = {},
     onFocus = () => { },
     onBlur = () => { },
     onChange = () => { },
@@ -50,8 +50,8 @@ const Textfield = forwardRef(
     }, [onChange]);
 
     const textfiledClasses = getTextfieldClasses(
-      size, rounded, isFocused, isFilled,
-      success, error, disabled
+      placeholder, size, rounded, isFocused,
+      isFilled, success, error, disabled
     );
 
     const hasValidType = inputTypes?.types?.[type];
@@ -98,7 +98,18 @@ const Textfield = forwardRef(
           />
         </div>
 
-        {error && (
+        {!error && success && (
+          <motion.p
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            className={textfiledClasses?.helperText}
+          >
+            {success}
+          </motion.p>
+        )}
+
+        {error && !success && (
           <motion.p
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

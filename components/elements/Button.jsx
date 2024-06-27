@@ -2,12 +2,12 @@ import { forwardRef } from "react";
 
 import PropTypes from "prop-types";
 
+import { icons } from "lucide-react";
+
 import { iconTypes, buttonTypes } from "@utils/types";
 
 import getIconClasses from "@styles/components/iconClasses";
 import getButtonClasses from "@styles/components/buttonClasses";
-
-import getSVGIcon from "@utils/icons";
 
 const Button = forwardRef(
   function Button({
@@ -19,14 +19,14 @@ const Button = forwardRef(
     gradient,
     color = "primary",
     rounded = false,
-    className,
-    style,
+    className = "",
+    style = {},
     onClick,
     disabled = false,
     children,
     ...rest
   }, buttonRef) {
-    const iconClasses = getIconClasses(size, className);
+    const iconClasses = getIconClasses(size, icon?.className);
 
     const btnClasses = getButtonClasses(
       icon, extended, size, variant,
@@ -34,16 +34,15 @@ const Button = forwardRef(
       className
     );
 
-    const SVGIcon = getSVGIcon(icon, iconClasses, style);
+    const SVGIcon = icons?.[icon?.name];
 
-    const hasValidIcon = iconTypes?.icons?.[icon] && SVGIcon;
     const hasValidSize = buttonTypes?.sizes?.[size];
     const hasValidVariant =
       buttonTypes?.variants?.[variant] &&
       buttonTypes?.colors?.[color];
 
     const isValid = icon
-      ? hasValidIcon && hasValidSize && hasValidVariant
+      ? SVGIcon && hasValidSize && hasValidVariant
       : hasValidSize && hasValidVariant;
 
     if (!isValid) return null;
@@ -59,8 +58,10 @@ const Button = forwardRef(
         {...rest}
       >
         {
-          icon ? !extended ? SVGIcon : (
-            <>{SVGIcon} {children}</>
+          icon ? (
+            !extended
+              ? <SVGIcon className={iconClasses} />
+              : <><SVGIcon className={iconClasses} /> {children}</>
           ) : children
         }
       </button>
@@ -72,7 +73,10 @@ Button.displayName = "Button";
 
 Button.propTypes = {
   type: PropTypes.oneOf(Object.keys(buttonTypes?.types)),
-  icon: PropTypes.oneOf(Object.keys(iconTypes?.icons)),
+  icon: PropTypes.shape({
+    name: PropTypes.oneOf(Object.keys(iconTypes?.icons)),
+    className: PropTypes.string
+  }),
   extended: PropTypes.bool,
   size: PropTypes.oneOf(Object.keys(buttonTypes?.sizes)),
   variant: PropTypes.oneOf(Object.keys(buttonTypes?.variants)),
@@ -82,7 +86,7 @@ Button.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   disabled: PropTypes.bool,
-  children: PropTypes.node.isRequired
+  children: PropTypes.string
 };
 
 export default Button;

@@ -9,16 +9,13 @@ function getTypographyClasses(type, gradient, className) {
 
   if (!typographyVariants) return null;
 
-  const typographyClasses = twMerge(
-    clsx(
-      typographyVariants.type,
-      gradient && [
-        "text-transparent",
-        "bg-clip-text",
-      ]
-    ),
-    className
-  );
+  const typographyClasses = twMerge(clsx(
+    typographyVariants.type,
+    gradient && [
+      "text-transparent",
+      "bg-clip-text",
+    ]
+  ), className);
 
   return typographyClasses;
 }

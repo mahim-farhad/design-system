@@ -5,10 +5,10 @@ import { twMerge } from "tailwind-merge";
 import getTextfieldVariants from "@styles/variants/textfieldVariants";
 
 function getTextfieldClasses(
-  size, rounded, isFocused, isFilled,
+  placeholder, size, rounded, isFocused, isFilled,
   isValid, isInvalid, disabled
 ) {
-  const isActive = isFocused || isFilled;
+  const isActive = placeholder || isFocused || isFilled;
 
   const textfieldVariants = getTextfieldVariants(size, isActive);
 
@@ -22,11 +22,13 @@ function getTextfieldClasses(
       "w-full",
       textfieldVariants.size.textfieldWrapper,
       "border-2",
-      isFocused && !isInvalid
+      isFocused && !isValid && !isInvalid
         ? "border-primary"
-        : !isFocused && isInvalid
-          ? "border-error"
-          : "border-gray-300",
+        : !isFocused && isValid && !isInvalid
+          ? "border-success"
+          : !isFocused && !isValid && isInvalid
+            ? "border-error"
+            : "border-gray-300",
       rounded ? "rounded-full" : "rounded-md",
       disabled ? "opacity-50" : "opacity-100",
       "transition-all",
@@ -62,7 +64,7 @@ function getTextfieldClasses(
       textfieldVariants.size.label,
       "py-0.5",
       "px-1.5",
-      "font-poppins",
+      "font-sans",
       "leading-[16px]",
       "font-medium",
       isFocused && !isValid && !isInvalid
@@ -88,7 +90,7 @@ function getTextfieldClasses(
       textfieldVariants.size.input,
       "-my-0.5",
       "-mx-0.5",
-      "font-poppins",
+      "font-sans",
       "leading-[25px]",
       "font-medium",
       "uppercase",
@@ -122,7 +124,7 @@ function getTextfieldClasses(
         ? "text-success"
         : !isValid && isInvalid
           ? "text-error"
-          : "text-gray-400",
+          : "text-gray-300",
     )),
   };
 

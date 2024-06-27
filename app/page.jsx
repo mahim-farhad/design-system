@@ -1,11 +1,13 @@
 import clsx from "clsx";
 
+import Button from "@components/elements/Button";
+
 import Main from "@components/layouts/Main";
 import Section from "@components/layouts/Section";
 import Container from "@components/layouts/Container";
+import Box from "@components/layouts/Box";
 
 import Auth from "@components/forms/Auth";
-import Link from "@components/elements/Link";
 
 function Home() {
   return (
@@ -18,13 +20,11 @@ function Home() {
           "justify-center",
           "h-full",
           "min-h-[calc(100vh)]",
-          "md:p-16",
+          "md:p-16"
         )}
       >
         <Container>
           <Auth />
-
-          <Link href="/"></Link>
         </Container>
       </Section>
     </Main>

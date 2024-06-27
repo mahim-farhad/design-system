@@ -39,10 +39,6 @@ const useForm = (initialValues, validate) => {
     const validationErrors = validate(inputValues);
 
     setErrors(validationErrors);
-
-    if (!validationErrors) {
-      console.log("Form submitted:", inputValues);
-    }
   }, [inputValues, validate]);
 
   return {

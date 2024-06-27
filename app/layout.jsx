@@ -24,6 +24,7 @@ export const viewport = {
 function RootLayout({ children }) {
   const bodyClasses = clsx(
     "w-full min-h-screen",
+    sans.variable, serif.variable, mono.variable,
     "antialiased font-sans leading-normal text-base font-normal",
     "select-none overflow-x-hidden",
     "text-font-light dark:text-font-light",
@@ -31,14 +32,7 @@ function RootLayout({ children }) {
   );
 
   return (
-    <html
-      lang="en"
-      className={clsx(
-        sans.variable,
-        serif.variable,
-        mono.variable
-      )}
-    >
+    <html lang="en">
       <body className={bodyClasses}>
         {/* <SidebarProvider>
           <TopNav />

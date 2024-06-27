@@ -9,17 +9,16 @@ import getSVGIcon from "@utils/icons";
 function Icon({
   name,
   size = "base",
-  className,
-  style
+  className = "",
+  style = {}
 }) {
   const iconClasses = getIconClasses(size, className);
 
   const SVGIcon = getSVGIcon(name, iconClasses, style);
 
-  const hasValidIcon = iconTypes?.icons?.[name] && SVGIcon;
   const hasValidSize = iconTypes?.sizes?.[size];
 
-  const isValid = hasValidIcon && hasValidSize;
+  const isValid = SVGIcon && hasValidSize;
 
   if (!isValid) return null;
 

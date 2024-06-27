@@ -1,38 +1,40 @@
-import { forwardRef } from "react"
+import { forwardRef } from "react";
 
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 const Box = forwardRef(
   function Box({
-    key,
+    uniqueKey,
     className = "",
     style = {},
     children,
-    ...props
-  }, ref) {
-    const boxClasses = className ? twMerge(className) : undefined
+    ...rest
+  }, boxRef) {
+    const boxClasses = className ? twMerge(className) : undefined;
 
     return (
       <div
-        key={key}
-        ref={ref}
+        key={uniqueKey}
+        ref={boxRef}
         className={boxClasses}
         style={style}
-        {...props}
+        {...rest}
       >
         {children}
       </div>
-    )
+    );
   }
-)
+);
+
+Box.displayName = "Box";
 
 Box.propTypes = {
-  key: PropTypes.any,
+  uniqueKey: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node
-}
+};
 
-export default Box
+export default Box;

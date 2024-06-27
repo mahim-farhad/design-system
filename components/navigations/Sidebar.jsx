@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 
 import { twMerge } from "tailwind-merge"
 
-import classNames from "classnames"
+import clsx from "clsx"
 
 import { useToggleSidebar } from "@contexts/SidebarProvider"
 
@@ -48,7 +48,7 @@ const pageLinks = [{
 function Header() {
   return (
     <Flex
-      className={classNames(
+      className={clsx(
         "flex-shrink-0",
         "gap-x-6",
         "items-center",
@@ -77,7 +77,7 @@ function Body() {
 
   return (
     <Box
-      className={classNames(
+      className={clsx(
         "flex",
         "flex-col",
         "flex-1",
@@ -85,7 +85,7 @@ function Body() {
       )}
     >
       <Box
-        className={classNames(
+        className={clsx(
           "flex",
           "flex-col",
           "flex-1",
@@ -97,21 +97,21 @@ function Body() {
       >
         <List
           type="ul"
-          className={classNames(
+          className={clsx(
             "flex",
             "flex-col",
             "gap-2",
           )}
         >
           <ListItem
-            className={classNames(
+            className={clsx(
               "px-3",
               "mb-4",
             )}
           >
             <Typography
               type="h6"
-              className={classNames(
+              className={clsx(
                 "!text-sm",
               )}
             >
@@ -132,7 +132,7 @@ function Body() {
               >
                 <Link
                   href={path}
-                  className={classNames(
+                  className={clsx(
                     "relative",
                     "flex",
                     "gap-x-6",
@@ -156,7 +156,7 @@ function Body() {
                   )}
                 >
                   <span
-                    className={classNames(
+                    className={clsx(
                       "flex",
                       "items-center",
                       "justify-center",
@@ -181,7 +181,7 @@ function Body() {
                   {
                     nestedLinks &&
                     <span
-                      className={classNames(
+                      className={clsx(
                         "flex",
                         "items-center",
                         "justify-center",
@@ -214,12 +214,12 @@ function Body() {
 function Footer() {
   return (
     <Box
-      className={classNames(
+      className={clsx(
         "flex-shrink-0",
       )}
     >
       <Box
-        className={classNames(
+        className={clsx(
           "flex",
           "items-center",
           "justify-center",
@@ -249,7 +249,7 @@ function Sidebar() {
   } = useToggleSidebar()
 
   const sidebarClasses = twMerge(
-    classNames(
+    clsx(
       "z-50",
       "fixed",
       "top-0",

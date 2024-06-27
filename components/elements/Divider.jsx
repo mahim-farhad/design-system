@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import getDividerClasses from "@styles/components/dividerClasses";
 
 function Divider({
-  className,
-  style,
+  className = "",
+  style = {},
   ...rest
 }) {
   const dividerClasses = getDividerClasses(className);

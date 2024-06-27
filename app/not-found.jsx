@@ -1,4 +1,4 @@
-import classNames from "classnames"
+import clsx from "clsx"
 
 import Typography from "@components/elements/Typography"
 
@@ -11,13 +11,13 @@ function NotFound() {
   return (
     <Main>
       <Section
-        className={classNames(
+        className={clsx(
           "h-[calc(100vh-80px)]",
         )}
       >
         <Container>
           <Box
-            className={classNames(
+            className={clsx(
               "absolute",
               "top-1/2",
               "left-1/2",
@@ -28,7 +28,7 @@ function NotFound() {
           >
             <Typography
               type="h1"
-              className={classNames(
+              className={clsx(
                 "mb-3",
                 "!text-8xl",
                 "tracking-widest",
@@ -39,7 +39,7 @@ function NotFound() {
 
             <Typography
               type="h3"
-              className={classNames(
+              className={clsx(
                 "mb-6",
               )}
             >

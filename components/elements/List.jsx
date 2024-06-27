@@ -9,12 +9,12 @@ import {
 
 function List({
   type = "ul",
-  className,
-  style,
+  className = "",
+  style = {},
   children,
   ...rest
 }) {
-  const Tag = type;
+  const Component = type;
 
   const listClasses = getListClasses(type, className);
 
@@ -25,20 +25,20 @@ function List({
   if (!isValid) return null;
 
   return (
-    <Tag
+    <Component
       className={listClasses}
       style={style}
       {...rest}
     >
       {children}
-    </Tag>
+    </Component>
   );
 }
 
 function ListItem({
   uniqueKey,
-  className,
-  style,
+  className = "",
+  style = {},
   children,
   ...rest
 }) {

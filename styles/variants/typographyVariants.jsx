@@ -1,8 +1,6 @@
-import clsx from "clsx";
-
 function getTypographyVariants(type) {
   const typeVariants = {
-    h1: clsx(
+    h1: [
       "font-headings",
       "text-4xl lg:text-7xl",
       "leading-[1.1]",
@@ -10,8 +8,8 @@ function getTypographyVariants(type) {
       "uppercase",
       "tracking-wide",
       "text-heading-light"
-    ),
-    h2: clsx(
+    ],
+    h2: [
       "font-headings",
       "text-3xl lg:text-5xl",
       "leading-[1.25]",
@@ -19,8 +17,8 @@ function getTypographyVariants(type) {
       "uppercase",
       "tracking-wide",
       "text-heading-light"
-    ),
-    h3: clsx(
+    ],
+    h3: [
       "font-headings",
       "text-2xl lg:text-4xl",
       "leading-[1.5]",
@@ -28,8 +26,8 @@ function getTypographyVariants(type) {
       "uppercase",
       "tracking-wide",
       "text-heading-light"
-    ),
-    h4: clsx(
+    ],
+    h4: [
       "font-headings",
       "text-xl lg:text-3xl",
       "leading-[1.75]",
@@ -37,8 +35,8 @@ function getTypographyVariants(type) {
       "uppercase",
       "tracking-wide",
       "text-heading-light"
-    ),
-    h5: clsx(
+    ],
+    h5: [
       "font-headings",
       "text-lg lg:text-2xl",
       "leading-[1.75]",
@@ -46,8 +44,8 @@ function getTypographyVariants(type) {
       "uppercase",
       "tracking-wide",
       "text-heading-light"
-    ),
-    h6: clsx(
+    ],
+    h6: [
       "font-headings",
       "text-base lg:text-xl",
       "leading-[1.75]",
@@ -55,16 +53,16 @@ function getTypographyVariants(type) {
       "uppercase",
       "tracking-wide",
       "text-heading-light"
-    ),
-    p: clsx(
+    ],
+    p: [
       "font-poppins",
       "text-base",
       "leading-[1.75]",
       "font-medium",
       "tracking-normal",
       "text-font-light"
-    ),
-    small: clsx(
+    ],
+    small: [
       "font-poppins",
       "text-sm",
       "leading-[1.75]",
@@ -72,8 +70,8 @@ function getTypographyVariants(type) {
       "uppercase",
       "tracking-normal",
       "text-font-light"
-    ),
-    blockquote: clsx(
+    ],
+    blockquote: [
       "p-4",
       "font-poppins",
       "text-base",
@@ -83,7 +81,7 @@ function getTypographyVariants(type) {
       "bg-surface-light dark:bg-surface-dark",
       "border-l-2",
       "border-primary dark:border-primary"
-    )
+    ]
   };
 
   const typeVariant = typeVariants?.[type];

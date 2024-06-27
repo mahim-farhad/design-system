@@ -1,11 +1,15 @@
 "use client";
 
-import classNames from "classnames";
+import { useState } from "react";
+
+import clsx from "clsx";
 
 import useForm from "@hooks/useFormValidation";
 
 import Button from "@components/elements/Button";
+
 import Textfield from "@components/inputs/Textfield";
+import Select from "@components/inputs/Select";
 
 import Flex from "@components/layouts/Flex";
 
@@ -15,9 +19,12 @@ function Auth() {
     email: "",
     phone: "",
     quantity: "0",
+    country: "",
     password: "",
     confirmPassword: ""
   };
+
+  const [successMessage, setSuccessMessage] = useState({});
 
   const validate = (inputValues) => {
     let errors = {};
@@ -27,6 +34,11 @@ function Auth() {
     } else if (!/[A-Za-z0-9]{3, 16}/.test(inputValues.username)) {
       errors.username = 'Username is invalid';
     } else {
+      setSuccessMessage(prev => ({
+        ...prev,
+        username: "Username is valid"
+      }));
+
       errors.username = "";
     }
 
@@ -54,6 +66,12 @@ function Auth() {
       errors.quantity = "";
     }
 
+    if (!inputValues.country) {
+      errors.country = 'Country is required';
+    } else {
+      errors.country = "";
+    }
+
     if (!inputValues.password) {
       errors.password = 'Password is required';
     } else if (inputValues.password.length < 6) {
@@ -66,7 +84,7 @@ function Auth() {
 
     const isValid =
       !errors.username && !errors.email && !errors.phone &&
-      !errors.quantity && !errors.password;
+      !errors.quantity && !errors.country && !errors.password;
 
     if (isValid) return null;
 
@@ -85,11 +103,11 @@ function Auth() {
   return (
     <form
       onSubmit={handleSubmit}
-      noValidate
       autoComplete="off"
+      noValidate
     >
       <Flex
-        className={classNames(
+        className={clsx(
           "flex",
           "flex-col",
           "items-center",
@@ -114,6 +132,7 @@ function Auth() {
           onChange={handleChange}
           pattern="^[A-Za-z0-9]{3, 16}$"
           required={true}
+          success={successMessage.username}
           error={errors.username}
         />
 
@@ -121,7 +140,7 @@ function Auth() {
           type="email"
           name="email"
           label="Email"
-          // placeholder= "Email"
+          // placeholder="Email"
           value={inputValues.email}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -135,7 +154,7 @@ function Auth() {
           type="tel"
           name="phone"
           label="Phone"
-          // placeholder= "Phone"
+          placeholder="+880-1834-717081"
           value={inputValues.phone}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -157,6 +176,34 @@ function Auth() {
           pattern="^(0|[1-9]\d{0,5}|1000000)$"
           required={true}
           error={errors.quantity}
+        />
+
+        <Select
+          name="country"
+          label="Country"
+          value={inputValues.country}
+          options={[{
+            id: 1,
+            label: "Please Select an Option",
+            value: "",
+          }, {
+            id: 2,
+            label: "Canada",
+            value: "CA",
+          }, {
+            id: 3,
+            label: "Austrailia",
+            value: "AS",
+          }, {
+            id: 4,
+            label: "Turkey",
+            value: "TK",
+          }]}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required={true}
+          error={errors.country}
         />
 
         <Textfield

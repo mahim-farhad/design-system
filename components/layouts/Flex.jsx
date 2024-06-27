@@ -1,46 +1,44 @@
-import { forwardRef } from "react"
+import { forwardRef } from "react";
 
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
-
-import classNames from "classnames"
+import { twMerge } from "tailwind-merge";
 
 const Flex = forwardRef(
   function Flex({
-    key,
+    uniqueKey,
     className = "",
     style = {},
     children,
     ...props
-  }, ref) {
+  }, flexRef) {
     const flexClasses = twMerge(
-      classNames(
-        "flex",
-        "flex-wrap",
-      ),
+      "flex",
+      "flex-wrap",
       className
-    )
+    );
 
     return (
       <div
-        key={key}
-        ref={ref}
+        key={uniqueKey}
+        ref={flexRef}
         className={flexClasses}
         style={style}
         {...props}
       >
         {children}
       </div>
-    )
+    );
   }
-)
+);
+
+Flex.displayName = "Flex";
 
 Flex.propTypes = {
-  key: PropTypes.any,
+  uniqueKey: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node
-}
+};
 
-export default Flex
+export default Flex;

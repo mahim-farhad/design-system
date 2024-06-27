@@ -1,8 +1,6 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
-
-import classNames from "classnames"
+import { twMerge } from "tailwind-merge";
 
 function Section({
   className = "",
@@ -11,13 +9,11 @@ function Section({
   ...props
 }) {
   const sectionClasses = twMerge(
-    classNames(
-      "relative",
-      "py-4 sm:py-8",
-      "overflow-hidden",
-    ),
+    "relative",
+    "py-4 sm:py-8",
+    "overflow-hidden",
     className
-  )
+  );
 
   return (
     <section
@@ -27,13 +23,15 @@ function Section({
     >
       {children}
     </section>
-  )
+  );
 }
+
+Section.displayName = "Section";
 
 Section.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
-}
+};
 
-export default Section
+export default Section;

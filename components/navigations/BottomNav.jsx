@@ -6,7 +6,7 @@ import {
 
 import Link from "next/link"
 
-import classNames from "classnames"
+import clsx from "clsx"
 
 import useWindowSize from "@hooks/useWindowSize"
 
@@ -52,7 +52,7 @@ function BottomNav() {
   return (
     <Animate>
       <nav
-        className={classNames(
+        className={clsx(
           "z-50",
           "fixed",
           "bottom-0",
@@ -76,7 +76,7 @@ function BottomNav() {
             <Link
               key={id}
               href={path}
-              className={classNames(
+              className={clsx(
                 "relative",
                 "flex",
                 "flex-col",
@@ -104,7 +104,7 @@ function BottomNav() {
             >
               <Icon
                 name={iconName}
-              // className={classNames(
+              // className={clsx(
               //   "absolute",
               //   "top-1/2",
               //   "left-1/2",

@@ -7,12 +7,12 @@ import getTypographyClasses from "@styles/components/typographyClasses";
 function Typography({
   type = "p",
   gradient,
-  className,
-  style,
+  className = "",
+  style = {},
   children,
   ...rest
 }) {
-  const Tag = type;
+  const Component = type;
 
   const typographyClasses = getTypographyClasses(type, gradient, className);
 
@@ -23,13 +23,13 @@ function Typography({
   if (!isValid) return null;
 
   return (
-    <Tag
+    <Component
       className={typographyClasses}
       style={style}
       {...rest}
     >
       {children}
-    </Tag>
+    </Component>
   );
 }
 

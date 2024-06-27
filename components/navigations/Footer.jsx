@@ -1,4 +1,4 @@
-import classNames from "classnames"
+import clsx from "clsx"
 
 import Animate from "@components/animation/Animate"
 
@@ -12,18 +12,18 @@ function Footer() {
   return (
     <Animate>
       <footer
-        className={classNames(
+        className={clsx(
           "lg:ml-80",
           "bg-surface-light",
         )}
       >
         <Container
-          className={classNames(
+          className={clsx(
             "!max-w-full",
           )}
         >
           <Box
-            className={classNames(
+            className={clsx(
               "grid",
               "grid-cols-1 xl:grid-cols-2",
               "gap-3 xl:gap-0",
@@ -32,13 +32,13 @@ function Footer() {
             )}
           >
             <Box
-              className={classNames(
+              className={clsx(
                 "col-span-1",
               )}
             >
               <Typography
                 type="h6"
-                className={classNames(
+                className={clsx(
                   "!text-sm",
                   "font-medium",
                   "text-center xl:text-start",
@@ -51,13 +51,13 @@ function Footer() {
             </Box>
 
             <Box
-              className={classNames(
+              className={clsx(
                 "col-span-1",
               )}
             >
               <Link
                 path={`/`}
-                className={classNames(
+                className={clsx(
                   "block",
                   "mb-1.5 xl:mb-0",
                   "!text-sm",

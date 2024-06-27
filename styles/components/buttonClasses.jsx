@@ -16,39 +16,34 @@ function getButtonClasses(
 
   if (!buttonVariants) return null;
 
-  const buttonClasses = twMerge(
-    clsx(
-      "relative",
-      icon && extended ? [
-        "inline-flex",
-        "gap-x-2.5",
-        "items-center",
-        "justify-center"
-      ] : "inline-block",
-      buttonVariants.size,
-      "font-poppins",
-      "font-medium",
-      "uppercase",
-      "text-center",
-      "whitespace-nowrap",
-      "appearance-none",
-      "overflow-hidden",
-      "cursor-pointer",
-      buttonVariants.color,
-      "outline-none",
-      "border-2",
-      rounded ? "rounded-full" : "rounded-lg",
-      disabled ? [
-        "disabled:pointer-events-none",
-        "disabled:cursor-not-allowed",
-        "disabled:opacity-50"
-      ] : null,
-      "transition-all",
-      "duration-300",
-      "ease-in-out"
-    ),
-    className
-  );
+  const buttonClasses = twMerge(clsx(
+    "relative",
+    "inline-flex",
+    "gap-x-2.5",
+    "items-center",
+    "justify-center",
+    buttonVariants.size,
+    "font-sans",
+    "font-medium",
+    "uppercase",
+    "text-center",
+    "whitespace-nowrap",
+    "appearance-none",
+    "overflow-hidden",
+    "cursor-pointer",
+    buttonVariants.color,
+    "outline-none",
+    "border-2",
+    rounded ? "rounded-full" : null,
+    disabled ? [
+      "disabled:pointer-events-none",
+      "disabled:cursor-not-allowed",
+      "disabled:opacity-50"
+    ] : null,
+    "transition-all",
+    "duration-300",
+    "ease-in-out"
+  ), className);
 
   return buttonClasses;
 }

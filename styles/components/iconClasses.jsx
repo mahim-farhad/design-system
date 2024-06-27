@@ -9,16 +9,13 @@ function getIconClasses(size, className) {
 
   if (!iconVariants) return null;
 
-  const iconClasses = twMerge(
-    clsx(
-      "inline-block",
-      iconVariants.size,
-      "leading-none",
-      "whitespace-nowrap",
-      "text-gray-400",
-    ),
-    className
-  );
+  const iconClasses = twMerge(clsx(
+    "inline-block",
+    iconVariants.size,
+    "leading-none",
+    "whitespace-nowrap",
+    "text-current",
+  ), className);
 
   return iconClasses;
 }

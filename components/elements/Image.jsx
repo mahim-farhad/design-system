@@ -8,13 +8,13 @@ function Image({
   uniqueKey,
   src,
   alt,
-  className,
-  style,
+  className = "",
+  style = {},
   ...rest
 }) {
   const imgClasses = twMerge("w-full", className);
 
-  if (!src && !alt) return null;
+  if (!src) return null;
 
   return (
     <NextImage
@@ -22,6 +22,8 @@ function Image({
       src={src}
       alt={alt}
       loading="lazy"
+      width={0}
+      height={0}
       className={imgClasses}
       style={style}
       {...rest}

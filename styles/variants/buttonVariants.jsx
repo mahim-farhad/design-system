@@ -1,18 +1,16 @@
-import clsx from "clsx";
-
 function getSizeVariant(icon, extended, size) {
   const sizeVariants = {
-    xs: "h-8 py-1.5 px-6 text-sm leading-[16px]",
-    sm: "h-10 py-2 px-6 text-sm leading-[16px]",
-    base: "h-12 py-3 px-8 text-base leading-[15px]",
-    lg: "h-14 py-4 px-8 text-lg leading-[16px]",
-    xl: "h-16 py-5 px-10 text-xl leading-[15px]",
+    xs: "h-8 py-1.5 px-6 text-sm leading-[1rem] rounded-md",
+    sm: "h-10 py-2 px-6 text-sm leading-[1rem] rounded-md",
+    base: "h-12 py-3 px-8 text-base leading-[16px] rounded-lg",
+    lg: "h-14 py-4 px-8 text-lg leading-[15px] rounded-lg",
+    xl: "h-16 py-5 px-10 text-xl leading-[15px] rounded-xl",
     iconOnly: {
-      xs: "w-8 h-8",
-      sm: "w-10 h-10",
-      base: "w-12 h-12",
-      lg: "w-14 h-14",
-      xl: "w-16 h-16"
+      xs: "w-8 h-8 rounded-md",
+      sm: "w-10 h-10 rounded-md",
+      base: "w-12 h-12 rounded-lg",
+      lg: "w-14 h-14 rounded-lg",
+      xl: "w-16 h-16 rounded-xl"
     }
   };
 
@@ -23,231 +21,10 @@ function getSizeVariant(icon, extended, size) {
   return sizeVariant;
 }
 
-function getGradientVariants() {
-  const gradientVariants = {
-    monochrome: {
-      primary: clsx(
-        "text-white",
-        "bg-gradient-to-br",
-        "from-primary-300",
-        "to-primary-500",
-        "!border-0",
-        "hover:bg-gradient-to-b",
-        "active:bg-primary-600",
-        "active:shadow-lg",
-        "active:shadow-primary-300",
-      ),
-      secondary: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-secondary-500",
-        "to-secondary",
-        "border-transparent",
-        "shadow",
-        "shadow-secondary",
-        "hover:bg-secondary-500",
-        "active:bg-secondary-600",
-      ),
-      info: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-info-500",
-        "to-info",
-        "border-transparent",
-        "shadow",
-        "shadow-info",
-        "hover:bg-info-500",
-        "active:bg-info-600",
-      ),
-      success: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-success-500",
-        "to-success",
-        "border-transparent",
-        "shadow",
-        "shadow-success",
-        "hover:bg-success-500",
-        "active:bg-success-600",
-      ),
-      warning: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-warning-500",
-        "to-warning",
-        "border-transparent",
-        "shadow",
-        "shadow-warning",
-        "hover:bg-warning-500",
-        "active:bg-warning-600",
-      ),
-      error: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-error-500",
-        "to-error",
-        "border-transparent",
-        "shadow",
-        "shadow-error",
-        "hover:bg-error-500",
-        "active:bg-error-600",
-      )
-    },
-    duotone: {
-      primary: clsx(
-        "text-white",
-        "bg-gradient-to-br",
-        "from-primary-500",
-        "via-primary-600",
-        "to-primary-500",
-        "!border-0",
-        "hover:bg-gradient-to-b",
-        "active:bg-primary-600",
-        "active:shadow-lg",
-        "active:shadow-primary-300",
-      ),
-      secondary: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-secondary-500",
-        "to-secondary",
-        "border-transparent",
-        "shadow",
-        "shadow-secondary",
-        "hover:bg-secondary-500",
-        "active:bg-secondary-600",
-      ),
-      info: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-info-500",
-        "to-info",
-        "border-transparent",
-        "shadow",
-        "shadow-info",
-        "hover:bg-info-500",
-        "active:bg-info-600",
-      ),
-      success: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-success-500",
-        "to-success",
-        "border-transparent",
-        "shadow",
-        "shadow-success",
-        "hover:bg-success-500",
-        "active:bg-success-600",
-      ),
-      warning: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-warning-500",
-        "to-warning",
-        "border-transparent",
-        "shadow",
-        "shadow-warning",
-        "hover:bg-warning-500",
-        "active:bg-warning-600",
-      ),
-      error: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-error-500",
-        "to-error",
-        "border-transparent",
-        "shadow",
-        "shadow-error",
-        "hover:bg-error-500",
-        "active:bg-error-600",
-      )
-    },
-    outline: {
-      primary: clsx(
-        "text-white",
-        "bg-gradient-to-br",
-        "from-primary-500",
-        "via-primary-600",
-        "to-primary-500",
-        "!border-0",
-        "hover:bg-gradient-to-b",
-        "active:bg-primary-600",
-        "active:shadow-lg",
-        "active:shadow-primary-300",
-      ),
-      secondary: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-secondary-500",
-        "to-secondary",
-        "border-transparent",
-        "shadow",
-        "shadow-secondary",
-        "hover:bg-secondary-500",
-        "active:bg-secondary-600",
-      ),
-      info: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-info-500",
-        "to-info",
-        "border-transparent",
-        "shadow",
-        "shadow-info",
-        "hover:bg-info-500",
-        "active:bg-info-600",
-      ),
-      success: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-success-500",
-        "to-success",
-        "border-transparent",
-        "shadow",
-        "shadow-success",
-        "hover:bg-success-500",
-        "active:bg-success-600",
-      ),
-      warning: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-warning-500",
-        "to-warning",
-        "border-transparent",
-        "shadow",
-        "shadow-warning",
-        "hover:bg-warning-500",
-        "active:bg-warning-600",
-      ),
-      error: clsx(
-        "text-white",
-        "bg-gradient-to-b",
-        "from-error-500",
-        "to-error",
-        "border-transparent",
-        "shadow",
-        "shadow-error",
-        "hover:bg-error-500",
-        "active:bg-error-600",
-      )
-    }
-  };
-}
-
 function getColorVariant(variant, color) {
   const colorVariants = {
     filled: {
-      gray: clsx(
-        "text-white",
-        "bg-gray-300",
-        "border-transparent",
-        "shadow",
-        "shadow-gray",
-        "hover:bg-gray-500",
-        "active:shadow-lg",
-        "active:shadow-gray-300",
-      ),
-      primary: clsx(
+      primary: [
         "text-white",
         "bg-primary",
         "border-transparent",
@@ -256,8 +33,8 @@ function getColorVariant(variant, color) {
         "hover:bg-primary-500",
         "active:shadow-lg",
         "active:shadow-primary-300",
-      ),
-      secondary: clsx(
+      ],
+      secondary: [
         "text-white",
         "bg-secondary",
         "border-transparent",
@@ -266,8 +43,8 @@ function getColorVariant(variant, color) {
         "hover:bg-secondary-900",
         "active:shadow-lg",
         "active:shadow-secondary-300",
-      ),
-      info: clsx(
+      ],
+      info: [
         "text-white",
         "bg-info",
         "border-transparent",
@@ -276,8 +53,8 @@ function getColorVariant(variant, color) {
         "hover:bg-info-500",
         "active:shadow-lg",
         "active:shadow-info-300",
-      ),
-      success: clsx(
+      ],
+      success: [
         "text-white",
         "bg-success",
         "border-transparent",
@@ -286,8 +63,8 @@ function getColorVariant(variant, color) {
         "hover:bg-success-500",
         "active:shadow-lg",
         "active:shadow-success-300",
-      ),
-      warning: clsx(
+      ],
+      warning: [
         "text-white",
         "bg-warning",
         "border-transparent",
@@ -296,8 +73,8 @@ function getColorVariant(variant, color) {
         "hover:bg-warning-500",
         "active:shadow-lg",
         "active:shadow-warning-300",
-      ),
-      error: clsx(
+      ],
+      error: [
         "text-white",
         "bg-error",
         "border-transparent",
@@ -306,8 +83,8 @@ function getColorVariant(variant, color) {
         "hover:bg-error-500",
         "active:shadow-lg",
         "active:shadow-error-300",
-      ),
-      facebook: clsx(
+      ],
+      facebook: [
         "text-white",
         "bg-facebook",
         "border-transparent",
@@ -316,8 +93,8 @@ function getColorVariant(variant, color) {
         "hover:bg-facebook",
         "active:shadow-lg",
         "active:shadow-facebook",
-      ),
-      whatsapp: clsx(
+      ],
+      whatsapp: [
         "text-white",
         "bg-whatsapp",
         "border-transparent",
@@ -326,8 +103,8 @@ function getColorVariant(variant, color) {
         "hover:bg-whatsapp",
         "active:shadow-lg",
         "active:shadow-whatsapp",
-      ),
-      twitter: clsx(
+      ],
+      twitter: [
         "text-white",
         "bg-twitter",
         "border-transparent",
@@ -336,8 +113,8 @@ function getColorVariant(variant, color) {
         "hover:bg-twitter",
         "active:shadow-lg",
         "active:shadow-twitter",
-      ),
-      instagram: clsx(
+      ],
+      instagram: [
         "text-white",
         "bg-instagram",
         "border-transparent",
@@ -346,8 +123,8 @@ function getColorVariant(variant, color) {
         "hover:bg-instagram",
         "active:shadow-lg",
         "active:shadow-instagram",
-      ),
-      pinterest: clsx(
+      ],
+      pinterest: [
         "text-white",
         "bg-pinterest",
         "border-transparent",
@@ -356,10 +133,10 @@ function getColorVariant(variant, color) {
         "hover:bg-pinterest",
         "active:shadow-lg",
         "active:shadow-pinterest",
-      ),
+      ],
     },
     gradient: {
-      primary: clsx(
+      primary: [
         "text-white",
         "bg-gradient-to-t",
         "from-primary-400",
@@ -369,8 +146,8 @@ function getColorVariant(variant, color) {
         "active:bg-primary-600",
         "active:shadow-lg",
         "active:shadow-primary-300",
-      ),
-      secondary: clsx(
+      ],
+      secondary: [
         "text-white",
         "bg-gradient-to-t",
         "from-secondary-400",
@@ -380,8 +157,8 @@ function getColorVariant(variant, color) {
         "active:bg-secondary-600",
         "active:shadow-lg",
         "active:shadow-secondary-300",
-      ),
-      info: clsx(
+      ],
+      info: [
         "text-white",
         "bg-gradient-to-t",
         "from-info-400",
@@ -391,8 +168,8 @@ function getColorVariant(variant, color) {
         "active:bg-info-600",
         "active:shadow-lg",
         "active:shadow-info-300",
-      ),
-      success: clsx(
+      ],
+      success: [
         "text-white",
         "bg-gradient-to-t",
         "from-success-400",
@@ -402,8 +179,8 @@ function getColorVariant(variant, color) {
         "active:bg-success-600",
         "active:shadow-lg",
         "active:shadow-success-300",
-      ),
-      warning: clsx(
+      ],
+      warning: [
         "text-white",
         "bg-gradient-to-t",
         "from-warning-400",
@@ -413,8 +190,8 @@ function getColorVariant(variant, color) {
         "active:bg-warning-600",
         "active:shadow-lg",
         "active:shadow-warning-300",
-      ),
-      error: clsx(
+      ],
+      error: [
         "text-white",
         "bg-gradient-to-t",
         "from-error-400",
@@ -424,139 +201,146 @@ function getColorVariant(variant, color) {
         "active:bg-error-600",
         "active:shadow-lg",
         "active:shadow-error-300",
-      )
+      ]
     },
     toned: {
-      primary: clsx(
+      primary: [
         "text-primary",
         "bg-primary-100",
         "border-transparent",
         "hover:text-white",
         "hover:bg-primary-500",
         "active:bg-primary-600",
-      ),
-      secondary: clsx(
+      ],
+      secondary: [
         "text-secondary",
         "bg-secondary-100",
         "border-transparent",
         "hover:text-white",
         "hover:bg-secondary-500",
         "active:bg-secondary-600",
-      ),
-      info: clsx(
+      ],
+      info: [
         "text-info",
         "bg-info-100",
         "border-transparent",
         "hover:text-white",
         "hover:bg-info-500",
         "active:bg-info-600",
-      ),
-      success: clsx(
+      ],
+      success: [
         "text-success",
         "bg-success-100",
         "border-transparent",
         "hover:text-white",
         "hover:bg-success-500",
         "active:bg-success-600",
-      ),
-      warning: clsx(
+      ],
+      warning: [
         "text-warning",
         "bg-warning-100",
         "border-transparent",
         "hover:text-white",
         "hover:bg-warning-500",
         "active:bg-warning-600",
-      ),
-      error: clsx(
+      ],
+      error: [
         "text-error",
         "bg-error-100",
         "border-transparent",
         "hover:text-white",
         "hover:bg-error-500",
         "active:bg-error-600",
-      )
+      ]
     },
     outlined: {
-      primary: clsx(
+      black: [
+        "text-black",
+        "bg-transparent",
+        "border-black",
+        "shadow-none",
+        "hover:bg-black-100",
+      ],
+      primary: [
         "text-primary",
         "bg-transparent",
         "border-primary",
         "shadow-none",
         "hover:bg-primary-100",
-      ),
-      secondary: clsx(
+      ],
+      secondary: [
         "text-secondary",
         "bg-transparent",
         "border-secondary",
         "shadow-none",
         "hover:bg-secondary-100",
-      ),
-      info: clsx(
+      ],
+      info: [
         "text-info",
         "bg-transparent",
         "border-info",
         "shadow-none",
         "hover:bg-info-100",
-      ),
-      success: clsx(
+      ],
+      success: [
         "text-success",
         "bg-transparent",
         "border-success",
         "shadow-none",
         "hover:bg-success-100",
-      ),
-      warning: clsx(
+      ],
+      warning: [
         "text-warning",
         "bg-transparent",
         "border-warning",
         "shadow-none",
         "hover:bg-warning-100",
-      ),
-      error: clsx(
+      ],
+      error: [
         "text-error",
         "bg-transparent",
         "border-error",
         "shadow-none",
         "hover:bg-error-100",
-      )
+      ]
     },
     text: {
-      primary: clsx(
+      primary: [
         "text-primary",
         "bg-transparent",
         "border-transparent",
         "hover:text-primary-500",
-      ),
-      secondary: clsx(
+      ],
+      secondary: [
         "text-secondary",
         "bg-transparent",
         "border-transparent",
         "hover:text-secondary-500",
-      ),
-      info: clsx(
+      ],
+      info: [
         "text-info",
         "bg-transparent",
         "border-transparent",
         "hover:text-info-500",
-      ),
-      success: clsx(
+      ],
+      success: [
         "text-success",
         "bg-transparent",
         "border-transparent",
         "hover:text-success-500",
-      ),
-      warning: clsx(
+      ],
+      warning: [
         "text-warning",
         "bg-transparent",
         "border-transparent",
         "hover:text-warning-500",
-      ),
-      error: clsx(
+      ],
+      error: [
         "text-error",
         "bg-transparent",
         "border-transparent",
         "hover:text-error-500",
-      )
+      ]
     }
   };
 
@@ -565,7 +349,10 @@ function getColorVariant(variant, color) {
   return colorVariant;
 }
 
-function getButtonVariants(icon, extended, size, variant, color) {
+function getButtonVariants(
+  icon, extended, size,
+  variant, color
+) {
   const sizeVariant = getSizeVariant(icon, extended, size);
 
   const colorVariant = getColorVariant(variant, color);

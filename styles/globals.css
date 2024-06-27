@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: 'AkiraExpanded';
-  src: url('../public/fonts/AkiraExpanded.otf') format('truetype');
+  src: url('../assets/fonts/AkiraExpanded.otf') format('truetype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;

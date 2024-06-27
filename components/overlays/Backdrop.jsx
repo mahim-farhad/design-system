@@ -8,7 +8,7 @@ import {
 
 import { twMerge } from "tailwind-merge"
 
-import classNames from "classnames"
+import clsx from "clsx"
 
 function Backdrop({
   initial = { opacity: 0 },
@@ -17,7 +17,7 @@ function Backdrop({
   transition = { duration: 0.15, easeInOut },
 }) {
   const backdropClasses = twMerge(
-    classNames(
+    clsx(
       "z-50",
       "fixed",
       "inset-0",

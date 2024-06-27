@@ -43,7 +43,9 @@ const typographyTypes = {
 const buttonTypes = {
   types: {
     "button": true,
-    "submit": true
+    "link": true,
+    "submit": true,
+    "reset": true,
   },
   sizes: {
     "xs": true,
@@ -65,6 +67,9 @@ const buttonTypes = {
     "outline": true
   },
   colors: {
+    "white": true,
+    "gray": true,
+    "black": true,
     "primary": true,
     "secondary": true,
     "info": true,

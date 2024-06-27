@@ -1,6 +1,6 @@
 "use client"
 
-import classNames from "classnames"
+import clsx from "clsx"
 
 import { useToggleSidebar } from "@contexts/SidebarProvider"
 
@@ -19,7 +19,7 @@ function TopNav() {
 
   return (
     <nav
-      className={classNames(
+      className={clsx(
         "z-20",
         "fixed",
         "top-0",
@@ -40,25 +40,25 @@ function TopNav() {
     >
       <Container>
         <Grid
-          className={classNames(
+          className={clsx(
             "grid-cols-2",
             "items-center",
           )}
         >
           <GridItem
-            className={classNames(
+            className={clsx(
               "col-span-1",
             )}
           >
             <Flex
-              className={classNames(
+              className={clsx(
                 "gap-x-4",
                 "items-center",
               )}
             >
               <Typography
                 type="h6"
-                className={classNames(
+                className={clsx(
                   "mr-auto",
                   "font-medium",
                   "leading-normal",
@@ -70,7 +70,7 @@ function TopNav() {
           </GridItem>
 
           <GridItem
-            className={classNames(
+            className={clsx(
               "col-span-1",
               "text-end",
             )}

@@ -1,8 +1,6 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-import { twMerge } from "tailwind-merge"
-
-import classNames from "classnames"
+import { twMerge } from "tailwind-merge";
 
 function Main({
   className = "",
@@ -11,15 +9,13 @@ function Main({
   ...props
 }) {
   const mainClasses = twMerge(
-    classNames(
-      "h-full",
-      "min-h-screen",
-      // "pt-16",
-      // "lg:pl-80",
-      "bg-background-light",
-    ),
+    "h-full",
+    "min-h-screen",
+    // "pt-16",
+    // "lg:pl-80",
+    "bg-background-light",
     className
-  )
+  );
 
   return (
     <main
@@ -29,13 +25,15 @@ function Main({
     >
       {children}
     </main>
-  )
+  );
 }
+
+Main.displayName = "Main";
 
 Main.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
-}
+};
 
-export default Main
+export default Main;
