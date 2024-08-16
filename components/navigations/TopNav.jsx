@@ -81,7 +81,9 @@ function TopNav() {
                 variant="outlined"
                 color="secondary"
                 onClick={openSidebar}
-              >dfs</Button>
+              >
+                dfs
+              </Button>
             }
           </GridItem>
         </Grid>

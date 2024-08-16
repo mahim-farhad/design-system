@@ -10,11 +10,13 @@ function Typography({
   className = "",
   style = {},
   children,
-  ...rest
+  ...props
 }) {
   const Component = type;
 
-  const typographyClasses = getTypographyClasses(type, gradient, className);
+  const typographyClasses = getTypographyClasses(
+    type, gradient, className
+  );
 
   const hasValidType = typographyTypes?.types?.[type];
 
@@ -26,7 +28,7 @@ function Typography({
     <Component
       className={typographyClasses}
       style={style}
-      {...rest}
+      {...props}
     >
       {children}
     </Component>

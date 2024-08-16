@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { sans, serif, mono } from "@utils/fonts";
+import { poppins, arvo, firaCode } from "@utils/fonts";
 
 import "@styles/globals.css";
 
@@ -23,12 +23,11 @@ export const viewport = {
 
 function RootLayout({ children }) {
   const bodyClasses = clsx(
-    "w-full min-h-screen",
-    sans.variable, serif.variable, mono.variable,
-    "antialiased font-sans leading-normal text-base font-normal",
+    poppins.variable, arvo.variable, firaCode.variable,
+    "antialiased font-sans text-base leading-normal font-normal",
     "select-none overflow-x-hidden",
-    "text-font-light dark:text-font-light",
-    "bg-background-light dark:bg-background-light",
+    "text-foreground-light dark:text-foreground-dark",
+    "bg-background-light dark:bg-background-dark"
   );
 
   return (

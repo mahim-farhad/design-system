@@ -349,10 +349,7 @@ function getColorVariant(variant, color) {
   return colorVariant;
 }
 
-function getButtonVariants(
-  icon, extended, size,
-  variant, color
-) {
+function getButtonVariants(icon, extended, size, variant, color) {
   const sizeVariant = getSizeVariant(icon, extended, size);
 
   const colorVariant = getColorVariant(variant, color);

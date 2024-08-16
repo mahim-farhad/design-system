@@ -1,11 +1,10 @@
-import clsx from "clsx";
+"use client";
 
-import Button from "@components/elements/Button";
+import clsx from "clsx";
 
 import Main from "@components/layouts/Main";
 import Section from "@components/layouts/Section";
 import Container from "@components/layouts/Container";
-import Box from "@components/layouts/Box";
 
 import Auth from "@components/forms/Auth";
 
@@ -14,12 +13,9 @@ function Home() {
     <Main>
       <Section
         className={clsx(
-          "flex",
-          "flex-col",
-          "items-center",
-          "justify-center",
-          "h-full",
-          "min-h-[calc(100vh)]",
+          "flex flex-col",
+          "items-center justify-center",
+          "h-full min-h-[calc(100vh)]",
           "md:p-16"
         )}
       >

@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
-
 import clsx from "clsx";
 
 import useForm from "@hooks/useFormValidation";
 
+import Animate from "@components/animation/Animate";
+
+import Typography from "@components/elements/Typography";
 import Button from "@components/elements/Button";
 
-import Textfield from "@components/inputs/Textfield";
+import Textfield from "@components/inputs/TextfiledAlt";
 import Select from "@components/inputs/Select";
 
+import Box from "@components/layouts/Box";
 import Flex from "@components/layouts/Flex";
 
 function Auth() {
@@ -24,21 +26,14 @@ function Auth() {
     confirmPassword: ""
   };
 
-  const [successMessage, setSuccessMessage] = useState({});
-
   const validate = (inputValues) => {
     let errors = {};
 
     if (!inputValues.username) {
       errors.username = 'Username is required';
-    } else if (!/[A-Za-z0-9]{3, 16}/.test(inputValues.username)) {
+    } else if (!/[A-Za-z0-9]/.test(inputValues.username)) {
       errors.username = 'Username is invalid';
     } else {
-      setSuccessMessage(prev => ({
-        ...prev,
-        username: "Username is valid"
-      }));
-
       errors.username = "";
     }
 
@@ -108,123 +103,297 @@ function Auth() {
     >
       <Flex
         className={clsx(
-          "flex",
-          "flex-col",
+          "flex flex-col",
+          "gap-y-8",
           "items-center",
           "justify-center",
+          "max-w-[500px]",
           "p-4 sm:p-16",
-          "gap-y-10",
-          "max-w-[450px]",
           "mx-auto",
-          "border",
-          "rounded-lg",
-          "shadow-lg",
+          "sm:border",
+          "sm:rounded-xl",
+          "sm:shadow-lg"
         )}
       >
-        <Textfield
-          type="text"
-          name="username"
-          label="Username"
-          // placeholder= "Username"
-          value={inputValues.username}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          pattern="^[A-Za-z0-9]{3, 16}$"
-          required={true}
-          success={successMessage.username}
-          error={errors.username}
-        />
+        <Box
+          className={clsx(
+            "relative",
+            "w-full"
+          )}
+        >
+          <label
+            htmlFor="Username"
+            className={clsx(
+              "block",
+              "h-6 py-1 px-4",
+              "text-sm leading-[16px] font-medium uppercase",
+              "dark:text-gray-400",
+            )}
+          >
+            Username
+          </label>
 
-        <Textfield
-          type="email"
-          name="email"
-          label="Email"
-          // placeholder="Email"
-          value={inputValues.email}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-          required={true}
-          error={errors.email}
-        />
+          <Textfield
+            type="text"
+            name="username"
+            id="Username"
+            placeholder="Username"
+            value={inputValues?.username}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            pattern="^[A-Za-z0-9]{3, 16}$"
+            required={true}
+            error={errors?.username}
+          />
 
-        <Textfield
-          type="tel"
-          name="phone"
-          label="Phone"
-          placeholder="+880-1834-717081"
-          value={inputValues.phone}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          pattern="^\+?(\d{1,4})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$"
-          required={true}
-          error={errors.phone}
-        />
+          {errors?.username && (
+            <Animate
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              className={clsx(
+                "absolute",
+                "w-full",
+              )}
+            >
+              <Typography
+                className={clsx(
+                  "h-6 py-1 px-4",
+                  "text-xs font-semibold uppercase",
+                  "dark:text-error"
+                )}
+              >
+                {errors?.username}
+              </Typography>
+            </Animate>
+          )}
+        </Box>
 
-        <Textfield
-          type="number"
-          name="quantity"
-          label="Quantity"
-          // placeholder= "Quantity"
-          value={inputValues.quantity}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          pattern="^(0|[1-9]\d{0,5}|1000000)$"
-          required={true}
-          error={errors.quantity}
-        />
+        <Box
+          className={clsx(
+            "relative",
+            "w-full"
+          )}
+        >
+          <label
+            htmlFor="email"
+            className={clsx(
+              "block",
+              "h-6 py-1 px-4",
+              "text-sm leading-[16px] font-medium uppercase",
+              "dark:text-gray-400",
+            )}
+          >
+            Email
+          </label>
 
-        <Select
-          name="country"
-          label="Country"
-          value={inputValues.country}
-          options={[{
-            id: 1,
-            label: "Please Select an Option",
-            value: "",
-          }, {
-            id: 2,
-            label: "Canada",
-            value: "CA",
-          }, {
-            id: 3,
-            label: "Austrailia",
-            value: "AS",
-          }, {
-            id: 4,
-            label: "Turkey",
-            value: "TK",
-          }]}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          required={true}
-          error={errors.country}
-        />
+          <Textfield
+            type="email"
+            name="email"
+            placeholder="example@mail.com"
+            value={inputValues?.email}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            required={true}
+            error={errors?.email}
+          />
 
-        <Textfield
-          type="password"
-          name="password"
-          label="Password"
-          // placeholder= "Password"
-          value={inputValues.password}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$"
-          required={true}
-          error={errors.password}
-        />
+          {errors?.email && (
+            <Animate
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              className={clsx(
+                "absolute",
+                "w-full",
+              )}
+            >
+              <Typography
+                className={clsx(
+                  "h-6 py-1 px-4",
+                  "text-xs font-semibold uppercase",
+                  "dark:text-error"
+                )}
+              >
+                {errors?.email}
+              </Typography>
+            </Animate>
+          )}
+        </Box>
 
-        <Button type="submit">
-          Proceed to Payment
+        <Box
+          className={clsx(
+            "relative",
+            "w-full"
+          )}
+        >
+          <label
+            htmlFor="Phone"
+            className={clsx(
+              "block",
+              "h-6 py-1 px-4",
+              "text-sm leading-[16px] font-medium uppercase",
+              "dark:text-gray-400",
+            )}
+          >
+            Phone
+          </label>
+
+          <Textfield
+            type="tel"
+            name="phone"
+            id="Phone"
+            placeholder="Phone"
+            value={inputValues?.phone}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            pattern="^[A-Za-z0-9]{3, 16}$"
+            required={true}
+            error={errors?.phone}
+          />
+
+          {errors?.phone && (
+            <Animate
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              className={clsx(
+                "absolute",
+                "w-full",
+              )}
+            >
+              <Typography
+                className={clsx(
+                  "h-6 py-1 px-4",
+                  "text-xs font-semibold uppercase",
+                  "dark:text-error"
+                )}
+              >
+                {errors?.phone}
+              </Typography>
+            </Animate>
+          )}
+        </Box>
+
+        <Box
+          className={clsx(
+            "relative",
+            "w-full"
+          )}
+        >
+          <label
+            htmlFor="Quantity"
+            className={clsx(
+              "block",
+              "h-6 py-1 px-4",
+              "text-sm leading-[16px] font-medium uppercase",
+              "dark:text-gray-400",
+            )}
+          >
+            Quantity
+          </label>
+
+          <Textfield
+            type="number"
+            name="quantity"
+            id="Quantity"
+            placeholder="Quantity"
+            value={inputValues?.quantity}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            pattern="^[A-Za-z0-9]{3, 16}$"
+            required={true}
+            error={errors?.quantity}
+          />
+
+          {errors?.quantity && (
+            <Animate
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              className={clsx(
+                "absolute",
+                "w-full",
+              )}
+            >
+              <Typography
+                className={clsx(
+                  "h-6 py-1 px-4",
+                  "text-xs font-semibold uppercase",
+                  "dark:text-error"
+                )}
+              >
+                {errors?.quantity}
+              </Typography>
+            </Animate>
+          )}
+        </Box>
+
+        <Box
+          className={clsx(
+            "relative",
+            "w-full"
+          )}
+        >
+          <label
+            htmlFor="Password"
+            className={clsx(
+              "block",
+              "h-6 py-1 px-4",
+              "text-sm leading-[16px] font-medium uppercase",
+              "dark:text-gray-400",
+            )}
+          >
+            Password
+          </label>
+
+          <Textfield
+            type="password"
+            name="password"
+            id="Password"
+            placeholder="Something Secure"
+            value={inputValues?.password}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            pattern="^[A-Za-z0-9]{3, 16}$"
+            required={true}
+            error={errors?.password}
+          />
+
+          {errors?.password && (
+            <Animate
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              className={clsx(
+                "absolute",
+                "w-full",
+              )}
+            >
+              <Typography
+                className={clsx(
+                  "h-6 py-1 px-4",
+                  "text-xs font-semibold uppercase",
+                  "dark:text-error"
+                )}
+              >
+                {errors?.password}
+              </Typography>
+            </Animate>
+          )}
+        </Box>
+
+        <Button type="submit" className="ml-auto mt-6">
+          Proceed to Pay
         </Button>
       </Flex>
-    </form>
+    </form >
   );
 }
 

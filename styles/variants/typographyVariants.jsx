@@ -7,7 +7,7 @@ function getTypographyVariants(type) {
       "font-bold",
       "uppercase",
       "tracking-wide",
-      "text-heading-light"
+      "text-heading-light dark:text-foreground-dark"
     ],
     h2: [
       "font-headings",
@@ -16,7 +16,7 @@ function getTypographyVariants(type) {
       "font-bold",
       "uppercase",
       "tracking-wide",
-      "text-heading-light"
+      "text-heading-light dark:text-foreground-dark"
     ],
     h3: [
       "font-headings",
@@ -25,7 +25,7 @@ function getTypographyVariants(type) {
       "font-bold",
       "uppercase",
       "tracking-wide",
-      "text-heading-light"
+      "text-heading-light dark:text-foreground-dark"
     ],
     h4: [
       "font-headings",
@@ -34,7 +34,7 @@ function getTypographyVariants(type) {
       "font-bold",
       "uppercase",
       "tracking-wide",
-      "text-heading-light"
+      "text-heading-light dark:text-foreground-dark"
     ],
     h5: [
       "font-headings",
@@ -43,7 +43,7 @@ function getTypographyVariants(type) {
       "font-bold",
       "uppercase",
       "tracking-wide",
-      "text-heading-light"
+      "text-heading-light dark:text-foreground-dark"
     ],
     h6: [
       "font-headings",
@@ -52,32 +52,32 @@ function getTypographyVariants(type) {
       "font-bold",
       "uppercase",
       "tracking-wide",
-      "text-heading-light"
+      "text-heading-light dark:text-foreground-dark"
     ],
     p: [
-      "font-poppins",
+      "font-sans",
       "text-base",
       "leading-[1.75]",
       "font-medium",
       "tracking-normal",
-      "text-font-light"
+      "text-foreground-light dark:text-foreground-light"
     ],
     small: [
-      "font-poppins",
+      "font-sans",
       "text-sm",
       "leading-[1.75]",
       "font-medium",
       "uppercase",
       "tracking-normal",
-      "text-font-light"
+      "text-foreground-light dark:text-foreground-dark"
     ],
     blockquote: [
       "p-4",
-      "font-poppins",
+      "font-sans",
       "text-base",
       "leading-[1.75]",
       "font-medium",
-      "text-font-light dark:text-font-dark",
+      "text-foreground-light dark:text-foreground-dark",
       "bg-surface-light dark:bg-surface-dark",
       "border-l-2",
       "border-primary dark:border-primary"

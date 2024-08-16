@@ -22,11 +22,10 @@ export const theme = {
     xl: "80rem"
   },
   fontFamily: {
-    inherit: "inherit",
-    sans: ["var(--font-sans)", ...fontFamily.sans],
-    serif: ["var(--font-serif)", ...fontFamily.serif],
-    headings: ["var(--font-serif)", ...fontFamily.serif],
-    mono: ["var(--font-mono)", ...fontFamily.mono]
+    sans: ["var(--font-poppins)", ...fontFamily.sans],
+    serif: ["var(--font-arvo)", ...fontFamily.serif],
+    headings: ["var(--font-arvo)", ...fontFamily.serif],
+    mono: ["var(--font-firaCode)", ...fontFamily.mono]
   },
   colors: {
     inherit: "inherit",
@@ -35,6 +34,10 @@ export const theme = {
     white: white,
     gray: gray,
     black: black,
+    foreground: {
+      light: "#000000",
+      dark: "#FFFFFF",
+    },
     surface: {
       light: "#FFFFFF",
       dark: "#182029",
@@ -121,15 +124,33 @@ export const theme = {
       900: red[900],
       950: red[950],
     },
-    google: "#3c7ff1",
-    facebook: "#0165e1",
-    whatsapp: "#25D366",
-    twitter: "#000000",
-    instagram: "#125688",
-    pinterest: "#cc2127",
-    dribbble: "#ea4c89",
-    behance: "#1769ff",
-    fiverr: "#1dbf73",
+    google: {
+      light: "#3c7ff1"
+    },
+    facebook: {
+      light: "#0165e1"
+    },
+    whatsapp: {
+      light: "#25D366"
+    },
+    twitter: {
+      light: "#000000"
+    },
+    instagram: {
+      light: "#125688"
+    },
+    pinterest: {
+      light: "#cc2127"
+    },
+    dribbble: {
+      light: "#ea4c89"
+    },
+    behance: {
+      light: "#1769ff"
+    },
+    fiverr: {
+      light: "#1dbf73"
+    },
   },
   extend: {
     minHeight: {

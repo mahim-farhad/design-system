@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
 function classNames(...classes) {
-  return twMerge(clsx(classes));
+  return twMerge(clsx(classes)) || undefined;
 }
 
 function capitalize(word) {

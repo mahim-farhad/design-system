@@ -6,7 +6,7 @@ import getButtonVariants from "@styles/variants/buttonVariants";
 
 function getButtonClasses(
   icon, extended, size, variant,
-  color, rounded, disabled,
+  color, rounded,
   className
 ) {
   const buttonVariants = getButtonVariants(
@@ -18,31 +18,18 @@ function getButtonClasses(
 
   const buttonClasses = twMerge(clsx(
     "relative",
-    "inline-flex",
-    "gap-x-2.5",
-    "items-center",
-    "justify-center",
+    "inline-flex flex-0 gap-x-2.5 items-center justify-center",
     buttonVariants.size,
-    "font-sans",
-    "font-medium",
-    "uppercase",
-    "text-center",
-    "whitespace-nowrap",
-    "appearance-none",
-    "overflow-hidden",
-    "cursor-pointer",
+    "font-sans text-sm font-semibold uppercase text-center",
+    "whitespace-nowrap appearance-none",
+    "overflow-hidden cursor-pointer",
     buttonVariants.color,
-    "outline-none",
-    "border-2",
+    "outline-none border-2",
     rounded ? "rounded-full" : null,
-    disabled ? [
-      "disabled:pointer-events-none",
-      "disabled:cursor-not-allowed",
-      "disabled:opacity-50"
-    ] : null,
-    "transition-all",
-    "duration-300",
-    "ease-in-out"
+    "disabled:pointer-events-none",
+    "disabled:cursor-not-allowed",
+    "disabled:opacity-50",
+    "transition-all duration-300 ease-in-out"
   ), className);
 
   return buttonClasses;
