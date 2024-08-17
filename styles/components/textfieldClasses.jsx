@@ -125,7 +125,7 @@ function getTextfieldClasses(
         : !isValid && isInvalid
           ? "text-error"
           : "text-gray-300",
-    )),
+    ))
   };
 
   return textfieldClasses;

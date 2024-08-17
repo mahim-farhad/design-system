@@ -10,7 +10,7 @@ import Typography from "@components/elements/Typography";
 import Button from "@components/elements/Button";
 
 import Textfield from "@components/inputs/TextfiledAlt";
-import Select from "@components/inputs/Select";
+import Select from "@components/inputs/SelectAlt";
 
 import Box from "@components/layouts/Box";
 import Flex from "@components/layouts/Flex";
@@ -55,7 +55,7 @@ function Auth() {
 
     if (!inputValues.quantity) {
       errors.quantity = 'Quantity is required';
-    } else if (!/^(0|[1-9]\d{0,5}|1000000)$/.test(inputValues.quantity)) {
+    } else if (!/(0|[1-9]\d{0,5}|1000000)/.test(inputValues.quantity)) {
       errors.quantity = 'Quantity is invalid';
     } else {
       errors.quantity = "";
@@ -142,7 +142,6 @@ function Auth() {
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            pattern="^[A-Za-z0-9]{3, 16}$"
             required={true}
             error={errors?.username}
           />
@@ -196,7 +195,6 @@ function Auth() {
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             required={true}
             error={errors?.email}
           />
@@ -251,9 +249,8 @@ function Auth() {
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            pattern="^[A-Za-z0-9]{3, 16}$"
             required={true}
-            error={errors?.phone}
+            error={errors.phone}
           />
 
           {errors?.phone && (
@@ -279,59 +276,129 @@ function Auth() {
           )}
         </Box>
 
-        <Box
-          className={clsx(
-            "relative",
-            "w-full"
-          )}
-        >
-          <label
-            htmlFor="Quantity"
+        <Box className="flex gap-4 items-center">
+          <Box
             className={clsx(
-              "block",
-              "h-6 py-1 px-4",
-              "text-sm leading-[16px] font-medium uppercase",
-              "dark:text-gray-400",
+              "relative",
+              "w-full"
             )}
           >
-            Quantity
-          </label>
-
-          <Textfield
-            type="number"
-            name="quantity"
-            id="Quantity"
-            placeholder="Quantity"
-            value={inputValues?.quantity}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            pattern="^[A-Za-z0-9]{3, 16}$"
-            required={true}
-            error={errors?.quantity}
-          />
-
-          {errors?.quantity && (
-            <Animate
-              initial={{ y: "-100%", opacity: 0 }}
-              animate={{ y: "0%", opacity: 1 }}
-              exit={{ y: "-100%", opacity: 0 }}
+            <label
+              htmlFor="Quantity"
               className={clsx(
-                "absolute",
-                "w-full",
+                "block",
+                "h-6 py-1 px-4",
+                "text-sm leading-[16px] font-medium uppercase",
+                "dark:text-gray-400",
               )}
             >
-              <Typography
+              Quantity
+            </label>
+
+            <Textfield
+              type="number"
+              name="quantity"
+              id="Quantity"
+              placeholder="Quantity"
+              value={inputValues?.quantity}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              required={true}
+              error={errors?.quantity}
+            />
+
+            {errors?.quantity && (
+              <Animate
+                initial={{ y: "-100%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "-100%", opacity: 0 }}
                 className={clsx(
-                  "h-6 py-1 px-4",
-                  "text-xs font-semibold uppercase",
-                  "dark:text-error"
+                  "absolute",
+                  "w-full",
                 )}
               >
-                {errors?.quantity}
-              </Typography>
-            </Animate>
-          )}
+                <Typography
+                  className={clsx(
+                    "h-6 py-1 px-4",
+                    "text-xs font-semibold uppercase",
+                    "dark:text-error"
+                  )}
+                >
+                  {errors?.quantity}
+                </Typography>
+              </Animate>
+            )}
+          </Box>
+
+          <Box
+            className={clsx(
+              "relative",
+              "w-full"
+            )}
+          >
+            <label
+              htmlFor="Country"
+              className={clsx(
+                "block",
+                "h-6 py-1 px-4",
+                "text-sm leading-[16px] font-medium uppercase",
+                "dark:text-gray-400",
+              )}
+            >
+              Country
+            </label>
+
+            <Select
+              name="country"
+              id="Country"
+              placeholder="country"
+              value={inputValues?.country}
+              options={[{
+                id: 1,
+                label: "Bangladesh",
+                value: "BGD"
+              }, {
+                id: 2,
+                label: "Qatar",
+                value: "QTR"
+              }, {
+                id: 3,
+                label: "Turkey",
+                value: "TRK"
+              }, {
+                id: 4,
+                label: "Turkey",
+                value: ""
+              }]}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              error={errors?.country}
+            />
+
+            {errors?.country && (
+              <Animate
+                initial={{ y: "-100%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "-100%", opacity: 0 }}
+                className={clsx(
+                  "absolute",
+                  "w-full",
+                )}
+              >
+                <Typography
+                  className={clsx(
+                    "h-6 py-1 px-4",
+                    "text-xs font-semibold uppercase",
+                    "dark:text-error"
+                  )}
+                >
+                  {errors?.country}
+                </Typography>
+              </Animate>
+            )}
+          </Box>
         </Box>
 
         <Box
@@ -361,7 +428,6 @@ function Auth() {
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            pattern="^[A-Za-z0-9]{3, 16}$"
             required={true}
             error={errors?.password}
           />
@@ -393,7 +459,7 @@ function Auth() {
           Proceed to Pay
         </Button>
       </Flex>
-    </form >
+    </form>
   );
 }
 
