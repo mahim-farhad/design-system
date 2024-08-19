@@ -36,6 +36,8 @@ const Textfield = forwardRef(function Textfield({
 
   if (!isValid) return null;
 
+  console.log("Textfield Rendering...")
+
   return (
     <Box className={textfieldClasses?.textfieldWrapper}>
       <input

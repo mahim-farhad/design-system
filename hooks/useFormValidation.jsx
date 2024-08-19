@@ -4,14 +4,14 @@ function useForm(initialValues, validate) {
   const [inputValues, setInputValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
 
-  function handleFocus(event) {
+  const handleFocus = useCallback((event) => {
     const { name } = event.target;
 
     setErrors(prev => ({
       ...prev,
       [name]: "",
     }));
-  }
+  }, []);
 
   const handleBlur = useCallback((event) => {
     const { name } = event.target;
