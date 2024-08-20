@@ -8,7 +8,7 @@ function getTextfieldVariants(size) {
   const sizeVariants = {
     input: {
       sm: "h-10 px-3.5 text-sm",
-      base: "h-12 px-4 text-base",
+      base: "h-12 pl-[calc(1rem-2px)] pr-[calc(3rem-2px)] text-base",
       lg: "h-14 px-4 text-lg",
       xl: "h-16 px-4 text-xl"
     },
@@ -35,17 +35,21 @@ function getTextfieldVariants(size) {
   return textfieldVariants;
 }
 
-function getTextfieldClasses(
-  size, rounded, success,
-  error, className
-) {
-  const textfieldVariants =
-    getTextfieldVariants(size);
+function getTextfieldClasses(size, rounded, isValid, isInvalid, className) {
+  const textfieldVariants = getTextfieldVariants(size);
 
   if (!textfieldVariants) return null;
 
   const textfieldClasses = {
-    textfieldWrapper: twMerge(clsx(
+    textfieldWrapper: "relative w-full",
+    label: twMerge(clsx(
+      "block",
+      "py-1 px-4",
+      "font-sans text-sm leading-[16px] font-medium uppercase",
+      "text-gray-400 dark:text-gray-400",
+      "transition-all duration-150 ease-in-out"
+    )),
+    inputWrapper: twMerge(clsx(
       "relative",
       "flex flex-nowrap items-center",
       rounded ? "rounded-full" : "rounded-lg",
@@ -60,24 +64,31 @@ function getTextfieldClasses(
       "bg-white dark:bg-white",
       "outline-none border-2",
       "focus:border-primary",
-      success && !error
-        ? "border-success"
-        : !success && error
-          ? "border-error"
-          : "border-gray-200",
+      isInvalid ? "border-error" : "border-gray-200",
       rounded ? "rounded-full" : "rounded-lg",
       "disabled:pointer-events-none",
       "disabled:cursor-not-allowed",
       "disabled:opacity-50",
-      "transition-all duration-200 ease-in-out"
+      "transition-all duration-150 ease-in-out"
     ), className),
     iconWrapper: twMerge(clsx(
       "z-10 absolute right-0",
       "flex items-center justify-center",
       textfieldVariants?.size?.iconWrapper,
       "font-sans text-sm font-medium",
-      "text-gray-400 dark:text-gray-400",
-    ))
+      isInvalid
+        ? "dark:text-error"
+        : "dark:text-gray-400",
+      "transition-all duration-150 ease-in-out"
+    )),
+    helperTextWrapper: "z-10 absolute",
+    helperText: twMerge(clsx(
+      "py-1 px-4",
+      "text-xs font-semibold uppercase",
+      isInvalid
+        ? "dark:text-error"
+        : "dark:text-gray-300",
+    )),
   };
 
   return textfieldClasses;

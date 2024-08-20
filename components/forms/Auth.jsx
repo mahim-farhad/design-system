@@ -4,20 +4,14 @@ import clsx from "clsx";
 
 import useForm from "@hooks/useFormValidation";
 
-import Animate from "@components/animation/Animate";
-
-import Typography from "@components/elements/Typography";
 import Button from "@components/elements/Button";
 
 import Textfield from "@components/inputs/TextfiledAlt";
 import Select from "@components/inputs/SelectAlt";
 
-import Box from "@components/layouts/Box";
 import Flex from "@components/layouts/Flex";
 
 function Auth() {
-  console.log("Auth Rendering...")
-
   const initialValues = {
     username: "mahim-farhad",
     email: "",
@@ -105,7 +99,7 @@ function Auth() {
     >
       <Flex
         className={clsx(
-          "flex flex-col",
+          "flex-col",
           "gap-y-8",
           "items-center",
           "justify-center",
@@ -117,59 +111,80 @@ function Auth() {
           "sm:shadow-lg"
         )}
       >
-        <Box
-          className={clsx(
-            "relative",
-            "w-full"
-          )}
-        >
-          <label
-            htmlFor="Username"
-            className={clsx(
-              "block",
-              "h-6 py-1 px-4",
-              "text-sm leading-[16px] font-medium uppercase",
-              "dark:text-gray-400",
-            )}
-          >
-            Username
-          </label>
+        <Textfield
+          type="text"
+          label="username"
+          name="username"
+          id="User"
+          icon="User"
+          placeholder="Username"
+          value={inputValues?.username}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required={true}
+          // success={successes?.username}
+          error={errors?.username}
+        />
 
-          <Textfield
-            type="text"
-            name="username"
-            id="Username"
-            placeholder="Username"
-            value={inputValues?.username}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            required={true}
-            error={errors?.username}
-          />
+        <Textfield
+          type="email"
+          label="email"
+          name="email"
+          id="Email"
+          icon="Mail"
+          placeholder="Email"
+          value={inputValues?.email}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required={true}
+          // success={successes?.email}
+          error={errors?.email}
+        />
 
-          {errors?.username && (
-            <Animate
-              initial={{ y: "-100%", opacity: 0 }}
-              animate={{ y: "0%", opacity: 1 }}
-              exit={{ y: "-100%", opacity: 0 }}
-              className={clsx(
-                "absolute",
-                "w-full",
-              )}
-            >
-              <Typography
-                className={clsx(
-                  "h-6 py-1 px-4",
-                  "text-xs font-semibold uppercase",
-                  "dark:text-error"
-                )}
-              >
-                {errors?.username}
-              </Typography>
-            </Animate>
-          )}
-        </Box>
+        <Textfield
+          type="tel"
+          label="phone"
+          name="phone"
+          id="Phone"
+          icon="Phone"
+          placeholder="phone"
+          value={inputValues?.phone}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required={true}
+          // success={successes?.phone}
+          error={errors?.phone}
+        />
+
+        <Select
+          label="country"
+          name="country"
+          id="Country"
+          options={[{
+            id: 1,
+            label: "Bangladesh",
+            value: "BGD",
+          }, {
+            id: 2,
+            label: "Austrailia",
+            value: "AUS",
+          }, {
+            id: 3,
+            label: "Germany",
+            value: "DE",
+          }]}
+          placeholder="country"
+          value={inputValues?.country}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required={true}
+          // success={successes?.country}
+          error={errors?.country}
+        />
 
         <Button type="submit" className="ml-auto mt-6">
           Proceed to Pay

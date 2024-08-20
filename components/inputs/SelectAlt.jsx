@@ -4,81 +4,115 @@ import PropTypes from "prop-types";
 
 import { inputTypes } from "@utils/types";
 
-import getSelectClasses from "@styles/components/textfiledAltClasses";
+import getTextfieldClasses from "@styles/components/textfiledAltClasses";
 
-import Icon from "@components/elements/Icon";
+import Icon from "@components/elements/LucideIcon";
+import Typography from "@components/elements/Typography";
 
 import Box from "@components/layouts/Box";
 
 const Select = forwardRef(function Select({
+  type = "text",
+  label,
   name,
-  value,
+  id,
   options,
   placeholder,
+  value,
   icon,
   size = "base",
   rounded = false,
-  className = "",
-  style = {},
   success,
   error,
+  className = "",
+  style = {},
   ...props
 }, selectRef) {
-  const selectClasses = getSelectClasses(
-    size, rounded, success,
-    error, className
+  const selectClasses = getTextfieldClasses(
+    size, rounded, !!success,
+    !!error, className
   );
 
   const hasValidSize = inputTypes?.sizes?.[size];
 
-  const isValid = options && hasValidSize;
+  const isValid = hasValidSize;
 
   if (!isValid) return null;
 
   return (
     <Box className={selectClasses?.textfieldWrapper}>
-      <select
-        ref={selectRef}
-        role="combobox"
-        aria-haspopup="menubox"
-        aria-label="select"
-        aria-labelledby={name}
-        className={selectClasses?.input}
-        style={style}
-        name={name}
-        id={name}
-        placeholder={placeholder}
-        value={value}
-        {...props}
-      >
-        {options?.map((option) => (
-          <option
-            key={option?.id}
-            value={option?.value}
-            disabled={!option?.value}
-          >
-            {option.label}
-          </option>
-        ))}
-      </select>
+      {label && (
+        <label
+          htmlFor={id}
+          className={selectClasses?.label}
+        >
+          {label}
+        </label>
+      )}
 
-      <span className={selectClasses?.iconWrapper}>
-        <Icon name="chevron-down" />
-      </span>
+      <Box className={selectClasses?.inputWrapper}>
+        <select
+          ref={selectRef}
+          role="combobox"
+          aria-haspopup="menubox"
+          aria-label="select"
+          aria-labelledby={name}
+          className={selectClasses?.input}
+          style={style}
+          name={name}
+          id={name}
+          placeholder={placeholder}
+          value={value}
+          {...props}
+        >
+          {options?.map((option) => (
+            <option
+              key={option?.id}
+              value={option?.value}
+              disabled={!option?.value}
+            >
+              {option.label}
+            </option>
+          ))}
+        </select>
+
+        {(
+          <span className={selectClasses?.iconWrapper}>
+            {/* <Icon
+              name={icon}
+              className={error && "animate-bouncy"}
+            /> */}
+
+            <Icon name="ChevronDown" />
+          </span>
+        )}
+      </Box>
+
+      {error && (
+        <Box className={selectClasses?.helperTextWrapper}>
+          <Typography className={selectClasses?.helperText}>
+            {error}
+          </Typography>
+        </Box>
+      )}
     </Box>
-  )
+  );
 });
 
 Select.displayName = "Select";
 
 Select.propTypes = {
+  type: PropTypes.oneOf(Object.keys(inputTypes?.types)).isRequired,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  id: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.any.isRequired,
+  icon: PropTypes.string,
   size: PropTypes.oneOf(Object.keys(inputTypes?.sizes)),
   rounded: PropTypes.bool,
-  success: PropTypes.bool,
-  error: PropTypes.bool,
+  success: PropTypes.string,
+  error: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object
 };

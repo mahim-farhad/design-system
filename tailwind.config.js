@@ -158,11 +158,29 @@ export const theme = {
     },
     animation: {
       gradient: "gradient 2s linear infinite",
+      bouncy: "bouncy 0.3s linear",
       infiniteScroll: "infiniteScroll 25s linear infinite",
     },
     keyframes: {
       gradient: {
         to: { backgrounPosition: "200% center" }
+      },
+      bouncy: {
+        "0%": {
+          transform: "translateX(0%)",
+        },
+        "25%": {
+          transform: "translateX(-20%)",
+        },
+        "50%": {
+          transform: "translateX(0%)",
+        },
+        "75%": {
+          transform: "translateX(-20%)",
+        },
+        "100%": {
+          transform: "translateX(0%)",
+        }
       },
       infiniteScroll: {
         from: { transform: "translateX(0)" },
